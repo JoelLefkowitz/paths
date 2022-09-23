@@ -1,0 +1,12 @@
+*.DS_Store
+*.log
+*.o
+*.tmp
+/bin
+/build
+/dist
+/docs/build
+/docs/doxygen
+/gcm.cache
+/generated-docs
+/node_modules

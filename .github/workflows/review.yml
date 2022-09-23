@@ -1,0 +1,21 @@
+name: Review
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout the source code
+        uses: actions/checkout@v2
+
+      - name: Install node and yarn dependencies
+        uses: ./.github/actions/node
+
+      - name: Install apt dependencies
+        run: sudo apt install -y cppcheck
+
+      - name: Run linters
+        run: grunt lint
