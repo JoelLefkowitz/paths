@@ -40,6 +40,21 @@ namespace paths {
 }
 ```
 
+Edge cases for splitting strings are handled the same way as the python standard library:
+
+```cpp
+split("", "/") -> {""}
+split("/", "/") -> {"", ""}
+split("//", "/") -> {"", "", ""}
+split("///", "/") -> {"", "", "", ""}
+```
+
+```cpp
+split("/a", "/") -> {"", "a"}
+split("a/", "/") -> {"a", ""}
+split("/a/", "/") -> {"", "a", ""}
+```
+
 <!-- Raw links -->
 
 [runtime_cpp]: https://raw.githubusercontent.com/JoelLefkowitz/dirname/master/src/runtime.cpp

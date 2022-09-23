@@ -55,6 +55,21 @@ namespace paths {
 }
 ```
 
+Edge cases for splitting strings are handled the same way as the python standard library:
+
+```cpp
+split("", "/") -> {""}
+split("/", "/") -> {"", ""}
+split("//", "/") -> {"", "", ""}
+split("///", "/") -> {"", "", "", ""}
+```
+
+```cpp
+split("/a", "/") -> {"", "a"}
+split("a/", "/") -> {"a", ""}
+split("/a/", "/") -> {"", "a", ""}
+```
+
 For more details read the [documentation][pages].
 
 ## Tooling

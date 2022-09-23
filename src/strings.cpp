@@ -7,9 +7,10 @@
 #include "strings.hpp"
 #include "detect.hpp"
 #include <algorithm>
+#include <cstddef>
 #include <functional>
+#include <iostream>
 #include <numeric>
-#include <sstream>
 #include <string>
 #include <vector>
 
@@ -27,7 +28,6 @@ std::string paths::join(
         };
 
     auto joined = std::accumulate(strs.begin(), strs.end(), std::string(), concat);
-
     return joined.substr(0, joined.length() - delimiter.length());
 }
 
@@ -39,28 +39,50 @@ std::vector<std::string> paths::split(
     const std::string &str,
     const std::string &delimiter
 ) {
-    std::string str_copy = str;
+    return {};
 
-    size_t pos = 0;
+    // if (str.empty()) {
+    //     return {};
+    // }
 
-    std::vector<std::string> segments;
+    // if (delimiter.empty()) {
+    //     return {str};
+    // }
 
-    while ((pos = str_copy.find(delimiter)) != std::string::npos && pos > 0) {
-        segments.push_back(str_copy.substr(0, pos));
-        str_copy.erase(0, pos + delimiter.length());
-    }
+    // std::string copy = str;
 
-    segments.push_back(str_copy);
-    return segments;
+    // std::vector<std::string> segments;
+
+    // size_t pos = 0;
+
+    // while ((pos = copy.find(delimiter, pos)) != std::string::npos) {
+    //     auto segment = copy.substr(0, pos);
+
+    //     if (!segment.empty()) {
+    //         segments.push_back(segment);
+    //     }
+
+    //     copy.replace(0, pos + delimiter.length(), "");
+    // }
+
+    // if (!copy.empty()) {
+    //     segments.push_back(copy);
+    // }
+
+    // return segments;
 }
 
 std::string paths::head(const std::string &path) {
-    return split(path, platform::sep).back();
+    return path.empty() ? "" : split(path, platform::sep).back();
 }
 
 std::string paths::tail(const std::string &path) {
     auto segments = split(path, platform::sep);
-    segments.pop_back();
+
+    if (!segments.empty()) {
+        segments.pop_back();
+    }
+
     return join(segments, platform::sep);
 }
 
@@ -69,5 +91,5 @@ std::string paths::resolve(const std::vector<std::string> &paths) {
 }
 
 std::vector<std::string> paths::segments(const std::string &path) {
-    return path.empty() ? std::vector<std::string>() : split(path, platform::sep);
+    return split(path, platform::sep);
 }

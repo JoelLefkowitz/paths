@@ -7,25 +7,43 @@
 using namespace paths;
 
 TEST(Strings, join) {
-    EXPECT_EQ(join({}, ""), "");
+    EXPECT_EQ(join({""}, "/"), "");
+    EXPECT_EQ(join({"", ""}, "/"), "/");
+    EXPECT_EQ(join({"", "", ""}, "/"), "//");
+    EXPECT_EQ(join({"", "", "", ""}, "/"), "///");
+
+    EXPECT_EQ(join({"", "a"}, "/"), "/a");
+    EXPECT_EQ(join({"a", ""}, "/"), "a/");
+    EXPECT_EQ(join({"", "a", ""}, "/"), "/a/");
+
+    EXPECT_EQ(join({""}, ""), "");
     EXPECT_EQ(join({"a"}, ""), "a");
-    EXPECT_EQ(join({"a", "b"}, ""), "ab");
+    EXPECT_EQ(join({"a, b"}, "-"), "a, b");
 
-    EXPECT_EQ(join({"a", "b"}, ','), "a,b");
-    EXPECT_EQ(join({"a", "b"}, ","), "a,b");
-
-    EXPECT_EQ(join({"a", "b"}, ", "), "a, b");
+    EXPECT_EQ(join({"a", "b", "c"}, "/"), "a/b/c");
+    EXPECT_EQ(join({"a", "b", "c"}, "/"), "/a/b/c");
+    EXPECT_EQ(join({"a", "b", "c"}, "/"), "a/b/c/");
+    EXPECT_EQ(join({"a", "b", "c"}, "/"), "/a/b/c/");
 }
 
 TEST(Strings, split) {
-    EXPECT_EQ(split("", ""), std::vector<std::string>({""}));
-    EXPECT_EQ(split("", "-"), std::vector<std::string>({""}));
-    EXPECT_EQ(split("a, b", ""), std::vector<std::string>({"a, b"}));
+    EXPECT_EQ(split("", "/"), std::vector<std::string>({""}));
+    EXPECT_EQ(split("/", "/"), std::vector<std::string>({"", ""}));
+    EXPECT_EQ(split("//", "/"), std::vector<std::string>({"", "", ""}));
+    EXPECT_EQ(split("///", "/"), std::vector<std::string>({"", "", "", ""}));
 
-    EXPECT_EQ(split("a, b", '-'), std::vector<std::string>({"a, b"}));
+    EXPECT_EQ(split("/a", "/"), std::vector<std::string>({"", "a"}));
+    EXPECT_EQ(split("a/", "/"), std::vector<std::string>({"a", ""}));
+    EXPECT_EQ(split("/a/", "/"), std::vector<std::string>({"", "a", ""}));
+
+    EXPECT_EQ(split("", ""), std::vector<std::string>({""}));
+    EXPECT_EQ(split("a", ""), std::vector<std::string>({"a"}));
     EXPECT_EQ(split("a, b", "-"), std::vector<std::string>({"a, b"}));
 
-    EXPECT_EQ(split("a, b", ", "), std::vector<std::string>({"a", "b"}));
+    EXPECT_EQ(split("a/b/c", "/"), std::vector<std::string>({"a", "b", "c"}));
+    EXPECT_EQ(split("/a/b/c", "/"), std::vector<std::string>({"a", "b", "c"}));
+    EXPECT_EQ(split("a/b/c/", "/"), std::vector<std::string>({"a", "b", "c"}));
+    EXPECT_EQ(split("/a/b/c/", "/"), std::vector<std::string>({"a", "b", "c"}));
 }
 
 TEST(Strings, head) {
@@ -49,7 +67,7 @@ TEST(Strings, head) {
 
 TEST(Strings, tail) {
     EXPECT_EQ(tail(""), "");
-    EXPECT_EQ(tail("a"), "a");
+    EXPECT_EQ(tail("a"), "");
 
     if (platform::sep == '/') {
         EXPECT_EQ(tail("a/b"), "a");
