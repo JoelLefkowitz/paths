@@ -71,6 +71,20 @@ grunt lint
 grunt format
 ```
 
+### Test
+
+```bash
+mkdir dist
+
+clang++ -std=c++17 -lgtest -o dist/test \
+    src/runtime.cpp  \
+    src/strings.cpp  \
+    test/strings.cpp \
+    test/test.cpp
+
+./dist/test
+```
+
 ## Continuous integration
 
 This repository uses github actions to lint and test each commit. Formatting tasks and writing/generating documentation must be done before committing new code.

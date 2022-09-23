@@ -7,6 +7,8 @@
 #include "strings.hpp"
 #include "detect.hpp"
 #include <algorithm>
+#include <functional>
+#include <numeric>
 #include <sstream>
 #include <string>
 #include <vector>
@@ -15,26 +17,28 @@ std::string paths::join(const std::vector<std::string> &strs, char delimiter) {
     return join(strs, std::string(1, delimiter));
 }
 
-std::string
-paths::join(const std::vector<std::string> &strs, const std::string &delimiter) {
-    // std::function<std::string(const std::string &, const std::string &)> concat =
-    //     [&delimiter](const auto &acc, const auto &x) {
-    //         return acc + x + delimiter;
-    //     };
+std::string paths::join(
+    const std::vector<std::string> &strs,
+    const std::string              &delimiter
+) {
+    std::function<std::string(const std::string &, const std::string &)> concat =
+        [&delimiter](const auto &acc, const auto &x) {
+            return acc + x + delimiter;
+        };
 
-    // auto joined = functional::fold(concat, std::string(), strs);
+    auto joined = std::accumulate(strs.begin(), strs.end(), std::string(), concat);
 
-    // return joined.substr(0, joined.length() - delimiter.length());
-
-    return {};
+    return joined.substr(0, joined.length() - delimiter.length());
 }
 
 std::vector<std::string> paths::split(const std::string &str, char delimiter) {
     return split(str, std::string(1, delimiter));
 }
 
-std::vector<std::string>
-paths::split(const std::string &str, const std::string &delimiter) {
+std::vector<std::string> paths::split(
+    const std::string &str,
+    const std::string &delimiter
+) {
     std::string str_copy = str;
 
     size_t pos = 0;
@@ -55,7 +59,9 @@ std::string paths::head(const std::string &path) {
 }
 
 std::string paths::tail(const std::string &path) {
-    return "";
+    auto segments = split(path, platform::sep);
+    segments.pop_back();
+    return join(segments, platform::sep);
 }
 
 std::string paths::resolve(const std::vector<std::string> &paths) {

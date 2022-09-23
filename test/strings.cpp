@@ -18,14 +18,14 @@ TEST(Strings, join) {
 }
 
 TEST(Strings, split) {
-    EXPECT_EQ(split("", ""), std::vector({""}));
-    EXPECT_EQ(split("", "-"), std::vector({""}));
-    EXPECT_EQ(split("a, b", ""), std::vector({"a, b"}));
+    EXPECT_EQ(split("", ""), std::vector<std::string>({""}));
+    EXPECT_EQ(split("", "-"), std::vector<std::string>({""}));
+    EXPECT_EQ(split("a, b", ""), std::vector<std::string>({"a, b"}));
 
-    EXPECT_EQ(split("a, b", '-'), std::vector({"a, b"}));
-    EXPECT_EQ(split("a, b", "-"), std::vector({"a, b"}));
+    EXPECT_EQ(split("a, b", '-'), std::vector<std::string>({"a, b"}));
+    EXPECT_EQ(split("a, b", "-"), std::vector<std::string>({"a, b"}));
 
-    EXPECT_EQ(split("a, b", ", "), std::vector({"a", "b"}));
+    EXPECT_EQ(split("a, b", ", "), std::vector<std::string>({"a", "b"}));
 }
 
 TEST(Strings, head) {
@@ -75,7 +75,7 @@ TEST(Strings, resolve) {
         EXPECT_EQ(resolve({"a", "b", "c"}), "a/b/c");
     }
 
-    if (platform::sep == L'\\') {
+    if (platform::sep == '\\') {
         EXPECT_EQ(resolve({"a", "b"}), "a\\b");
         EXPECT_EQ(resolve({"a", "b", "c"}), "a\\b\\c");
     }
@@ -83,15 +83,15 @@ TEST(Strings, resolve) {
 
 TEST(Strings, segments) {
     EXPECT_EQ(segments(""), std::vector<std::string>());
-    EXPECT_EQ(segments("a"), std::vector({"a"}));
+    EXPECT_EQ(segments("a"), std::vector<std::string>({"a"}));
 
     if (platform::sep == '/') {
-        EXPECT_EQ(segments("a/b"), std::vector({"a", "b"}));
-        EXPECT_EQ(segments("a/b/c"), std::vector({"a", "b", "c"}));
+        EXPECT_EQ(segments("a/b"), std::vector<std::string>({"a", "b"}));
+        EXPECT_EQ(segments("a/b/c"), std::vector<std::string>({"a", "b", "c"}));
     }
 
-    if (platform::sep == L'\\') {
-        EXPECT_EQ(segments("a\\b"), std::vector({"a", "b"}));
-        EXPECT_EQ(segments("a\\b\\c"), std::vector({"a", "b", "c"}));
+    if (platform::sep == '\\') {
+        EXPECT_EQ(segments("a\\b"), std::vector<std::string>({"a", "b"}));
+        EXPECT_EQ(segments("a\\b\\c"), std::vector<std::string>({"a", "b", "c"}));
     }
 }
