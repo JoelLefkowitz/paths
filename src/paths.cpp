@@ -22,10 +22,7 @@ std::string paths::normpath(const std::string &path) {
     std::vector<std::string> content;
 
     std::copy_if(
-        components.begin(),
-        components.end(),
-        std::back_inserter(content), 
-        contentful
+        components.begin(), components.end(), std::back_inserter(content), contentful
     );
 
     std::vector<std::string> normalised;
