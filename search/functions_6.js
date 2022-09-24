@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['tail_47',['tail',['../namespacepaths.html#aae2b55f0bc134f3c0b6888b0cf738373',1,'paths']]]
+  ['resolve_53',['resolve',['../namespacepaths.html#a4029492c3856da0d895e1fe012820af6',1,'paths']]]
 ];

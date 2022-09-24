@@ -72,7 +72,7 @@ $(function() {
 <div class="title">runtime.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="runtime_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// ʕ •ᴥ•ʔ Paths - strings.cpp ʕ•ᴥ• ʔ</span></div>
+<a href="runtime_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// ʕ •ᴥ•ʔ Paths - runtime.hpp ʕ•ᴥ• ʔ</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// OS specific path manipulation including retrieving the executable&#39;s path.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// https://github.com/joellefkowitz/paths</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// Version: 0.1.0</span></div>
@@ -83,15 +83,18 @@ $(function() {
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="namespacepaths.html">   12</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacepaths.html">paths</a> {</div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="namespacepaths.html#a8b2190367f784ecfeb7f159bb2389237">   13</a></span>&#160;    std::string <a class="code" href="namespacepaths.html#a8b2190367f784ecfeb7f159bb2389237">filename</a>();</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    std::string <a class="code" href="namespacepaths.html#a932eb86fec5d46e4937adee88f5a5a41">dirname</a>();</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;} <span class="comment">// namespace paths</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="anamespacepaths_html"><div class="ttname"><a href="namespacepaths.html">paths</a></div><div class="ttdef"><b>Definition:</b> runtime.hpp:12</div></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacepaths.html">paths</a> {</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="comment">// filename() -&gt; &quot;Path to the current executable file&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="namespacepaths.html#a8b2190367f784ecfeb7f159bb2389237">   14</a></span>&#160;    std::string <a class="code" href="namespacepaths.html#a8b2190367f784ecfeb7f159bb2389237">filename</a>();</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="comment">// dirname() -&gt; &quot;Directory of the current executable file&quot;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    std::string <a class="code" href="namespacepaths.html#a932eb86fec5d46e4937adee88f5a5a41">dirname</a>();</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;} <span class="comment">// namespace paths</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="anamespacepaths_html"><div class="ttname"><a href="namespacepaths.html">paths</a></div><div class="ttdef"><b>Definition:</b> paths.hpp:13</div></div>
 <div class="ttc" id="anamespacepaths_html_a8b2190367f784ecfeb7f159bb2389237"><div class="ttname"><a href="namespacepaths.html#a8b2190367f784ecfeb7f159bb2389237">paths::filename</a></div><div class="ttdeci">std::string filename()</div></div>
-<div class="ttc" id="anamespacepaths_html_a932eb86fec5d46e4937adee88f5a5a41"><div class="ttname"><a href="namespacepaths.html#a932eb86fec5d46e4937adee88f5a5a41">paths::dirname</a></div><div class="ttdeci">std::string dirname()</div><div class="ttdef"><b>Definition:</b> runtime.cpp:72</div></div>
+<div class="ttc" id="anamespacepaths_html_a932eb86fec5d46e4937adee88f5a5a41"><div class="ttname"><a href="namespacepaths.html#a932eb86fec5d46e4937adee88f5a5a41">paths::dirname</a></div><div class="ttdeci">std::string dirname()</div><div class="ttdef"><b>Definition:</b> runtime.cpp:73</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['paths_32',['paths',['../namespacepaths.html',1,'']]],
-  ['platform_33',['platform',['../namespaceplatform.html',1,'']]]
+  ['paths_37',['paths',['../namespacepaths.html',1,'']]],
+  ['platform_38',['platform',['../namespaceplatform.html',1,'']]]
 ];

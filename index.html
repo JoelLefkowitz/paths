@@ -70,11 +70,13 @@ $(function() {
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="mainpage"></a> Copy the sources in place:</p>
 <ul>
-<li><a href="https://raw.githubusercontent.com/JoelLefkowitz/dirname/master/src/runtime.cpp">runtime.cpp</a></li>
-<li><a href="https://raw.githubusercontent.com/JoelLefkowitz/dirname/master/src/runtime.hpp">runtime.hpp</a></li>
-<li><a href="https://raw.githubusercontent.com/JoelLefkowitz/dirname/master/src/strings.cpp">strings.cpp</a></li>
-<li><a href="https://raw.githubusercontent.com/JoelLefkowitz/dirname/master/src/strings.hpp">strings.hpp</a></li>
-<li><a href="https://raw.githubusercontent.com/JoelLefkowitz/dirname/master/src/detect.hpp">detect.hpp</a></li>
+<li><a href="https://raw.githubusercontent.com/JoelLefkowitz/paths/master/src/paths.cpp">paths.cpp</a></li>
+<li><a href="https://raw.githubusercontent.com/JoelLefkowitz/paths/master/src/paths.hpp">paths.hpp</a></li>
+<li><a href="https://raw.githubusercontent.com/JoelLefkowitz/paths/master/src/runtime.cpp">runtime.cpp</a></li>
+<li><a href="https://raw.githubusercontent.com/JoelLefkowitz/paths/master/src/runtime.hpp">runtime.hpp</a></li>
+<li><a href="https://raw.githubusercontent.com/JoelLefkowitz/paths/master/src/strings.cpp">strings.cpp</a></li>
+<li><a href="https://raw.githubusercontent.com/JoelLefkowitz/paths/master/src/strings.hpp">strings.hpp</a></li>
+<li><a href="https://raw.githubusercontent.com/JoelLefkowitz/paths/master/src/detect.hpp">detect.hpp</a></li>
 </ul>
 <div class="fragment"><div class="line"><span class="keyword">namespace </span><a class="code" href="namespacepaths.html">paths</a> {</div>
 <div class="line">    <span class="comment">// filename() -&gt; &quot;Path to the current executable file&quot;</span></div>
@@ -83,6 +85,29 @@ $(function() {
 <div class="line">    <span class="comment">// dirname() -&gt; &quot;Directory of the current executable file&quot;</span></div>
 <div class="line">    std::string <a class="code" href="namespacepaths.html#a932eb86fec5d46e4937adee88f5a5a41">dirname</a>();</div>
 <div class="line"> </div>
+<div class="line">    <span class="comment">// head(&quot;a/b/c&quot;) -&gt; &quot;c&quot;</span></div>
+<div class="line">    std::string <a class="code" href="namespacepaths.html#a91ed880ca82be51c0c47b6f663966722">head</a>(<span class="keyword">const</span> std::string &amp;path);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// tail(&quot;a/b/c&quot;) -&gt; &quot;a/b&quot;</span></div>
+<div class="line">    std::string <a class="code" href="namespacepaths.html#aae2b55f0bc134f3c0b6888b0cf738373">tail</a>(<span class="keyword">const</span> std::string &amp;path);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// normpath(&quot;a/../a/b/c&quot;) -&gt; &quot;a/b/c&quot;</span></div>
+<div class="line">    std::string <a class="code" href="namespacepaths.html#a323feb92c5d6df2d88b511addad8dc8c">normpath</a>(<span class="keyword">const</span> std::string &amp;path);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// resolve(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;) -&gt; &quot;a/b/c&quot;</span></div>
+<div class="line">    std::string <a class="code" href="namespacepaths.html#a4029492c3856da0d895e1fe012820af6">resolve</a>(<span class="keyword">const</span> std::vector&lt;std::string&gt; &amp;<a class="code" href="namespacepaths.html">paths</a>);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// segments(&quot;a/b/c&quot;) -&gt; {&quot;a&quot;, &quot;b&quot;, &quot;c&quot;}</span></div>
+<div class="line">    std::vector&lt;std::string&gt; <a class="code" href="namespacepaths.html#a71847660502bd18eb659f1ef174baf0c">segments</a>(<span class="keyword">const</span> std::string &amp;path);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// starts_with(&quot;a/b/c&quot;, &quot;a/&quot;) -&gt; true</span></div>
+<div class="line">    <span class="keywordtype">bool</span> <a class="code" href="namespacepaths.html#a794735e7f1247089f928b0f39237d859">starts_with</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keywordtype">char</span> prefix);</div>
+<div class="line">    <span class="keywordtype">bool</span> <a class="code" href="namespacepaths.html#a794735e7f1247089f928b0f39237d859">starts_with</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keyword">const</span> std::string &amp;prefix);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// ends_with(&quot;a/b/c&quot;, &quot;/c&quot;) -&gt; true</span></div>
+<div class="line">    <span class="keywordtype">bool</span> <a class="code" href="namespacepaths.html#a3ab7c6ce09580003cbc613dede2a978d">ends_with</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keywordtype">char</span> suffix);</div>
+<div class="line">    <span class="keywordtype">bool</span> <a class="code" href="namespacepaths.html#a3ab7c6ce09580003cbc613dede2a978d">ends_with</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keyword">const</span> std::string &amp;suffix);</div>
+<div class="line"> </div>
 <div class="line">    <span class="comment">// join({&quot;a&quot;, &quot;b&quot;, &quot;c&quot;}, &quot;, &quot;) -&gt; &quot;a, b, c&quot;</span></div>
 <div class="line">    std::string <a class="code" href="namespacepaths.html#a23b9979dea03fd729427d2730fca8ebf">join</a>(<span class="keyword">const</span> std::vector&lt;std::string&gt; &amp;strs, <span class="keywordtype">char</span> delimiter);</div>
 <div class="line">    std::string <a class="code" href="namespacepaths.html#a23b9979dea03fd729427d2730fca8ebf">join</a>(<span class="keyword">const</span> std::vector&lt;std::string&gt; &amp;strs, <span class="keyword">const</span> std::string &amp;delimiter = <span class="stringliteral">&quot;, &quot;</span>);</div>
@@ -90,28 +115,19 @@ $(function() {
 <div class="line">    <span class="comment">// split(&quot;a, b, c&quot;, &quot;, &quot;) -&gt; {&quot;a&quot;, &quot;b&quot;, &quot;c&quot;}</span></div>
 <div class="line">    std::vector&lt;std::string&gt; <a class="code" href="namespacepaths.html#a3a52c2b7742a8e16259803c9f269f126">split</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keywordtype">char</span> delimiter);</div>
 <div class="line">    std::vector&lt;std::string&gt; <a class="code" href="namespacepaths.html#a3a52c2b7742a8e16259803c9f269f126">split</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keyword">const</span> std::string &amp;delimiter = <span class="stringliteral">&quot; &quot;</span>);</div>
-<div class="line"> </div>
-<div class="line">    <span class="comment">// head(&quot;a/b/c&quot;) -&gt; &quot;c&quot;</span></div>
-<div class="line">    std::string <a class="code" href="namespacepaths.html#a91ed880ca82be51c0c47b6f663966722">head</a>(<span class="keyword">const</span> std::string &amp;path);</div>
-<div class="line"> </div>
-<div class="line">    <span class="comment">// tail(&quot;a/b/c&quot;) -&gt; &quot;a/b&quot;</span></div>
-<div class="line">    std::string <a class="code" href="namespacepaths.html#aae2b55f0bc134f3c0b6888b0cf738373">tail</a>(<span class="keyword">const</span> std::string &amp;path);</div>
-<div class="line"> </div>
-<div class="line">    <span class="comment">// resolve(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;) -&gt; &quot;a/b/c&quot;</span></div>
-<div class="line">    std::string <a class="code" href="namespacepaths.html#a4029492c3856da0d895e1fe012820af6">resolve</a>(<span class="keyword">const</span> std::vector&lt;std::string&gt; &amp;<a class="code" href="namespacepaths.html">paths</a>);</div>
-<div class="line"> </div>
-<div class="line">    <span class="comment">// segments(&quot;a/b/c&quot;) -&gt; {&quot;a&quot;, &quot;b&quot;, &quot;c&quot;}</span></div>
-<div class="line">    std::vector&lt;std::string&gt; <a class="code" href="namespacepaths.html#a71847660502bd18eb659f1ef174baf0c">segments</a>(<span class="keyword">const</span> std::string &amp;path);</div>
 <div class="line">}</div>
-<div class="ttc" id="anamespacepaths_html"><div class="ttname"><a href="namespacepaths.html">paths</a></div><div class="ttdef"><b>Definition:</b> runtime.hpp:12</div></div>
-<div class="ttc" id="anamespacepaths_html_a23b9979dea03fd729427d2730fca8ebf"><div class="ttname"><a href="namespacepaths.html#a23b9979dea03fd729427d2730fca8ebf">paths::join</a></div><div class="ttdeci">std::string join(const std::vector&lt; std::string &gt; &amp;strs, char delimiter)</div><div class="ttdef"><b>Definition:</b> strings.cpp:17</div></div>
-<div class="ttc" id="anamespacepaths_html_a3a52c2b7742a8e16259803c9f269f126"><div class="ttname"><a href="namespacepaths.html#a3a52c2b7742a8e16259803c9f269f126">paths::split</a></div><div class="ttdeci">std::vector&lt; std::string &gt; split(const std::string &amp;str, char delimiter)</div><div class="ttdef"><b>Definition:</b> strings.cpp:34</div></div>
-<div class="ttc" id="anamespacepaths_html_a4029492c3856da0d895e1fe012820af6"><div class="ttname"><a href="namespacepaths.html#a4029492c3856da0d895e1fe012820af6">paths::resolve</a></div><div class="ttdeci">std::string resolve(const std::vector&lt; std::string &gt; &amp;paths)</div><div class="ttdef"><b>Definition:</b> strings.cpp:89</div></div>
-<div class="ttc" id="anamespacepaths_html_a71847660502bd18eb659f1ef174baf0c"><div class="ttname"><a href="namespacepaths.html#a71847660502bd18eb659f1ef174baf0c">paths::segments</a></div><div class="ttdeci">std::vector&lt; std::string &gt; segments(const std::string &amp;path)</div><div class="ttdef"><b>Definition:</b> strings.cpp:93</div></div>
+<div class="ttc" id="anamespacepaths_html"><div class="ttname"><a href="namespacepaths.html">paths</a></div><div class="ttdef"><b>Definition:</b> paths.hpp:13</div></div>
+<div class="ttc" id="anamespacepaths_html_a23b9979dea03fd729427d2730fca8ebf"><div class="ttname"><a href="namespacepaths.html#a23b9979dea03fd729427d2730fca8ebf">paths::join</a></div><div class="ttdeci">std::string join(const std::vector&lt; std::string &gt; &amp;strs, char delimiter)</div><div class="ttdef"><b>Definition:</b> strings.cpp:31</div></div>
+<div class="ttc" id="anamespacepaths_html_a323feb92c5d6df2d88b511addad8dc8c"><div class="ttname"><a href="namespacepaths.html#a323feb92c5d6df2d88b511addad8dc8c">paths::normpath</a></div><div class="ttdeci">std::string normpath(const std::string &amp;path)</div><div class="ttdef"><b>Definition:</b> paths.cpp:28</div></div>
+<div class="ttc" id="anamespacepaths_html_a3a52c2b7742a8e16259803c9f269f126"><div class="ttname"><a href="namespacepaths.html#a3a52c2b7742a8e16259803c9f269f126">paths::split</a></div><div class="ttdeci">std::vector&lt; std::string &gt; split(const std::string &amp;str, char delimiter)</div><div class="ttdef"><b>Definition:</b> strings.cpp:47</div></div>
+<div class="ttc" id="anamespacepaths_html_a3ab7c6ce09580003cbc613dede2a978d"><div class="ttname"><a href="namespacepaths.html#a3ab7c6ce09580003cbc613dede2a978d">paths::ends_with</a></div><div class="ttdeci">bool ends_with(const std::string &amp;str, char suffix)</div><div class="ttdef"><b>Definition:</b> strings.cpp:22</div></div>
+<div class="ttc" id="anamespacepaths_html_a4029492c3856da0d895e1fe012820af6"><div class="ttname"><a href="namespacepaths.html#a4029492c3856da0d895e1fe012820af6">paths::resolve</a></div><div class="ttdeci">std::string resolve(const std::vector&lt; std::string &gt; &amp;paths)</div><div class="ttdef"><b>Definition:</b> paths.cpp:32</div></div>
+<div class="ttc" id="anamespacepaths_html_a71847660502bd18eb659f1ef174baf0c"><div class="ttname"><a href="namespacepaths.html#a71847660502bd18eb659f1ef174baf0c">paths::segments</a></div><div class="ttdeci">std::vector&lt; std::string &gt; segments(const std::string &amp;path)</div><div class="ttdef"><b>Definition:</b> paths.cpp:36</div></div>
+<div class="ttc" id="anamespacepaths_html_a794735e7f1247089f928b0f39237d859"><div class="ttname"><a href="namespacepaths.html#a794735e7f1247089f928b0f39237d859">paths::starts_with</a></div><div class="ttdeci">bool starts_with(const std::string &amp;str, char prefix)</div><div class="ttdef"><b>Definition:</b> strings.cpp:14</div></div>
 <div class="ttc" id="anamespacepaths_html_a8b2190367f784ecfeb7f159bb2389237"><div class="ttname"><a href="namespacepaths.html#a8b2190367f784ecfeb7f159bb2389237">paths::filename</a></div><div class="ttdeci">std::string filename()</div></div>
-<div class="ttc" id="anamespacepaths_html_a91ed880ca82be51c0c47b6f663966722"><div class="ttname"><a href="namespacepaths.html#a91ed880ca82be51c0c47b6f663966722">paths::head</a></div><div class="ttdeci">std::string head(const std::string &amp;path)</div><div class="ttdef"><b>Definition:</b> strings.cpp:75</div></div>
-<div class="ttc" id="anamespacepaths_html_a932eb86fec5d46e4937adee88f5a5a41"><div class="ttname"><a href="namespacepaths.html#a932eb86fec5d46e4937adee88f5a5a41">paths::dirname</a></div><div class="ttdeci">std::string dirname()</div><div class="ttdef"><b>Definition:</b> runtime.cpp:72</div></div>
-<div class="ttc" id="anamespacepaths_html_aae2b55f0bc134f3c0b6888b0cf738373"><div class="ttname"><a href="namespacepaths.html#aae2b55f0bc134f3c0b6888b0cf738373">paths::tail</a></div><div class="ttdeci">std::string tail(const std::string &amp;path)</div><div class="ttdef"><b>Definition:</b> strings.cpp:79</div></div>
+<div class="ttc" id="anamespacepaths_html_a91ed880ca82be51c0c47b6f663966722"><div class="ttname"><a href="namespacepaths.html#a91ed880ca82be51c0c47b6f663966722">paths::head</a></div><div class="ttdeci">std::string head(const std::string &amp;path)</div><div class="ttdef"><b>Definition:</b> paths.cpp:13</div></div>
+<div class="ttc" id="anamespacepaths_html_a932eb86fec5d46e4937adee88f5a5a41"><div class="ttname"><a href="namespacepaths.html#a932eb86fec5d46e4937adee88f5a5a41">paths::dirname</a></div><div class="ttdeci">std::string dirname()</div><div class="ttdef"><b>Definition:</b> runtime.cpp:73</div></div>
+<div class="ttc" id="anamespacepaths_html_aae2b55f0bc134f3c0b6888b0cf738373"><div class="ttname"><a href="namespacepaths.html#aae2b55f0bc134f3c0b6888b0cf738373">paths::tail</a></div><div class="ttdeci">std::string tail(const std::string &amp;path)</div><div class="ttdef"><b>Definition:</b> paths.cpp:18</div></div>
 </div><!-- fragment --><p>Edge cases for splitting strings are handled the same way as the python standard library:</p>
 <div class="fragment"><div class="line"><a class="code" href="namespacepaths.html#a3a52c2b7742a8e16259803c9f269f126">split</a>(<span class="stringliteral">&quot;&quot;</span>, <span class="stringliteral">&quot;/&quot;</span>) -&gt; {<span class="stringliteral">&quot;&quot;</span>}</div>
 <div class="line"><a class="code" href="namespacepaths.html#a3a52c2b7742a8e16259803c9f269f126">split</a>(<span class="stringliteral">&quot;/&quot;</span>, <span class="stringliteral">&quot;/&quot;</span>) -&gt; {<span class="stringliteral">&quot;&quot;</span>, <span class="stringliteral">&quot;&quot;</span>}</div>
@@ -120,6 +136,12 @@ $(function() {
 </div><!-- fragment --><div class="fragment"><div class="line"><a class="code" href="namespacepaths.html#a3a52c2b7742a8e16259803c9f269f126">split</a>(<span class="stringliteral">&quot;/a&quot;</span>, <span class="stringliteral">&quot;/&quot;</span>) -&gt; {<span class="stringliteral">&quot;&quot;</span>, <span class="stringliteral">&quot;a&quot;</span>}</div>
 <div class="line"><a class="code" href="namespacepaths.html#a3a52c2b7742a8e16259803c9f269f126">split</a>(<span class="stringliteral">&quot;a/&quot;</span>, <span class="stringliteral">&quot;/&quot;</span>) -&gt; {<span class="stringliteral">&quot;a&quot;</span>, <span class="stringliteral">&quot;&quot;</span>}</div>
 <div class="line"><a class="code" href="namespacepaths.html#a3a52c2b7742a8e16259803c9f269f126">split</a>(<span class="stringliteral">&quot;/a/&quot;</span>, <span class="stringliteral">&quot;/&quot;</span>) -&gt; {<span class="stringliteral">&quot;&quot;</span>, <span class="stringliteral">&quot;a&quot;</span>, <span class="stringliteral">&quot;&quot;</span>}</div>
+</div><!-- fragment --><p>For ease of use <code><a class="el" href="namespacepaths.html#a4029492c3856da0d895e1fe012820af6">paths::resolve</a></code> and <code><a class="el" href="namespacepaths.html#a71847660502bd18eb659f1ef174baf0c">paths::segments</a></code> normalise paths before calling <code><a class="el" href="namespacepaths.html#a23b9979dea03fd729427d2730fca8ebf">paths::join</a></code> and <code><a class="el" href="namespacepaths.html#a3a52c2b7742a8e16259803c9f269f126">paths::split</a></code> respectively:</p>
+<div class="fragment"><div class="line"><a class="code" href="namespacepaths.html#a4029492c3856da0d895e1fe012820af6">resolve</a>({<span class="stringliteral">&quot;a&quot;</span>, <span class="stringliteral">&quot;..&quot;</span>, <span class="stringliteral">&quot;a&quot;</span>, <span class="stringliteral">&quot;b&quot;</span>, <span class="stringliteral">&quot;c&quot;</span>}) -&gt; <span class="stringliteral">&quot;a/b/c&quot;</span></div>
+<div class="line"><a class="code" href="namespacepaths.html#a71847660502bd18eb659f1ef174baf0c">segments</a>(<span class="stringliteral">&quot;a/../a/b/c&quot;</span>) -&gt; {<span class="stringliteral">&quot;a&quot;</span>, <span class="stringliteral">&quot;b&quot;</span>, <span class="stringliteral">&quot;c&quot;</span>}</div>
+<div class="line"> </div>
+<div class="line"><a class="code" href="namespacepaths.html#aae2b55f0bc134f3c0b6888b0cf738373">tail</a>(<span class="stringliteral">&quot;a/../a/b/c&quot;</span>) -&gt; <span class="stringliteral">&quot;a/b&quot;</span></div>
+<div class="line"><a class="code" href="namespacepaths.html#a91ed880ca82be51c0c47b6f663966722">head</a>(<span class="stringliteral">&quot;a/../a/b/c&quot;</span>) -&gt; <span class="stringliteral">&quot;c&quot;</span></div>
 </div><!-- fragment --> </div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
