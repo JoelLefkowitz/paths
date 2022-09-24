@@ -6,13 +6,27 @@
 
 #include "strings.hpp"
 #include "detect.hpp"
-#include <algorithm>
 #include <cstddef>
-#include <functional>
-#include <iostream>
 #include <numeric>
 #include <string>
 #include <vector>
+
+bool paths::starts_with(const std::string &str, char prefix) {
+    return starts_with(str, std::string(1, prefix));
+}
+
+bool paths::starts_with(const std::string &str, const std::string &prefix) {
+    return str.substr(0, prefix.length()) == prefix;
+}
+
+bool paths::ends_with(const std::string &str, char suffix) {
+    return ends_with(str, std::string(1, suffix));
+}
+
+bool paths::ends_with(const std::string &str, const std::string &suffix) {
+    return str.length() >= suffix.length() &&
+        str.substr(str.length() - suffix.length(), str.length()) == suffix;
+}
 
 std::string paths::join(const std::vector<std::string> &strs, char delimiter) {
     return join(strs, std::string(1, delimiter));
@@ -22,10 +36,9 @@ std::string paths::join(
     const std::vector<std::string> &strs,
     const std::string              &delimiter
 ) {
-    std::function<std::string(const std::string &, const std::string &)> concat =
-        [&delimiter](const auto &acc, const auto &x) {
-            return acc + x + delimiter;
-        };
+    auto concat = [&delimiter](const std::string &acc, const std::string &x) {
+        return acc + x + delimiter;
+    };
 
     auto joined = std::accumulate(strs.begin(), strs.end(), std::string(), concat);
     return joined.substr(0, joined.length() - delimiter.length());
@@ -39,57 +52,24 @@ std::vector<std::string> paths::split(
     const std::string &str,
     const std::string &delimiter
 ) {
-    return {};
-
-    // if (str.empty()) {
-    //     return {};
-    // }
-
-    // if (delimiter.empty()) {
-    //     return {str};
-    // }
-
-    // std::string copy = str;
-
-    // std::vector<std::string> segments;
-
-    // size_t pos = 0;
-
-    // while ((pos = copy.find(delimiter, pos)) != std::string::npos) {
-    //     auto segment = copy.substr(0, pos);
-
-    //     if (!segment.empty()) {
-    //         segments.push_back(segment);
-    //     }
-
-    //     copy.replace(0, pos + delimiter.length(), "");
-    // }
-
-    // if (!copy.empty()) {
-    //     segments.push_back(copy);
-    // }
-
-    // return segments;
-}
-
-std::string paths::head(const std::string &path) {
-    return path.empty() ? "" : split(path, platform::sep).back();
-}
-
-std::string paths::tail(const std::string &path) {
-    auto segments = split(path, platform::sep);
-
-    if (!segments.empty()) {
-        segments.pop_back();
+    if (str.empty() || delimiter.empty()) {
+        return {str};
     }
 
-    return join(segments, platform::sep);
-}
+    std::string copy = str;
 
-std::string paths::resolve(const std::vector<std::string> &paths) {
-    return join(paths, platform::sep);
-}
+    std::vector<std::string> segments;
 
-std::vector<std::string> paths::segments(const std::string &path) {
-    return split(path, platform::sep);
+    size_t pos = 0;
+
+    while ((pos = copy.find(delimiter, pos)) != std::string::npos) {
+        segments.push_back(copy.substr(0, pos));
+        copy.replace(0, pos + delimiter.length(), "");
+    }
+
+    if (!copy.empty() || ends_with(str, delimiter)) {
+        segments.push_back(copy);
+    }
+
+    return segments;
 }

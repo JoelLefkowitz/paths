@@ -20,6 +20,7 @@
     "cppclean",
     "doxyfile",
     "lefkowitz",
+    "lgtest",
     "remarkrc",
     "suppr",
     "whereami"

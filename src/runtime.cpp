@@ -1,4 +1,4 @@
-// ʕ •ᴥ•ʔ Paths - strings.cpp ʕ•ᴥ• ʔ
+// ʕ •ᴥ•ʔ Paths - runtime.cpp ʕ•ᴥ• ʔ
 // OS specific path manipulation including retrieving the executable's path.
 // https://github.com/joellefkowitz/paths
 // Version: 0.1.0
@@ -7,6 +7,7 @@
 #include "runtime.hpp"
 #include "detect.hpp"
 #include "strings.hpp"
+#include "paths.hpp"
 #include <string>
 
 #if PLATFORM_DETECTED_OS == PLATFORM_LINUX

@@ -2,7 +2,7 @@
 
 OS specific path manipulation including retrieving the executable's path.
 
-This package is inspired by [whereami][whereami] and [std::filesystem][std_filesystem] but with an easier to use interface and a simpler source. Moreover, exceptions are thrown if issues occur at runtime. To separate the need to detect the operating system at runtime [detect][detect] is dropped in.
+This package is inspired by [whereami][whereami] and [std::filesystem][std_filesystem] but with an easier to use interface, a simpler source and is compatable with C++11. Moreover, exceptions are thrown if errors occur at runtime. To separate the need to detect the operating system at runtime [detect][detect] is dropped in.
 
 ## Status
 
@@ -16,6 +16,9 @@ This package is inspired by [whereami][whereami] and [std::filesystem][std_files
 ## Usage
 
 Copy the sources in place:
+
+- [paths.cpp][paths_cpp]
+- [paths.hpp][paths_hpp]
 
 - [runtime.cpp][runtime_cpp]
 - [runtime.hpp][runtime_hpp]
@@ -33,6 +36,29 @@ namespace paths {
     // dirname() -> "Directory of the current executable file"
     std::string dirname();
 
+    // head("a/b/c") -> "c"
+    std::string head(const std::string &path);
+
+    // tail("a/b/c") -> "a/b"
+    std::string tail(const std::string &path);
+
+    // normpath("a/../a/b/c") -> "a/b/c"
+    std::string normpath(const std::string &path);
+
+    // resolve("a", "b", "c") -> "a/b/c"
+    std::string resolve(const std::vector<std::string> &paths);
+
+    // segments("a/b/c") -> {"a", "b", "c"}
+    std::vector<std::string> segments(const std::string &path);
+
+    // starts_with("a/b/c", "a/") -> true
+    bool starts_with(const std::string &str, char prefix);
+    bool starts_with(const std::string &str, const std::string &prefix);
+
+    // ends_with("a/b/c", "/c") -> true
+    bool ends_with(const std::string &str, char suffix);
+    bool ends_with(const std::string &str, const std::string &suffix);
+
     // join({"a", "b", "c"}, ", ") -> "a, b, c"
     std::string join(const std::vector<std::string> &strs, char delimiter);
     std::string join(const std::vector<std::string> &strs, const std::string &delimiter = ", ");
@@ -40,18 +66,6 @@ namespace paths {
     // split("a, b, c", ", ") -> {"a", "b", "c"}
     std::vector<std::string> split(const std::string &str, char delimiter);
     std::vector<std::string> split(const std::string &str, const std::string &delimiter = " ");
-
-    // head("a/b/c") -> "c"
-    std::string head(const std::string &path);
-
-    // tail("a/b/c") -> "a/b"
-    std::string tail(const std::string &path);
-
-    // resolve("a", "b", "c") -> "a/b/c"
-    std::string resolve(const std::vector<std::string> &paths);
-
-    // segments("a/b/c") -> {"a", "b", "c"}
-    std::vector<std::string> segments(const std::string &path);
 }
 ```
 
@@ -68,6 +82,16 @@ split("///", "/") -> {"", "", "", ""}
 split("/a", "/") -> {"", "a"}
 split("a/", "/") -> {"a", ""}
 split("/a/", "/") -> {"", "a", ""}
+```
+
+For ease of use `paths::resolve` and `paths::segments` normalise paths before calling `paths::join` and `paths::split` respectively:
+
+```cpp
+resolve({"a", "..", "a", "b", "c"}) -> "a/b/c"
+segments("a/../a/b/c") -> {"a", "b", "c"}
+
+tail("a/../a/b/c") -> "a/b"
+head("a/../a/b/c") -> "c"
 ```
 
 For more details read the [documentation][pages].
@@ -89,15 +113,7 @@ grunt format
 ### Test
 
 ```bash
-mkdir dist
-
-clang++ -std=c++17 -lgtest -o dist/test \
-    src/runtime.cpp  \
-    src/strings.cpp  \
-    test/strings.cpp \
-    test/test.cpp
-
-./dist/test
+clang++ -std=c++11 -lgtest -o test $(find . -name "*.cpp")
 ```
 
 ## Continuous integration
@@ -138,6 +154,8 @@ Lots of love to the open source community!
 
 <!-- Raw links -->
 
+[paths_cpp]: https://raw.githubusercontent.com/JoelLefkowitz/paths/master/src/paths.cpp
+[paths_hpp]: https://raw.githubusercontent.com/JoelLefkowitz/paths/master/src/paths.hpp
 [runtime_cpp]: https://raw.githubusercontent.com/JoelLefkowitz/paths/master/src/runtime.cpp
 [runtime_hpp]: https://raw.githubusercontent.com/JoelLefkowitz/paths/master/src/runtime.hpp
 [strings_cpp]: https://raw.githubusercontent.com/JoelLefkowitz/paths/master/src/strings.cpp

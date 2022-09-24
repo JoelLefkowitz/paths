@@ -1,115 +1,138 @@
 #include "../src/strings.hpp"
-#include "../src/detect.hpp"
 #include <gtest/gtest.h>
 #include <string>
 #include <vector>
 
-using namespace paths;
+TEST(Paths, starts_with) {
+    struct TestCase {
+        std::string str;
+        std::string prefix;
+    };
 
-TEST(Strings, join) {
-    EXPECT_EQ(join({""}, "/"), "");
-    EXPECT_EQ(join({"", ""}, "/"), "/");
-    EXPECT_EQ(join({"", "", ""}, "/"), "//");
-    EXPECT_EQ(join({"", "", "", ""}, "/"), "///");
+    std::vector<TestCase> cases = {
+        {"",    ""   },
+        {"abc", ""   },
+        {"abc", "a"  },
+        {"abc", "ab" },
+        {"abc", "abc"},
+    };
 
-    EXPECT_EQ(join({"", "a"}, "/"), "/a");
-    EXPECT_EQ(join({"a", ""}, "/"), "a/");
-    EXPECT_EQ(join({"", "a", ""}, "/"), "/a/");
-
-    EXPECT_EQ(join({""}, ""), "");
-    EXPECT_EQ(join({"a"}, ""), "a");
-    EXPECT_EQ(join({"a, b"}, "-"), "a, b");
-
-    EXPECT_EQ(join({"a", "b", "c"}, "/"), "a/b/c");
-    EXPECT_EQ(join({"a", "b", "c"}, "/"), "/a/b/c");
-    EXPECT_EQ(join({"a", "b", "c"}, "/"), "a/b/c/");
-    EXPECT_EQ(join({"a", "b", "c"}, "/"), "/a/b/c/");
-}
-
-TEST(Strings, split) {
-    EXPECT_EQ(split("", "/"), std::vector<std::string>({""}));
-    EXPECT_EQ(split("/", "/"), std::vector<std::string>({"", ""}));
-    EXPECT_EQ(split("//", "/"), std::vector<std::string>({"", "", ""}));
-    EXPECT_EQ(split("///", "/"), std::vector<std::string>({"", "", "", ""}));
-
-    EXPECT_EQ(split("/a", "/"), std::vector<std::string>({"", "a"}));
-    EXPECT_EQ(split("a/", "/"), std::vector<std::string>({"a", ""}));
-    EXPECT_EQ(split("/a/", "/"), std::vector<std::string>({"", "a", ""}));
-
-    EXPECT_EQ(split("", ""), std::vector<std::string>({""}));
-    EXPECT_EQ(split("a", ""), std::vector<std::string>({"a"}));
-    EXPECT_EQ(split("a, b", "-"), std::vector<std::string>({"a, b"}));
-
-    EXPECT_EQ(split("a/b/c", "/"), std::vector<std::string>({"a", "b", "c"}));
-    EXPECT_EQ(split("/a/b/c", "/"), std::vector<std::string>({"a", "b", "c"}));
-    EXPECT_EQ(split("a/b/c/", "/"), std::vector<std::string>({"a", "b", "c"}));
-    EXPECT_EQ(split("/a/b/c/", "/"), std::vector<std::string>({"a", "b", "c"}));
-}
-
-TEST(Strings, head) {
-    EXPECT_EQ(head(""), "");
-    EXPECT_EQ(head("a"), "a");
-
-    if (platform::sep == '/') {
-        EXPECT_EQ(head("a/b"), "b");
-        EXPECT_EQ(head("a/b/c"), "c");
-        EXPECT_EQ(head("./a/b/c"), "c");
-        EXPECT_EQ(head("/a/b/c"), "c");
+    for (const auto test : cases) {
+        EXPECT_TRUE(paths::starts_with(test.str, test.prefix));
     }
 
-    if (platform::sep == '\\') {
-        EXPECT_EQ(head("a\\b"), "b");
-        EXPECT_EQ(head("a\\b\\c"), "c");
-        EXPECT_EQ(head(".\\a\\b\\c"), "c");
-        EXPECT_EQ(head("C:\\a\\b\\c"), "c");
+    cases = {
+        {"",    "x"   },
+        {"abc", "x"   },
+        {"abc", "xa"  },
+        {"abc", "ax"  },
+        {"abc", "abcc"},
+    };
+
+    for (const auto test : cases) {
+        EXPECT_FALSE(paths::starts_with(test.str, test.prefix));
     }
 }
 
-TEST(Strings, tail) {
-    EXPECT_EQ(tail(""), "");
-    EXPECT_EQ(tail("a"), "");
+TEST(Paths, ends_with) {
+    struct TestCase {
+        std::string str;
+        std::string suffix;
+    };
 
-    if (platform::sep == '/') {
-        EXPECT_EQ(tail("a/b"), "a");
-        EXPECT_EQ(tail("a/b/c"), "a/b");
-        EXPECT_EQ(tail("./a/b/c"), "./a/b");
-        EXPECT_EQ(tail("/a/b/c"), "/a/b");
+    std::vector<TestCase> cases = {
+        {"",    ""   },
+        {"abc", ""   },
+        {"abc", "c"  },
+        {"abc", "bc" },
+        {"abc", "abc"},
+    };
+
+    for (const auto test : cases) {
+        EXPECT_TRUE(paths::ends_with(test.str, test.suffix));
     }
 
-    if (platform::sep == '\\') {
-        EXPECT_EQ(tail("a\\b"), "a");
-        EXPECT_EQ(tail("a\\b\\c"), "a\\b");
-        EXPECT_EQ(tail(".\\a\\b\\c"), ".\\a\\b");
-        EXPECT_EQ(tail("C:\\a\\b\\c"), "C:\\a\\b");
-    }
-}
+    cases = {
+        {"",    "x"   },
+        {"abc", "x"   },
+        {"abc", "xa"  },
+        {"abc", "ax"  },
+        {"abc", "aabc"},
+    };
 
-TEST(Strings, resolve) {
-    EXPECT_EQ(resolve({}), "");
-    EXPECT_EQ(resolve({"a"}), "a");
-
-    if (platform::sep == '/') {
-        EXPECT_EQ(resolve({"a", "b"}), "a/b");
-        EXPECT_EQ(resolve({"a", "b", "c"}), "a/b/c");
-    }
-
-    if (platform::sep == '\\') {
-        EXPECT_EQ(resolve({"a", "b"}), "a\\b");
-        EXPECT_EQ(resolve({"a", "b", "c"}), "a\\b\\c");
+    for (const auto test : cases) {
+        EXPECT_FALSE(paths::ends_with(test.str, test.suffix));
     }
 }
 
-TEST(Strings, segments) {
-    EXPECT_EQ(segments(""), std::vector<std::string>());
-    EXPECT_EQ(segments("a"), std::vector<std::string>({"a"}));
+TEST(Paths, join) {
+    struct TestCase {
+        std::vector<std::string> strs;
+        std::string              delimiter;
+        std::string              expected;
+    };
 
-    if (platform::sep == '/') {
-        EXPECT_EQ(segments("a/b"), std::vector<std::string>({"a", "b"}));
-        EXPECT_EQ(segments("a/b/c"), std::vector<std::string>({"a", "b", "c"}));
+    std::vector<TestCase> cases = {
+        {{""},                       "/", ""          },
+        {{"", ""},                   "/", "/"         },
+        {{"", "", ""},               "/", "//"        },
+        {{"", "", "", ""},           "/", "///"       },
+
+        {{"", "a"},                  "/", "/a"        },
+        {{"a", ""},                  "/", "a/"        },
+        {{"", "a", ""},              "/", "/a/"       },
+
+        {{""},                       "",  ""          },
+        {{"a"},                      "",  "a"         },
+        {{"a, b"},                   "-", "a, b"      },
+
+        {{"a", "b", "c"},            "/", "a/b/c"     },
+        {{"", "a", "b", "c"},        "/", "/a/b/c"    },
+        {{"a", "b", "c", ""},        "/", "a/b/c/"    },
+        {{"", "a", "b", "c", ""},    "/", "/a/b/c/"   },
+
+        {{".", "a", "b", "c"},       "/", "./a/b/c"   },
+        {{"..", "a", "b", "c"},      "/", "../a/b/c"  },
+        {{"a", "..", "a", "b", "c"}, "/", "a/../a/b/c"},
+    };
+
+    for (const auto test : cases) {
+        EXPECT_EQ(paths::join(test.strs, test.delimiter), test.expected);
     }
+}
 
-    if (platform::sep == '\\') {
-        EXPECT_EQ(segments("a\\b"), std::vector<std::string>({"a", "b"}));
-        EXPECT_EQ(segments("a\\b\\c"), std::vector<std::string>({"a", "b", "c"}));
+TEST(Paths, split) {
+    struct TestCase {
+        std::string              str;
+        std::string              delimiter;
+        std::vector<std::string> expected;
+    };
+
+    std::vector<TestCase> cases = {
+        {"",           "/", {""}                      },
+        {"/",          "/", {"", ""}                  },
+        {"//",         "/", {"", "", ""}              },
+        {"///",        "/", {"", "", "", ""}          },
+
+        {"/a",         "/", {"", "a"}                 },
+        {"a/",         "/", {"a", ""}                 },
+        {"/a/",        "/", {"", "a", ""}             },
+
+        {"",           "",  {""}                      },
+        {"a",          "",  {"a"}                     },
+        {"a, b",       "-", {"a, b"}                  },
+
+        {"a/b/c",      "/", {"a", "b", "c"}           },
+        {"/a/b/c",     "/", {"", "a", "b", "c"}       },
+        {"a/b/c/",     "/", {"a", "b", "c", ""}       },
+        {"/a/b/c/",    "/", {"", "a", "b", "c", ""}   },
+
+        {"./a/b/c",    "/", {".", "a", "b", "c"}      },
+        {"../a/b/c",   "/", {"..", "a", "b", "c"}     },
+        {"a/../a/b/c", "/", {"a", "..", "a", "b", "c"}},
+    };
+
+    for (const auto test : cases) {
+        EXPECT_EQ(paths::split(test.str, test.delimiter), test.expected);
     }
 }
