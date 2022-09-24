@@ -36,14 +36,14 @@ namespace paths {
     // dirname() -> "Directory of the current executable file"
     std::string dirname();
 
+    // normpath("a/../a/b/c") -> "a/b/c"
+    std::string normpath(const std::string &path);
+
     // head("a/b/c") -> "c"
     std::string head(const std::string &path);
 
     // tail("a/b/c") -> "a/b"
     std::string tail(const std::string &path);
-
-    // normpath("a/../a/b/c") -> "a/b/c"
-    std::string normpath(const std::string &path);
 
     // resolve("a", "b", "c") -> "a/b/c"
     std::string resolve(const std::vector<std::string> &paths);
@@ -84,14 +84,14 @@ split("a/", "/") -> {"a", ""}
 split("/a/", "/") -> {"", "a", ""}
 ```
 
-For ease of use `paths::resolve` and `paths::segments` normalise paths before calling `paths::join` and `paths::split` respectively:
+For ease of use `paths::resolve`, `paths::segments`, `paths::head` and `paths::tail` normalise paths:
 
 ```cpp
 resolve({"a", "..", "a", "b", "c"}) -> "a/b/c"
 segments("a/../a/b/c") -> {"a", "b", "c"}
 
-tail("a/../a/b/c") -> "a/b"
-head("a/../a/b/c") -> "c"
+head("a/../a/b/c/.") -> "c"
+tail("a/../a/b/c/.") -> "a/b"
 ```
 
 For more details read the [documentation][pages].

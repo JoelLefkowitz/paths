@@ -7,6 +7,7 @@
 #include "strings.hpp"
 #include "detect.hpp"
 #include <cstddef>
+#include <iostream>
 #include <numeric>
 #include <string>
 #include <vector>
@@ -62,7 +63,7 @@ std::vector<std::string> paths::split(
 
     size_t pos = 0;
 
-    while ((pos = copy.find(delimiter, pos)) != std::string::npos) {
+    while ((pos = copy.find(delimiter, 0)) != std::string::npos) {
         segments.push_back(copy.substr(0, pos));
         copy.replace(0, pos + delimiter.length(), "");
     }

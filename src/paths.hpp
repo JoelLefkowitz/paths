@@ -11,14 +11,14 @@
 #include <vector>
 
 namespace paths {
+    // normpath("a/../a/b/c") -> "a/b/c"
+    std::string normpath(const std::string &path);
+
     // head("a/b/c") -> "c"
     std::string head(const std::string &path);
 
     // tail("a/b/c") -> "a/b"
     std::string tail(const std::string &path);
-
-    // normpath("a/../a/b/c") -> "a/b/c"
-    std::string normpath(const std::string &path);
 
     // resolve("a", "b", "c") -> "a/b/c"
     std::string resolve(const std::vector<std::string> &paths);

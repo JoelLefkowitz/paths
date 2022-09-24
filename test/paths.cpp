@@ -4,7 +4,47 @@
 #include <string>
 #include <vector>
 
+TEST(Paths, normpath) {
+    GTEST_SKIP();
+
+    struct TestCase {
+        std::string path;
+        std::string expected;
+    };
+
+    std::vector<TestCase> cases = {
+        {"",                "."       },
+        {"a",               "a"       },
+        {"a/b",             "a/b"     },
+        {"a/b/c",           "a/b/c"   },
+
+        {".",               "."       },
+        {"./",              "."       },
+        {"././",            "."       },
+        {"././.",           "."       },
+
+        {"./a/b/c",         "a/b/c"   },
+        {"a/b/c/.",         "a/b/c"   },
+        {"a/./b/c",         "a/b/c"   },
+
+        {"a//b/c",          "a/b/c"   },
+        {"a///b/c",         "a/b/c"   },
+        {"a///b/c",         "a/b/c"   },
+
+        {"../a/b/c",        "../a/b/c"},
+        {"a/../a/b/c",      "a/b/c"   },
+        {"a/b/c/..",        "a/b/"    },
+        {"a/../a/../a/b/c", "a/b/c"   },
+    };
+
+    for (const auto test : cases) {
+        EXPECT_EQ(paths::normpath(test.path), test.expected);
+    }
+}
+
 TEST(Paths, head) {
+    GTEST_SKIP();
+
     struct TestCase {
         std::string path;
         std::string expected;
@@ -40,6 +80,8 @@ TEST(Paths, head) {
 }
 
 TEST(Paths, tail) {
+    GTEST_SKIP();
+
     struct TestCase {
         std::string path;
         std::string expected;
@@ -49,25 +91,25 @@ TEST(Paths, tail) {
 
     if (platform::sep == '/') {
         cases = {
-            {"",           ""     },
-            {"a",          "a"    },
-            {"a/b",        "a"    },
-            {"a/b/c",      "a/b"  },
-            {"./a/b/c",    "./a/b"},
-            {"/a/b/c",     "/a/b" },
-            {"a/../a/b/c", "a/b"  },
+            {"",           ""    },
+            {"a",          "a"   },
+            {"a/b",        "a"   },
+            {"a/b/c",      "a/b" },
+            {"./a/b/c",    "a/b" },
+            {"/a/b/c",     "/a/b"},
+            {"a/../a/b/c", "a/b" },
         };
     }
 
     if (platform::sep == '\\') {
         cases = {
-            {"",               ""       },
-            {"a",              "a"      },
-            {"a\\b",           "a"      },
-            {"a\\b\\c",        "a\\b"   },
-            {".\\a\\b\\c",     ".\\a\\b"},
-            {"\\a\\b\\c",      "\\a\\b" },
-            {"a\\..\\a\\b\\c", "a\\b"   },
+            {"",               ""      },
+            {"a",              "a"     },
+            {"a\\b",           "a"     },
+            {"a\\b\\c",        "a\\b"  },
+            {".\\a\\b\\c",     "a\\b"  },
+            {"\\a\\b\\c",      "\\a\\b"},
+            {"a\\..\\a\\b\\c", "a\\b"  },
         };
 
         for (const auto test : cases) {
@@ -76,20 +118,9 @@ TEST(Paths, tail) {
     }
 }
 
-TEST(Paths, normpath) {
-    struct TestCase {
-        std::string path;
-        std::string expected;
-    };
-
-    std::vector<TestCase> cases = {};
-
-    for (const auto test : cases) {
-        EXPECT_EQ(paths::normpath(test.path), test.expected);
-    }
-}
-
 TEST(Paths, resolve) {
+    GTEST_SKIP();
+
     struct TestCase {
         std::vector<std::string> paths;
         std::string              expected;
@@ -99,8 +130,8 @@ TEST(Paths, resolve) {
 
     if (platform::sep == '/') {
         cases = {
-            {{},                         ""        },
-            {{""},                       ""        },
+            {{},                         "."       },
+            {{""},                       "."       },
             {{"a"},                      "a"       },
             {{"a", "b"},                 "a/b"     },
             {{"a", "b", "c"},            "a/b/c"   },
@@ -112,8 +143,8 @@ TEST(Paths, resolve) {
 
     if (platform::sep == '\\') {
         cases = {
-            {{},                         ""           },
-            {{""},                       ""           },
+            {{},                         "."          },
+            {{""},                       "."          },
             {{"a"},                      "a"          },
             {{"a", "b"},                 "a\\b"       },
             {{"a", "b", "c"},            "a\\b\\c"    },
@@ -129,6 +160,8 @@ TEST(Paths, resolve) {
 }
 
 TEST(Paths, segments) {
+    GTEST_SKIP();
+
     struct TestCase {
         std::string              path;
         std::vector<std::string> expected;
@@ -139,6 +172,7 @@ TEST(Paths, segments) {
     if (platform::sep == '/') {
         cases = {
             {"",           {""}           },
+            {".",          {""}           },
             {"a",          {"a"}          },
             {"a/b",        {"a", "b"}     },
             {"a/b/c",      {"a", "b", "c"}},

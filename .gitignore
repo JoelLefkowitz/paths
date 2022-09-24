@@ -2,6 +2,7 @@
 *.log
 *.o
 *.tmp
+/.vscode
 /bin
 /build
 /dist

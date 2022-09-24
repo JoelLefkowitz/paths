@@ -6,8 +6,8 @@
 
 #include "runtime.hpp"
 #include "detect.hpp"
-#include "strings.hpp"
 #include "paths.hpp"
+#include "strings.hpp"
 #include <string>
 
 #if PLATFORM_DETECTED_OS == PLATFORM_LINUX
@@ -16,8 +16,8 @@
 #include <unistd.h>
 
 std::string paths::filename() {
-    char    result[PATH_MAX];
-    ssize_t count = readlink("/proc/self/exe", result, PATH_MAX);
+    char result[PATH_MAX];
+    readlink("/proc/self/exe", result, PATH_MAX);
     return result;
 }
 

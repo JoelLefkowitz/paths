@@ -14,13 +14,18 @@
   ],
   "dictionaries": ["cpp", "local", "misc", "softwareTerms"],
   "words": [
+    "aabc",
+    "abcc",
     "bumpversion",
     "cfmt",
     "cppcheck",
     "cppclean",
     "doxyfile",
+    "gtest",
     "lefkowitz",
     "lgtest",
+    "normalise",
+    "normpath",
     "remarkrc",
     "suppr",
     "whereami"
