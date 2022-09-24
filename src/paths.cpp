@@ -7,27 +7,43 @@
 #include "paths.hpp"
 #include "detect.hpp"
 #include "strings.hpp"
-#include <set>
+#include <algorithm>
 #include <string>
 #include <vector>
 
 std::string paths::normpath(const std::string &path) {
     auto components = split(path, platform::sep);
+    auto contentful = [](const std::string &x) { return x != "" && x != "."; };
 
-    std::vector<std::string> target;
-
-    for (auto i = components.begin(); (i + 1) != components.end(); ++i) {
-        target.push_back(*i);
+    if (std::none_of(components.begin(), components.end(), contentful)) {
+        return ".";
     }
 
-    target.push_back(components.back());
+    std::vector<std::string> content;
 
-    return join(target, platform::sep);
+    std::copy_if(
+        components.begin(),
+        components.end(),
+        std::back_inserter(content), 
+        contentful
+    );
+
+    std::vector<std::string> normalised;
+
+    for (auto i = content.begin(); i != content.end(); ++i) {
+        if (*i == ".." && !normalised.empty() && normalised.back() != "..") {
+            normalised.pop_back();
+        } else {
+            normalised.push_back(*i);
+        }
+    }
+
+    return join(normalised, platform::sep);
 }
 
 std::string paths::head(const std::string &path) {
     auto components = split(normpath(path), platform::sep);
-    return components.empty() ? "" : components.back();
+    return components.size() == size_t(1) ? path : components.back();
 }
 
 std::string paths::tail(const std::string &path) {
@@ -45,5 +61,5 @@ std::string paths::resolve(const std::vector<std::string> &paths) {
 }
 
 std::vector<std::string> paths::segments(const std::string &path) {
-    return split(normpath(path), platform::sep);
+    return split(path == "" || path == "." ? "" : normpath(path), platform::sep);
 }

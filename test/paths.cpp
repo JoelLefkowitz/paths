@@ -5,19 +5,17 @@
 #include <vector>
 
 TEST(Paths, normpath) {
-    GTEST_SKIP();
-
     struct TestCase {
         std::string path;
         std::string expected;
     };
 
     std::vector<TestCase> cases = {
-        {"",                "."       },
         {"a",               "a"       },
         {"a/b",             "a/b"     },
         {"a/b/c",           "a/b/c"   },
 
+        {"",                "."       },
         {".",               "."       },
         {"./",              "."       },
         {"././",            "."       },
@@ -31,10 +29,14 @@ TEST(Paths, normpath) {
         {"a///b/c",         "a/b/c"   },
         {"a///b/c",         "a/b/c"   },
 
+        {"..",              ".."      },
+        {"../..",           "../.."   },
         {"../a/b/c",        "../a/b/c"},
         {"a/../a/b/c",      "a/b/c"   },
-        {"a/b/c/..",        "a/b/"    },
+        {"a/b/c/..",        "a/b"     },
         {"a/../a/../a/b/c", "a/b/c"   },
+        {"a/b/../../a/b/c", "a/b/c"   },
+        {"a/../../a/b/c",   "../a/b/c"},
     };
 
     for (const auto test : cases) {
@@ -43,8 +45,6 @@ TEST(Paths, normpath) {
 }
 
 TEST(Paths, head) {
-    GTEST_SKIP();
-
     struct TestCase {
         std::string path;
         std::string expected;
@@ -54,23 +54,31 @@ TEST(Paths, head) {
 
     if (platform::sep == '/') {
         cases = {
-            {"",        "" },
-            {"a",       "a"},
-            {"a/b",     "b"},
-            {"a/b/c",   "c"},
-            {"./a/b/c", "c"},
-            {"/a/b/c",  "c"},
+            {"",           ""  },
+            {".",          "." },
+            {"..",         ".."},
+            {"../..",      ".."},
+            {"a",          "a" },
+            {"a/b",        "b" },
+            {"a/b/c",      "c" },
+            {"./a/b/c",    "c" },
+            {"/a/b/c",     "c" },
+            {"a/../a/b/c", "c" },
         };
     }
 
     if (platform::sep == '\\') {
         cases = {
-            {"",        "" },
-            {"a",       "a"},
-            {"a/b",     "b"},
-            {"a/b/c",   "c"},
-            {"./a/b/c", "c"},
-            {"/a/b/c",  "c"},
+            {"",               ""  },
+            {".",              "." },
+            {"..",             ".."},
+            {"..\\..",         ".."},
+            {"a",              "a" },
+            {"a\\b",           "b" },
+            {"a\\b\\c",        "c" },
+            {".\\a\\b\\c",     "c" },
+            {"\\a\\b\\c",      "c" },
+            {"a\\..\\a\\b\\c", "c" },
         };
     }
 
@@ -80,8 +88,6 @@ TEST(Paths, head) {
 }
 
 TEST(Paths, tail) {
-    GTEST_SKIP();
-
     struct TestCase {
         std::string path;
         std::string expected;
@@ -91,25 +97,31 @@ TEST(Paths, tail) {
 
     if (platform::sep == '/') {
         cases = {
-            {"",           ""    },
-            {"a",          "a"   },
-            {"a/b",        "a"   },
-            {"a/b/c",      "a/b" },
-            {"./a/b/c",    "a/b" },
-            {"/a/b/c",     "/a/b"},
-            {"a/../a/b/c", "a/b" },
+            {"",           ""        },
+            {".",          ""        },
+            {"..",         ""        },
+            {"../..",      ".."      },
+            {"a",          ""        },
+            {"a/b",        "a"       },
+            {"a/b/c",      "a/b"     },
+            {"./a/b/c",    "./a/b"   },
+            {"/a/b/c",     "/a/b"    },
+            {"a/../a/b/c", "a/../a/b"},
         };
     }
 
     if (platform::sep == '\\') {
         cases = {
-            {"",               ""      },
-            {"a",              "a"     },
-            {"a\\b",           "a"     },
-            {"a\\b\\c",        "a\\b"  },
-            {".\\a\\b\\c",     "a\\b"  },
-            {"\\a\\b\\c",      "\\a\\b"},
-            {"a\\..\\a\\b\\c", "a\\b"  },
+            {"",               ""           },
+            {".",              ""           },
+            {"..",             ""           },
+            {"..\\..",         ".."         },
+            {"a",              ""           },
+            {"a\\b",           "a"          },
+            {"a\\b\\c",        "a\\b"       },
+            {".\\a\\b\\c",     ".\\a\\b"    },
+            {"\\a\\b\\c",      "\\a\\b"     },
+            {"a\\..\\a\\b\\c", "a\\..\\a\\b"},
         };
 
         for (const auto test : cases) {
@@ -119,8 +131,6 @@ TEST(Paths, tail) {
 }
 
 TEST(Paths, resolve) {
-    GTEST_SKIP();
-
     struct TestCase {
         std::vector<std::string> paths;
         std::string              expected;
@@ -160,8 +170,6 @@ TEST(Paths, resolve) {
 }
 
 TEST(Paths, segments) {
-    GTEST_SKIP();
-
     struct TestCase {
         std::string              path;
         std::vector<std::string> expected;
@@ -171,26 +179,26 @@ TEST(Paths, segments) {
 
     if (platform::sep == '/') {
         cases = {
-            {"",           {""}           },
-            {".",          {""}           },
-            {"a",          {"a"}          },
-            {"a/b",        {"a", "b"}     },
-            {"a/b/c",      {"a", "b", "c"}},
-            {"./a/b/c",    {"a", "b", "c"}},
-            {"../a/b/c",   {"a", "b", "c"}},
-            {"a/../a/b/c", {"a", "b", "c"}},
+            {"",           {""}                 },
+            {".",          {""}                 },
+            {"a",          {"a"}                },
+            {"a/b",        {"a", "b"}           },
+            {"a/b/c",      {"a", "b", "c"}      },
+            {"./a/b/c",    {"a", "b", "c"}      },
+            {"../a/b/c",   {"..", "a", "b", "c"}},
+            {"a/../a/b/c", {"a", "b", "c"}      },
         };
     }
 
     if (platform::sep == '\\') {
         cases = {
-            {"",               {""}           },
-            {"a",              {"a"}          },
-            {"a\\b",           {"a", "b"}     },
-            {"a\\b\\c",        {"a", "b", "c"}},
-            {".\\a\\b\\c",     {"a", "b", "c"}},
-            {"..\\a\\b\\c",    {"a", "b", "c"}},
-            {"a\\..\\a\\b\\c", {"a", "b", "c"}},
+            {"",               {""}                 },
+            {"a",              {"a"}                },
+            {"a\\b",           {"a", "b"}           },
+            {"a\\b\\c",        {"a", "b", "c"}      },
+            {".\\a\\b\\c",     {"a", "b", "c"}      },
+            {"..\\a\\b\\c",    {"..", "a", "b", "c"}},
+            {"a\\..\\a\\b\\c", {"a", "b", "c"}      },
         };
     }
 

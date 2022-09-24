@@ -54,7 +54,7 @@ namespace paths {
 }
 ```
 
-Edge cases for splitting strings are handled the same way as the python standard library:
+Edge cases for splitting strings and manipulating paths are handled the same way as the python standard library:
 
 ```cpp
 split("", "/") -> {""}
