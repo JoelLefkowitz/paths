@@ -21,12 +21,13 @@ std::string paths::filename() {
     return result;
 }
 
-#elif PLATFORM_DETECTED_OS == PLATFORM_DARWIN
+#elif (PLATFORM_DETECTED_OS == PLATFORM_DARWIN || PLATFORM_DETECTED_OS == PLATFORM_IOS)
 
 #include <mach-o/dyld.h>
 
 std::string paths::filename() {
     auto bufsize = static_cast<uint32_t>(PATH_MAX);
+
     char buf[bufsize];
 
     if (_NSGetExecutablePath(buf, &bufsize) == -1) {
@@ -40,8 +41,23 @@ std::string paths::filename() {
 
 #elif PLATFORMS_DETECTED_OS == PLATFORM_WINDOWS
 
+#include <iostream>
+#include <string>
+#include <windows.h>
+
 std::string paths::filename() {
-    return "";
+    wchar_t buffer[MAX_PATH];
+    auto    size = GetModuleFileNameW(NULL, buffer, MAX_PATH);
+
+    if (size > MAX_PATH + 1) {
+        throw std::length_error(
+            "Filename exceeds maximum path length: " + std::to_string(MAX_PATH)
+        );
+    }
+
+    std::wstring ws(buffer);
+
+    return std::string(ws.begin(), ws.end());
 }
 
 #elif PLATFORMS_DETECTED_OS == PLATFORM_BSD
@@ -51,12 +67,6 @@ std::string paths::filename() {
 }
 
 #elif PLATFORMS_DETECTED_OS == PLATFORM_SOLARIS
-
-std::string paths::filename() {
-    return "";
-}
-
-#elif PLATFORMS_DETECTED_OS == PLATFORM_IOS
 
 std::string paths::filename() {
     return "";
