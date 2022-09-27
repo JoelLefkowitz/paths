@@ -38,4 +38,3 @@ namespace paths {
 } // namespace paths
 
 #endif
-

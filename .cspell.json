@@ -21,13 +21,16 @@
     "cppcheck",
     "cppclean",
     "doxyfile",
+    "endswith",
     "gtest",
     "lefkowitz",
     "lgtest",
     "normalise",
     "normalised",
+    "normalises",
     "normpath",
     "remarkrc",
+    "startswith",
     "suppr",
     "whereami"
   ]

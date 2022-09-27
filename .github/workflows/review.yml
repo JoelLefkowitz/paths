@@ -11,9 +11,6 @@ jobs:
       - name: Checkout the source code
         uses: actions/checkout@v2
 
-      - name: Install python and pip dependencies
-        uses: ./.github/actions/python
-
       - name: Install node and yarn dependencies
         uses: ./.github/actions/node
 
