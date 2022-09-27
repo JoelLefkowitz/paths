@@ -85,30 +85,54 @@ $(function() {
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacepaths.html">paths</a> {</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="comment">// starts_with(&quot;a/b/c&quot;, &quot;a/&quot;) -&gt; true</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="namespacepaths.html#a794735e7f1247089f928b0f39237d859">starts_with</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keywordtype">char</span> prefix);</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="namespacepaths.html#a794735e7f1247089f928b0f39237d859">starts_with</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keyword">const</span> std::string &amp;prefix);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="comment">// ends_with(&quot;a/b/c&quot;, &quot;/c&quot;) -&gt; true</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="namespacepaths.html#a3ab7c6ce09580003cbc613dede2a978d">ends_with</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keywordtype">char</span> suffix);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="namespacepaths.html#a3ab7c6ce09580003cbc613dede2a978d">ends_with</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keyword">const</span> std::string &amp;suffix);</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="comment">// join({&quot;a&quot;, &quot;b&quot;, &quot;c&quot;}, &quot;, &quot;) -&gt; &quot;a, b, c&quot;</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    std::string <a class="code" href="namespacepaths.html#a23b9979dea03fd729427d2730fca8ebf">join</a>(<span class="keyword">const</span> std::vector&lt;std::string&gt; &amp;strs, <span class="keywordtype">char</span> delimiter);</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    std::string <a class="code" href="namespacepaths.html#a23b9979dea03fd729427d2730fca8ebf">join</a>(</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keyword">const</span> std::vector&lt;std::string&gt; &amp;strs,</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keyword">const</span> std::string              &amp;delimiter = <span class="stringliteral">&quot;, &quot;</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    );</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="comment">// Determines if the path starts with the prefix</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="comment">// Python equivalent: str.startswith(prefix)</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="comment">// Usage: starts_with(&quot;a/b/c&quot;, &quot;a/&quot;) -&gt; true</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="namespacepaths.html#a794735e7f1247089f928b0f39237d859">starts_with</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keywordtype">char</span> prefix);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="comment">// Determines if the path starts with the prefix</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="comment">// Python equivalent: str.startswith(prefix)</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="comment">// Usage: starts_with(&quot;a/b/c&quot;, &quot;a/&quot;) -&gt; true</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="namespacepaths.html#a794735e7f1247089f928b0f39237d859">starts_with</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keyword">const</span> std::string &amp;prefix);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="comment">// Determines if the path ends with the suffix</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="comment">// Python equivalent: str.endswith(suffix)</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="comment">// Usage: ends_with(&quot;a/b/c&quot;, &quot;/c&quot;) -&gt; true</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="namespacepaths.html#a3ab7c6ce09580003cbc613dede2a978d">ends_with</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keywordtype">char</span> suffix);</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="comment">// split(&quot;a, b, c&quot;, &quot;, &quot;) -&gt; {&quot;a&quot;, &quot;b&quot;, &quot;c&quot;}</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    std::vector&lt;std::string&gt; <a class="code" href="namespacepaths.html#a3a52c2b7742a8e16259803c9f269f126">split</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keywordtype">char</span> delimiter);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    std::vector&lt;std::string&gt; <a class="code" href="namespacepaths.html#a3a52c2b7742a8e16259803c9f269f126">split</a>(</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keyword">const</span> std::string &amp;str,</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keyword">const</span> std::string &amp;delimiter = <span class="stringliteral">&quot; &quot;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    );</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;} <span class="comment">// namespace paths</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="comment">// Determines if the path ends with the suffix</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="comment">// Python equivalent: str.endswith(suffix)</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="comment">// Usage: ends_with(&quot;a/b/c&quot;, &quot;/c&quot;) -&gt; true</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="namespacepaths.html#a3ab7c6ce09580003cbc613dede2a978d">ends_with</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keyword">const</span> std::string &amp;suffix);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="comment">// Joins the strings with the delimeter</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="comment">// Python equivalent: delimeter.join(strs)</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="comment">// Usage: join({&quot;a&quot;, &quot;b&quot;, &quot;c&quot;}, &quot;, &quot;) -&gt; &quot;a, b, c&quot;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    std::string <a class="code" href="namespacepaths.html#a23b9979dea03fd729427d2730fca8ebf">join</a>(<span class="keyword">const</span> std::vector&lt;std::string&gt; &amp;strs, <span class="keywordtype">char</span> delimiter);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="comment">// Joins the strings with the delimeter</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="comment">// Python equivalent: delimeter.join(strs)</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">// Usage: join({&quot;a&quot;, &quot;b&quot;, &quot;c&quot;}, &quot;, &quot;) -&gt; &quot;a, b, c&quot;</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    std::string <a class="code" href="namespacepaths.html#a23b9979dea03fd729427d2730fca8ebf">join</a>(</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keyword">const</span> std::vector&lt;std::string&gt; &amp;strs,</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keyword">const</span> std::string              &amp;delimiter = <span class="stringliteral">&quot;, &quot;</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    );</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="comment">// Splits the string at the delimeter</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="comment">// Python equivalent: str.split(delimeter)</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">// Usage: split(&quot;a, b, c&quot;, &quot;, &quot;) -&gt; {&quot;a&quot;, &quot;b&quot;, &quot;c&quot;}</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    std::vector&lt;std::string&gt; <a class="code" href="namespacepaths.html#a3a52c2b7742a8e16259803c9f269f126">split</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keywordtype">char</span> delimiter);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">// Splits the string at the delimeter</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="comment">// Python equivalent: str.split(delimeter)</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="comment">// Usage: split(&quot;a, b, c&quot;, &quot;, &quot;) -&gt; {&quot;a&quot;, &quot;b&quot;, &quot;c&quot;}</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    std::vector&lt;std::string&gt; <a class="code" href="namespacepaths.html#a3a52c2b7742a8e16259803c9f269f126">split</a>(</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keyword">const</span> std::string &amp;str,</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keyword">const</span> std::string &amp;delimiter = <span class="stringliteral">&quot; &quot;</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    );</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;} <span class="comment">// namespace paths</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="anamespacepaths_html"><div class="ttname"><a href="namespacepaths.html">paths</a></div><div class="ttdef"><b>Definition:</b> paths.hpp:13</div></div>
 <div class="ttc" id="anamespacepaths_html_a23b9979dea03fd729427d2730fca8ebf"><div class="ttname"><a href="namespacepaths.html#a23b9979dea03fd729427d2730fca8ebf">paths::join</a></div><div class="ttdeci">std::string join(const std::vector&lt; std::string &gt; &amp;strs, char delimiter)</div><div class="ttdef"><b>Definition:</b> strings.cpp:32</div></div>
 <div class="ttc" id="anamespacepaths_html_a3a52c2b7742a8e16259803c9f269f126"><div class="ttname"><a href="namespacepaths.html#a3a52c2b7742a8e16259803c9f269f126">paths::split</a></div><div class="ttdeci">std::vector&lt; std::string &gt; split(const std::string &amp;str, char delimiter)</div><div class="ttdef"><b>Definition:</b> strings.cpp:48</div></div>
