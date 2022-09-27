@@ -1,8 +1,15 @@
 # Paths
 
-OS specific path manipulation including retrieving the executable's path.
+OS specific path operations and executable path retrieval.
 
-This package is inspired by [whereami][whereami] and [std::filesystem][std_filesystem] but with an easier to use interface, a simpler source and is compatable with C++11. Moreover, exceptions are thrown if errors occur at runtime. To separate the need to detect the operating system at runtime [detect][detect] is dropped in.
+This package is inspired by [whereami][whereami] and [std::filesystem][std_filesystem] but with:
+
+- Simple interfaces
+- Readable sources
+- C++11 compatability
+- Exception handling
+
+To separate the need to detect the operating system at runtime [detect][detect] is dropped in. Having a comprehensive set of tests is paramount and all suites are verified against each target environment.
 
 ## Status
 
@@ -14,6 +21,75 @@ This package is inspired by [whereami][whereami] and [std::filesystem][std_files
 | Activity   | ![contributors][contributors_shield] ![monthly_commits][monthly_commits_shield] ![last_commit][last_commit_shield]          |
 
 ## Usage
+
+```cpp
+namespace paths {
+    // Gets the path of the current executable file
+    std::string filename();
+
+    // Gets the dirname of the current executable file
+    std::string dirname();
+
+    // Normalises the path
+    // Python equivalent: os.path.normpath(path)
+    // Usage: normpath("a/../a/b/c") -> "a/b/c"
+    std::string normpath(const std::string &path);
+
+    // Gets the path's head
+    // Python equivalent: os.path.split(os.path.normpath(path))[1]
+    // Usage: head("a/b/c") -> "c"
+    std::string head(const std::string &path);
+
+    // Gets the path's tail
+    // Python equivalent: os.path.split(os.path.normpath(path))[0]
+    // Usage: tail("a/b/c") -> "a/b"
+    std::string tail(const std::string &path);
+
+    // Joins and normalises the path segments
+    // Python equivalent: os.path.normpath(os.path.join(*paths))
+    // Usage: resolve("a", "b", "c") -> "a/b/c"
+    std::string resolve(const std::vector<std::string> &paths);
+
+    // Normalises and splits the path into segments
+    // Python equivalent: os.path.normpath(path).split(os.path.sep)
+    // Usage: segments("a/b/c") -> {"a", "b", "c"}
+    std::vector<std::string> segments(const std::string &path);
+
+    // Determines if the path starts with the prefix
+    // Python equivalent: str.startswith(prefix)
+    // Usage: starts_with("a/b/c", "a/") -> true
+    bool starts_with(const std::string &str, char prefix);
+    bool starts_with(const std::string &str, const std::string &prefix);
+
+    // Determines if the path ends with the suffix
+    // Python equivalent: str.endswith(suffix)
+    // Usage: ends_with("a/b/c", "/c") -> true
+    bool ends_with(const std::string &str, char suffix);
+    bool ends_with(const std::string &str, const std::string &suffix);
+
+    // Joins the strings with the delimeter
+    // Python equivalent: delimeter.join(strs)
+    // Usage: join({"a", "b", "c"}, ", ") -> "a, b, c"
+    std::string join(const std::vector<std::string> &strs, char delimiter);
+    std::string join(const std::vector<std::string> &strs, const std::string &delimiter = ", ");
+
+    // Splits the string at the delimeter
+    // Python equivalent: str.split(delimeter)
+    // Usage: split("a, b, c", ", ") -> {"a", "b", "c"}
+    std::vector<std::string> split(const std::string &str, char delimiter);
+    std::vector<std::string> split(const std::string &str, const std::string &delimiter = " ");
+}
+```
+
+For more details read the [documentation][pages].
+
+## Installation
+
+### Conan
+
+Not yet supported
+
+### Copying sources
 
 Copy the sources in place:
 
@@ -28,73 +104,15 @@ Copy the sources in place:
 
 - [detect.hpp][detect_hpp]
 
-```cpp
-namespace paths {
-    // filename() -> "Path to the current executable file"
-    std::string filename();
+## Tests
 
-    // dirname() -> "Directory of the current executable file"
-    std::string dirname();
-
-    // normpath("a/../a/b/c") -> "a/b/c"
-    std::string normpath(const std::string &path);
-
-    // head("a/b/c") -> "c"
-    std::string head(const std::string &path);
-
-    // tail("a/b/c") -> "a/b"
-    std::string tail(const std::string &path);
-
-    // resolve("a", "b", "c") -> "a/b/c"
-    std::string resolve(const std::vector<std::string> &paths);
-
-    // segments("a/b/c") -> {"a", "b", "c"}
-    std::vector<std::string> segments(const std::string &path);
-
-    // starts_with("a/b/c", "a/") -> true
-    bool starts_with(const std::string &str, char prefix);
-    bool starts_with(const std::string &str, const std::string &prefix);
-
-    // ends_with("a/b/c", "/c") -> true
-    bool ends_with(const std::string &str, char suffix);
-    bool ends_with(const std::string &str, const std::string &suffix);
-
-    // join({"a", "b", "c"}, ", ") -> "a, b, c"
-    std::string join(const std::vector<std::string> &strs, char delimiter);
-    std::string join(const std::vector<std::string> &strs, const std::string &delimiter = ", ");
-
-    // split("a, b, c", ", ") -> {"a", "b", "c"}
-    std::vector<std::string> split(const std::string &str, char delimiter);
-    std::vector<std::string> split(const std::string &str, const std::string &delimiter = " ");
-}
+```bash
+clang++ -std=c++11 -lgtest -o dist/test $(find . -name "*.cpp")
 ```
 
-Edge cases for splitting strings and manipulating paths are handled the same way as the python standard library:
+## Docs
 
-```cpp
-split("", "/") -> {""}
-split("/", "/") -> {"", ""}
-split("//", "/") -> {"", "", ""}
-split("///", "/") -> {"", "", "", ""}
-```
-
-```cpp
-split("/a", "/") -> {"", "a"}
-split("a/", "/") -> {"a", ""}
-split("/a/", "/") -> {"", "a", ""}
-```
-
-For ease of use `paths::resolve`, `paths::segments`, `paths::head` and `paths::tail` normalise paths:
-
-```cpp
-resolve({"a", "..", "a", "b", "c"}) -> "a/b/c"
-segments("a/../a/b/c") -> {"a", "b", "c"}
-
-head("a/../a/b/c/.") -> "c"
-tail("a/../a/b/c/.") -> "a/b"
-```
-
-For more details read the [documentation][pages].
+Documentation is hosted on [GitHub Pages][pages].
 
 ## Tooling
 
@@ -108,12 +126,6 @@ grunt lint
 
 ```bash
 grunt format
-```
-
-### Test
-
-```bash
-clang++ -std=c++11 -lgtest -o test $(find . -name "*.cpp")
 ```
 
 ## Continuous integration

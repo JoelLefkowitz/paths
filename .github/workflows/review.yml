@@ -11,6 +11,9 @@ jobs:
       - name: Checkout the source code
         uses: actions/checkout@v2
 
+      - name: Install python and pip dependencies
+        uses: ./.github/actions/python
+
       - name: Install node and yarn dependencies
         uses: ./.github/actions/node
 
@@ -19,3 +22,19 @@ jobs:
 
       - name: Run linters
         run: grunt lint
+
+  test:
+    name: Test
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout the source code
+        uses: actions/checkout@v2
+
+      - name: Build tests
+        run: |
+          mkdir dist
+          clang++ -std=c++11 -lgtest -o dist/test $(find . -name "*.cpp")
+      
+      - name: Run tests
+        run: dist/test

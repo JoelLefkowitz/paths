@@ -16,9 +16,9 @@
 #include <unistd.h>
 
 std::string paths::filename() {
-    char result[PATH_MAX];
-    readlink("/proc/self/exe", result, PATH_MAX);
-    return result;
+    char buffer[PATH_MAX];
+    readlink("/proc/self/exe", buffer, PATH_MAX);
+    return buffer;
 }
 
 #elif (PLATFORM_DETECTED_OS == PLATFORM_DARWIN || PLATFORM_DETECTED_OS == PLATFORM_IOS)
@@ -28,15 +28,15 @@ std::string paths::filename() {
 std::string paths::filename() {
     auto bufsize = static_cast<uint32_t>(PATH_MAX);
 
-    char buf[bufsize];
+    char buffer[bufsize];
 
-    if (_NSGetExecutablePath(buf, &bufsize) == -1) {
+    if (_NSGetExecutablePath(buffer, &bufsize) == -1) {
         throw std::length_error(
             "Filename exceeds maximum path length: " + std::to_string(PATH_MAX)
         );
     }
 
-    return realpath(buf, NULL);
+    return realpath(buffer, NULL);
 }
 
 #elif PLATFORMS_DETECTED_OS == PLATFORM_WINDOWS
@@ -75,7 +75,12 @@ std::string paths::filename() {
 #elif PLATFORMS_DETECTED_OS == PLATFORM_ANDROID
 
 std::string paths::filename() {
-    return "";
+    char buffer[PATH_MAX];
+    readlink("/proc/self/maps", buffer, PATH_MAX);
+    // realpath(path, buffer);
+    // munmap(begin, offset);
+    // fclose(maps);
+    return buffer;
 }
 
 #endif

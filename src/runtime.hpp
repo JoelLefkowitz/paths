@@ -10,10 +10,10 @@
 #include <string>
 
 namespace paths {
-    // filename() -> "Path to the current executable file"
+    // Gets the path of the current executable file
     std::string filename();
 
-    // dirname() -> "Directory of the current executable file"
+    // Gets the dirname of the current executable file
     std::string dirname();
 } // namespace paths
 

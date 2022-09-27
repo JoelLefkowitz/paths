@@ -1,88 +1,60 @@
 # Usage {#mainpage}
 
-Copy the sources in place:
-
-- [paths.cpp][paths_cpp]
-- [paths.hpp][paths_hpp]
-
-- [runtime.cpp][runtime_cpp]
-- [runtime.hpp][runtime_hpp]
-
-- [strings.cpp][strings_cpp]
-- [strings.hpp][strings_hpp]
-
-- [detect.hpp][detect_hpp]
-
 ```cpp
 namespace paths {
-    // filename() -> "Path to the current executable file"
+    // Gets the path of the current executable file
     std::string filename();
 
-    // dirname() -> "Directory of the current executable file"
+    // Gets the dirname of the current executable file
     std::string dirname();
 
-    // normpath("a/../a/b/c") -> "a/b/c"
+    // Normalises the path
+    // Python equivalent: os.path.normpath(path)
+    // Usage: normpath("a/../a/b/c") -> "a/b/c"
     std::string normpath(const std::string &path);
 
-    // head("a/b/c") -> "c"
+    // Gets the path's head
+    // Python equivalent: os.path.split(os.path.normpath(path))[1]
+    // Usage: head("a/b/c") -> "c"
     std::string head(const std::string &path);
 
-    // tail("a/b/c") -> "a/b"
+    // Gets the path's tail
+    // Python equivalent: os.path.split(os.path.normpath(path))[0]
+    // Usage: tail("a/b/c") -> "a/b"
     std::string tail(const std::string &path);
 
-    // resolve("a", "b", "c") -> "a/b/c"
+    // Joins and normalises the path segments
+    // Python equivalent: os.path.normpath(os.path.join(*paths))
+    // Usage: resolve("a", "b", "c") -> "a/b/c"
     std::string resolve(const std::vector<std::string> &paths);
 
-    // segments("a/b/c") -> {"a", "b", "c"}
+    // Normalises and splits the path into segments
+    // Python equivalent: os.path.normpath(path).split(os.path.sep)
+    // Usage: segments("a/b/c") -> {"a", "b", "c"}
     std::vector<std::string> segments(const std::string &path);
 
-    // starts_with("a/b/c", "a/") -> true
+    // Determines if the path starts with the prefix
+    // Python equivalent: str.startswith(prefix)
+    // Usage: starts_with("a/b/c", "a/") -> true
     bool starts_with(const std::string &str, char prefix);
     bool starts_with(const std::string &str, const std::string &prefix);
 
-    // ends_with("a/b/c", "/c") -> true
+    // Determines if the path ends with the suffix
+    // Python equivalent: str.endswith(suffix)
+    // Usage: ends_with("a/b/c", "/c") -> true
     bool ends_with(const std::string &str, char suffix);
     bool ends_with(const std::string &str, const std::string &suffix);
 
-    // join({"a", "b", "c"}, ", ") -> "a, b, c"
+    // Joins the strings with the delimeter
+    // Python equivalent: delimeter.join(strs)
+    // Usage: join({"a", "b", "c"}, ", ") -> "a, b, c"
     std::string join(const std::vector<std::string> &strs, char delimiter);
     std::string join(const std::vector<std::string> &strs, const std::string &delimiter = ", ");
 
-    // split("a, b, c", ", ") -> {"a", "b", "c"}
+    // Splits the string at the delimeter
+    // Python equivalent: str.split(delimeter)
+    // Usage: split("a, b, c", ", ") -> {"a", "b", "c"}
     std::vector<std::string> split(const std::string &str, char delimiter);
     std::vector<std::string> split(const std::string &str, const std::string &delimiter = " ");
 }
 ```
-
-Edge cases for splitting strings and manipulating paths are handled the same way as the python standard library:
-
-```cpp
-split("", "/") -> {""}
-split("/", "/") -> {"", ""}
-split("//", "/") -> {"", "", ""}
-split("///", "/") -> {"", "", "", ""}
-```
-
-```cpp
-split("/a", "/") -> {"", "a"}
-split("a/", "/") -> {"a", ""}
-split("/a/", "/") -> {"", "a", ""}
-```
-
-For ease of use `paths::resolve`, `paths::segments`, `paths::head` and `paths::tail` normalise paths:
-
-```cpp
-resolve({"a", "..", "a", "b", "c"}) -> "a/b/c"
-segments("a/../a/b/c") -> {"a", "b", "c"}
-
-head("a/../a/b/c/.") -> "c"
-tail("a/../a/b/c/.") -> "a/b"
-```
-
-[paths_cpp]: https://raw.githubusercontent.com/JoelLefkowitz/paths/master/src/paths.cpp
-[paths_hpp]: https://raw.githubusercontent.com/JoelLefkowitz/paths/master/src/paths.hpp
-[runtime_cpp]: https://raw.githubusercontent.com/JoelLefkowitz/paths/master/src/runtime.cpp
-[runtime_hpp]: https://raw.githubusercontent.com/JoelLefkowitz/paths/master/src/runtime.hpp
-[strings_cpp]: https://raw.githubusercontent.com/JoelLefkowitz/paths/master/src/strings.cpp
-[strings_hpp]: https://raw.githubusercontent.com/JoelLefkowitz/paths/master/src/strings.hpp
-[detect_hpp]: https://raw.githubusercontent.com/JoelLefkowitz/paths/master/src/detect.hpp
