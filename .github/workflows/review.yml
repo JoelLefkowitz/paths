@@ -49,7 +49,7 @@ jobs:
       - name: Build tests
         run: |
           mkdir dist
-          clang++ -std=c++11 $(find . -name "*.cpp") -lpthread -lgtest -o dist/test
+          clang++ -std=c++11 $(find src test -name "*.cpp") -lpthread -lgtest -o dist/test
 
       - name: Run tests
         run: dist/test

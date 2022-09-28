@@ -107,7 +107,7 @@ Copy the sources in place:
 ## Tests
 
 ```bash
-clang++ -std=c++11 -lgtest -o dist/test $(find . -name "*.cpp")
+clang++ -std=c++11 $(find src test -name "*.cpp") -lpthread -lgtest -o dist/test
 ```
 
 ## Docs
