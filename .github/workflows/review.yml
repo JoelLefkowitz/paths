@@ -31,8 +31,8 @@ jobs:
       - name: Build gtest from source
         run: |
           git clone https://github.com/google/googletest.git -b release-1.12.0
-          mkdir build
-          cd build
+          mkdir googletest/build
+          cd googletest/build
           cmake ..
           make
           sudo make install
