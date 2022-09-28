@@ -25,6 +25,7 @@
     "gtest",
     "lefkowitz",
     "lgtest",
+    "lpthread",
     "normalise",
     "normalised",
     "normalises",

@@ -52,6 +52,7 @@ jobs:
           clang++ -std=c++11 $(find src test -name "*.cpp") -lpthread -lgtest -o dist/test
 
       - name: Run tests
-        run: dist/test
-        env:
-          PATHNAME: dist/test
+        run: |
+          export FILENAME=$PWD/dist/test
+          dist/test
+          
