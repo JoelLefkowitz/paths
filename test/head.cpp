@@ -173,7 +173,7 @@ TEST(Paths_Paths, head) {
 
     for (const auto test : cases) {
         if (platform::sep == '\\') {
-            std::replace(test.path.begin(), test.path.end(), '/', '\\');
+            std::replace(test.path.begin(), test.path.end(), "/", "\\");
         }
 
         EXPECT_EQ(paths::head(test.path), test.expected);

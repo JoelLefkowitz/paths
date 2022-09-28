@@ -1,8 +1,8 @@
 #include "../src/detect.hpp"
 #include "../src/paths.hpp"
+#include <algorithm>
 #include <gtest/gtest.h>
 #include <string>
-#include <algorithm>
 #include <vector>
 
 TEST(Paths_Paths, segments) {
@@ -173,7 +173,7 @@ TEST(Paths_Paths, segments) {
 
     for (const auto test : cases) {
         if (platform::sep == '\\') {
-            std::replace(test.path.begin(), test.path.end(), '/', '\\');
+            std::replace(test.path.begin(), test.path.end(), "/", "\\");
         }
 
         EXPECT_EQ(paths::segments(test.path), test.expected);

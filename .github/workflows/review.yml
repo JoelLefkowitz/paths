@@ -45,7 +45,6 @@ jobs:
 
       - name: Build tests
         run: |
-          clang++ --version
           mkdir dist
           clang++ -std=c++11 -lgtest -o dist/test $(find . -name "*.cpp")
 
