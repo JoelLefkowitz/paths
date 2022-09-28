@@ -34,6 +34,9 @@ jobs:
           version: 13
           platform: x64
 
+      - name: Install pthread
+        run: sudo apt-get install libpthread-stubs0-dev
+
       - name: Build gtest from source
         run: |
           git clone https://github.com/google/googletest.git -b release-1.12.0
@@ -46,7 +49,7 @@ jobs:
       - name: Build tests
         run: |
           mkdir dist
-          clang++ -std=c++11 -Lgoogletest/build/lib -lgtest -o dist/test $(find . -name "*.cpp")
+          clang++ -std=c++11 -lpthread -lgtest -o dist/test $(find . -name "*.cpp")
 
       - name: Run tests
         run: dist/test
