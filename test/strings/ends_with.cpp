@@ -1,9 +1,9 @@
-#include "../src/strings.hpp"
+#include "../../src/strings.hpp"
 #include <gtest/gtest.h>
 #include <string>
 #include <vector>
 
-TEST(Paths_Strings, starts_with) {
+TEST(Paths_Strings, ends_with) {
     struct TestCase {
         std::string str;
         std::string prefix;
@@ -20,17 +20,17 @@ TEST(Paths_Strings, starts_with) {
         {"  ",  " "  },
         {"..",  "."  },
         {"aa",  "a"  },
-        {"a ",  "a"  },
-        {" a",  " "  },
+        {"a ",  " "  },
+        {" a",  "a"  },
         {"aa",  "aa" },
         {"a ",  "a " },
         {" a",  " a" },
         {"aaa", "a"  },
         {"a a", "a"  },
-        {"a b", "a"  },
+        {"a b", "b"  },
         {"aaa", "aa" },
-        {"a a", "a " },
-        {"a b", "a " },
+        {"a a", " a" },
+        {"a b", " b" },
         {"aaa", "aaa"},
         {"a a", "a a"},
         {"a b", "a b"},
@@ -42,12 +42,11 @@ TEST(Paths_Strings, starts_with) {
         {"a", "b" },
         {"a", "aa"},
     };
-
     for (const auto test : true_cases) {
-        EXPECT_TRUE(paths::starts_with(test.str, test.prefix));
+        EXPECT_TRUE(paths::ends_with(test.str, test.prefix));
     }
 
     for (const auto test : false_cases) {
-        EXPECT_FALSE(paths::starts_with(test.str, test.prefix));
+        EXPECT_FALSE(paths::ends_with(test.str, test.prefix));
     }
 }

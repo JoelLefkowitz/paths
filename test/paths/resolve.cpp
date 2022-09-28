@@ -1,6 +1,5 @@
-#include "../src/detect.hpp"
-#include "../src/paths.hpp"
-#include <algorithm>
+#include "../../src/detect.hpp"
+#include "../../src/paths.hpp"
 #include <gtest/gtest.h>
 #include <string>
 #include <vector>
@@ -171,9 +170,9 @@ TEST(Paths_Paths, resolve) {
         {{"a", "a", "a"},    "a/a/a"   },
     };
 
-    for (const auto test : cases) {
-        if (platform::sep == '\\') {
-            std::replace(test.expected.begin(), test.expected.end(), "/", "\\");
+    for (auto test : cases) {
+        if (platform::sep == paths::windows_sep) {
+            test.expected = paths::windows_path(test.expected);
         }
 
         EXPECT_EQ(paths::resolve(test.paths), test.expected);

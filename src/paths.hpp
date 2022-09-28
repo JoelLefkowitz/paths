@@ -11,6 +11,9 @@
 #include <vector>
 
 namespace paths {
+    constexpr char unix_sep    = '/';
+    constexpr char windows_sep = '\\';
+
     // Normalises the path
     // Python equivalent: os.path.normpath(path)
     // Usage: normpath("a/../a/b/c") -> "a/b/c"
@@ -35,6 +38,18 @@ namespace paths {
     // Python equivalent: os.path.normpath(path).split(os.path.sep)
     // Usage: segments("a/b/c") -> {"a", "b", "c"}
     std::vector<std::string> segments(const std::string &path);
+
+    // TODO: Add python equivalents
+    // TODO: Update README.md
+    // Converts a Unix path to a Windows path
+    // Python equivalent: 
+    // Usage: unix_path("a\\b\\c") -> "a/b/c"
+    std::string unix_path(const std::string &path);
+
+    // Converts a Windows path to a Unix path
+    // Python equivalent: 
+    // Usage: windows_path("a/b/c") -> "a\\b\\c"
+    std::string windows_path(const std::string &path);
 } // namespace paths
 
 #endif

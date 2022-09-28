@@ -60,3 +60,15 @@ std::string paths::resolve(const std::vector<std::string> &paths) {
 std::vector<std::string> paths::segments(const std::string &path) {
     return split(path == "" || path == "." ? "" : normpath(path), platform::sep);
 }
+
+std::string paths::unix_path(const std::string &path) {
+    std::string copy(path);
+    std::replace(copy.begin(), copy.end(), paths::windows_sep, paths::unix_sep);
+    return copy;
+}
+
+std::string paths::windows_path(const std::string &path) {
+    std::string copy(path);
+    std::replace(copy.begin(), copy.end(), paths::unix_sep, paths::windows_sep);
+    return copy;
+}
