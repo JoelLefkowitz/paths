@@ -1,0 +1,23 @@
+name: GoogleTest
+description: Install gtest from source
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout the source code
+      shell: bash
+      run: git clone https://github.com/google/googletest.git -b release-1.12.0
+
+    - name: Build the binaries
+      shell: bash
+      run: |
+        mkdir googletest/build
+        cd googletest/build
+        cmake ..
+        make
+
+    - name: Install the binaries
+      shell: bash
+      run: |
+        cd googletest/build
+        sudo make install

@@ -21,17 +21,73 @@ jobs:
         run: grunt lint
 
   test:
-    name: Test
+    name: Test on Ubuntu
     runs-on: ubuntu-20.04
 
     steps:
       - name: Checkout the source code
         uses: actions/checkout@v2
 
-      - name: Build tests
+      - name: Install Clang
+        uses: egor-tensin/setup-clang@v1
+        with:
+          version: 13
+          platform: x64
+
+      - name: Install test dependencies
+        run: sudo apt-get install libpthread-stubs0-dev kcov
+
+      - name: Install gtest from source
+        uses: ./.github/actions/gtest
+
+      - name: Build tests with debug symbols
         run: |
           mkdir dist
-          clang++ -std=c++11 -lgtest -o dist/test $(find . -name "*.cpp")
-      
-      - name: Run tests
-        run: dist/test
+          clang++ -std=c++11 -g $(find src test -name "*.cpp") -lpthread -lgtest -o dist/test
+
+      - name: Run tests and generate coverage
+        id: coverage
+        run: |
+          export FILENAME=$PWD/dist/test
+          kcov --include-path=$(pwd)/src --clean coverage dist/test
+          echo "::set-output name=cobertura::$(find coverage -name cobertura.xml)"
+
+      - name: Report code coverage
+        uses: codacy/codacy-coverage-reporter-action@v1
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          coverage-reports: ${{ steps.coverage.outputs.cobertura }}
+
+  # test-vm:
+  #   runs-on: macos-12
+  #   strategy:
+  #     matrix:
+  #       name:
+  #         - freebsd
+  #   steps:
+  #     - name: Checkout the source code
+  #       uses: actions/checkout@v2
+
+  #     - name: Test on ${{ matrix.os.name }}
+  #       uses: cross-platform-actions/action@v0.3.1
+  #       with:
+  #         shell: bash
+  #         run: |
+  #           sudo apt-get install git make cmake libpthread-stubs0-dev
+
+  #           wget https://apt.llvm.org/llvm.sh
+  #           chmod +x llvm.sh
+  #           sudo ./llvm.sh 13
+
+  #           git clone https://github.com/google/googletest.git -b release-1.12.0
+  #           mkdir googletest/build
+  #           cd googletest/build
+  #           cmake ..
+  #           make
+  #           sudo make install
+
+  #           cd ../..
+  #           mkdir dist
+
+  #           export FILENAME=$PWD/dist/test
+  #           dist/test

@@ -1,8 +1,7 @@
-#include "../src/detect.hpp"
-#include "../src/paths.hpp"
+#include "../../src/detect.hpp"
+#include "../../src/paths.hpp"
 #include <gtest/gtest.h>
 #include <string>
-#include <algorithm>
 #include <vector>
 
 TEST(Paths_Paths, segments) {
@@ -171,9 +170,9 @@ TEST(Paths_Paths, segments) {
         {"a/a/a",    {"a", "a", "a"}   },
     };
 
-    for (const auto test : cases) {
-        if (platform::sep == '\\') {
-            std::replace(test.path.begin(), test.path.end(), '/', '\\');
+    for (auto test : cases) {
+        if (platform::sep == paths::windows_sep) {
+            test.path = paths::windows_path(test.path);
         }
 
         EXPECT_EQ(paths::segments(test.path), test.expected);
