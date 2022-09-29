@@ -65,7 +65,8 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">paths Namespace Reference</div>  </div>
 </div><!--header-->
@@ -83,6 +84,10 @@ Functions</h2></td></tr>
 <tr class="separator:a4029492c3856da0d895e1fe012820af6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a71847660502bd18eb659f1ef174baf0c"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepaths.html#a71847660502bd18eb659f1ef174baf0c">segments</a> (const std::string &amp;path)</td></tr>
 <tr class="separator:a71847660502bd18eb659f1ef174baf0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addb4e614ad09116103688615ced484a3"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepaths.html#addb4e614ad09116103688615ced484a3">unix_path</a> (const std::string &amp;path)</td></tr>
+<tr class="separator:addb4e614ad09116103688615ced484a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e6abfd74ccc93c022866e0d0d0599d9"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepaths.html#a0e6abfd74ccc93c022866e0d0d0599d9">windows_path</a> (const std::string &amp;path)</td></tr>
+<tr class="separator:a0e6abfd74ccc93c022866e0d0d0599d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b2190367f784ecfeb7f159bb2389237"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepaths.html#a8b2190367f784ecfeb7f159bb2389237">filename</a> ()</td></tr>
 <tr class="separator:a8b2190367f784ecfeb7f159bb2389237"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a932eb86fec5d46e4937adee88f5a5a41"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepaths.html#a932eb86fec5d46e4937adee88f5a5a41">dirname</a> ()</td></tr>
@@ -103,6 +108,13 @@ Functions</h2></td></tr>
 <tr class="separator:a3a52c2b7742a8e16259803c9f269f126"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae823ab8ca893fdd4abfa16eb294dad23"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepaths.html#ae823ab8ca893fdd4abfa16eb294dad23">split</a> (const std::string &amp;str, const std::string &amp;delimiter=&quot; &quot;)</td></tr>
 <tr class="separator:ae823ab8ca893fdd4abfa16eb294dad23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a5e47de9ff740c43c6d69b22f1e515067"><td class="memItemLeft" align="right" valign="top">constexpr char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepaths.html#a5e47de9ff740c43c6d69b22f1e515067">unix_sep</a> = '/'</td></tr>
+<tr class="separator:a5e47de9ff740c43c6d69b22f1e515067"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab6d519d6b0142b129b646d95f49de32"><td class="memItemLeft" align="right" valign="top">constexpr char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepaths.html#aab6d519d6b0142b129b646d95f49de32">windows_sep</a> = '\\'</td></tr>
+<tr class="separator:aab6d519d6b0142b129b646d95f49de32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="a932eb86fec5d46e4937adee88f5a5a41"></a>
@@ -449,6 +461,87 @@ Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="addb4e614ad09116103688615ced484a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addb4e614ad09116103688615ced484a3">&#9670;&nbsp;</a></span>unix_path()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string paths::unix_path </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0e6abfd74ccc93c022866e0d0d0599d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e6abfd74ccc93c022866e0d0d0599d9">&#9670;&nbsp;</a></span>windows_path()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string paths::windows_path </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a5e47de9ff740c43c6d69b22f1e515067"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e47de9ff740c43c6d69b22f1e515067">&#9670;&nbsp;</a></span>unix_sep</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr char paths::unix_sep = '/'</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aab6d519d6b0142b129b646d95f49de32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab6d519d6b0142b129b646d95f49de32">&#9670;&nbsp;</a></span>windows_sep</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr char paths::windows_sep = '\\'</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
