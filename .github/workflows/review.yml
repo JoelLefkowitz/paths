@@ -31,7 +31,7 @@ jobs:
       - name: Install LLVM
         uses: KyleMayes/install-llvm-action@v1
         with:
-          version: "13.1"
+          version: "13.1.6"
 
       - name: Install test dependencies
         run: sudo apt-get install libpthread-stubs0-dev lcov
