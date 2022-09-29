@@ -20,18 +20,19 @@ jobs:
       - name: Run linters
         run: grunt lint
 
-  test:
-    name: Test
+  test-ubuntu:
+    name: Test on Ubuntu
     runs-on: ubuntu-20.04
 
     steps:
       - name: Checkout the source code
         uses: actions/checkout@v2
 
-      - name: Install LLVM
-        uses: KyleMayes/install-llvm-action@v1
+      - name: Install Clang
+        uses: egor-tensin/setup-clang@v1
         with:
-          version: "13.1.6"
+          version: 13
+          platform: x64
 
       - name: Install test dependencies
         run: sudo apt-get install libpthread-stubs0-dev lcov
@@ -55,16 +56,27 @@ jobs:
           export FILENAME=$PWD/dist/test
           dist/test
 
-      - name: Debug code coverage tools
-        run: |
-          clang++ --version
-          geninfo --version
-
       - name: Generate code coverage
-        run: geninfo "." --include "${GITHUB_WORKSPACE}/src/*.cpp" -b "." -o coverage.info
+        run: geninfo "." --include "${GITHUB_WORKSPACE}/src/*.cpp" -b "." -o coverage.info --gcov-tool /usr/bin/clang++
 
       - name: Report code coverage
         uses: codacy/codacy-coverage-reporter-action@v1
         with:
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
           coverage-reports: coverage.info
+
+  # test-openbsd:
+  #   runs-on: macos-12
+  #   name: Test on OpenBSD
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: Test in OpenBSD
+  #       id: test
+  #       uses: vmactions/openbsd-vm@v0
+  #       with:
+  #         usesh: true
+  #         run: |
+  #           mkdir dist
+  #           clang++ -std=c++11 --coverage $(find src test -name "*.cpp") -lpthread -lgtest -o dist/test
+  #           export FILENAME=$PWD/dist/test
+  #           dist/test
