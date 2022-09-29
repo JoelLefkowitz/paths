@@ -18,6 +18,7 @@
     "abcc",
     "bumpversion",
     "cfmt",
+    "codacy",
     "cppcheck",
     "cppclean",
     "doxyfile",
