@@ -13,12 +13,12 @@ To separate the need to detect the operating system at runtime [detect][detect] 
 
 ## Status
 
-| Source     | Shields                                                                                                                     |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------- |
-| Project    | ![release][release_shield] ![license][license_shield]                                                                       |
-| Health     | ![readthedocs][readthedocs_shield] ![github_review][github_review_shield]                                                   |
-| Repository | ![issues][issues_shield] ![issues_closed][issues_closed_shield] ![pulls][pulls_shield] ![pulls_closed][pulls_closed_shield] |
-| Activity   | ![contributors][contributors_shield] ![monthly_commits][monthly_commits_shield] ![last_commit][last_commit_shield]          |
+| Source     | Shields                                                                                                                                                       |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Project    | ![release][release_shield] ![license][license_shield]                                                                                                         |
+| Health     | ![github_publish_docs][github_publish_docs_shield] ![github_review][github_review_shield] ![codacy][codacy_shield] ![codacy_coverage][codacy_coverage_shield] |
+| Repository | ![issues][issues_shield] ![issues_closed][issues_closed_shield] ![pulls][pulls_shield] ![pulls_closed][pulls_closed_shield]                                   |
+| Activity   | ![contributors][contributors_shield] ![monthly_commits][monthly_commits_shield] ![last_commit][last_commit_shield]                                            |
 
 ## Usage
 
@@ -176,38 +176,40 @@ Lots of love to the open source community!
 
 <!-- External links -->
 
-[pages]: https://joellefkowitz.github.io/paths
+[pages]: https://JoelLefkowitz.github.io/paths
 [whereami]: https://github.com/gpakosz/whereami
 [std_filesystem]: https://en.cppreference.com/w/cpp/filesystem
-[detect]: https://github.com/joellefkowitz/detect
+[detect]: https://github.com/JoelLefkowitz/detect
 [semver]: http://semver.org/
 [be_kind]: https://media.giphy.com/media/osAcIGTSyeovPq6Xph/giphy.gif
 
 <!-- Contributor links -->
 
-[author]: https://github.com/joellefkowitz
-[author_coffee]: https://www.buymeacoffee.com/joellefkowitz
+[author]: https://github.com/JoelLefkowitz
+[author_coffee]: https://www.buymeacoffee.com/JoelLefkowitz
 [coffee_button]: https://cdn.buymeacoffee.com/buttons/default-blue.png
 
 <!-- Project shields -->
 
-[release_shield]: https://img.shields.io/github/v/tag/joellefkowitz/paths
-[license_shield]: https://img.shields.io/github/license/joellefkowitz/paths
+[release_shield]: https://img.shields.io/github/v/tag/JoelLefkowitz/paths
+[license_shield]: https://img.shields.io/github/license/JoelLefkowitz/paths
 
 <!-- Health shields -->
 
-[readthedocs_shield]: https://img.shields.io/readthedocs/paths
+[github_publish_docs_shield]: https://img.shields.io/github/workflow/status/JoelLefkowitz/paths/Publish%20documentation?label=docs
 [github_review_shield]: https://img.shields.io/github/workflow/status/JoelLefkowitz/paths/Review
+[codacy_shield]: https://img.shields.io/codacy/grade/61e4785a984c42bbbdf1554f025d0f7a
+[codacy_coverage_shield]: https://img.shields.io/codacy/coverage/61e4785a984c42bbbdf1554f025d0f7a
 
 <!-- Repository shields -->
 
-[issues_shield]: https://img.shields.io/github/issues/joellefkowitz/paths
-[issues_closed_shield]: https://img.shields.io/github/issues-closed/joellefkowitz/paths
-[pulls_shield]: https://img.shields.io/github/issues-pr/joellefkowitz/paths
-[pulls_closed_shield]: https://img.shields.io/github/issues-pr-closed/joellefkowitz/paths
+[issues_shield]: https://img.shields.io/github/issues/JoelLefkowitz/paths
+[issues_closed_shield]: https://img.shields.io/github/issues-closed/JoelLefkowitz/paths
+[pulls_shield]: https://img.shields.io/github/issues-pr/JoelLefkowitz/paths
+[pulls_closed_shield]: https://img.shields.io/github/issues-pr-closed/JoelLefkowitz/paths
 
 <!-- Activity shields -->
 
-[contributors_shield]: https://img.shields.io/github/contributors/joellefkowitz/paths
-[monthly_commits_shield]: https://img.shields.io/github/commit-activity/m/joellefkowitz/paths
-[last_commit_shield]: https://img.shields.io/github/last-commit/joellefkowitz/paths
+[contributors_shield]: https://img.shields.io/github/contributors/JoelLefkowitz/paths
+[monthly_commits_shield]: https://img.shields.io/github/commit-activity/m/JoelLefkowitz/paths
+[last_commit_shield]: https://img.shields.io/github/last-commit/JoelLefkowitz/paths

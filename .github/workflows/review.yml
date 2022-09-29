@@ -28,14 +28,13 @@ jobs:
       - name: Checkout the source code
         uses: actions/checkout@v2
 
-      - name: Install clang 13
-        uses: egor-tensin/setup-clang@v1
+      - name: Install LLVM
+        uses: KyleMayes/install-llvm-action@v1
         with:
-          version: 13
-          platform: x64
+          version: "13.0"
 
       - name: Install test dependencies
-        run: sudo apt-get install libpthread-stubs0-dev lcov
+        run: sudo apt-get install libpthread-stubs0-dev
 
       - name: Build gtest from source
         run: |
@@ -55,7 +54,7 @@ jobs:
         run: |
           export FILENAME=$PWD/dist/test
           dist/test
-      
+
       - name: Debug code coverage tools
         run: |
           clang++ --version
@@ -63,7 +62,7 @@ jobs:
 
       - name: Generate code coverage
         run: geninfo "." --include "${GITHUB_WORKSPACE}/src/*.cpp" -b "." -o coverage.info
-          
+
       - name: Report code coverage
         uses: codacy/codacy-coverage-reporter-action@v1
         with:
