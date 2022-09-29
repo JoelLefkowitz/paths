@@ -56,6 +56,11 @@ jobs:
           export FILENAME=$PWD/dist/test
           dist/test
       
+      - name: Debug code coverage tools
+        run: |
+          clang++ --version
+          geninfo --version
+
       - name: Generate code coverage
         run: geninfo "." --include "${GITHUB_WORKSPACE}/src/*.cpp" -b "." -o coverage.info
           
