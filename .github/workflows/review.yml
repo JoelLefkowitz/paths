@@ -38,13 +38,7 @@ jobs:
         run: sudo apt-get install libpthread-stubs0-dev lcov
 
       - name: Build gtest from source
-        run: |
-          git clone https://github.com/google/googletest.git -b release-1.12.0
-          mkdir googletest/build
-          cd googletest/build
-          cmake ..
-          make
-          sudo make install
+        uses: ./.github/actions/gtest
 
       - name: Build tests
         run: |
@@ -57,7 +51,9 @@ jobs:
           dist/test
 
       - name: Generate code coverage
-        run: geninfo "." --include "${GITHUB_WORKSPACE}/src/*.cpp" -b "." -o coverage.info --gcov-tool /usr/bin/clang++
+        run: | 
+          echo geninfo "." --gcov-tool $(which clang++) --include "${GITHUB_WORKSPACE}/src/*.cpp" -b "." -o coverage.info
+          geninfo "." --gcov-tool $(which clang++) --include "${GITHUB_WORKSPACE}/src/*.cpp" -b "." -o coverage.info
 
       - name: Report code coverage
         uses: codacy/codacy-coverage-reporter-action@v1
