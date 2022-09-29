@@ -18,4 +18,6 @@ runs:
 
     - name: Install the binaries
       shell: bash
-      run: sudo make install
+      run: |
+        cd googletest/build
+        sudo make install

@@ -37,7 +37,7 @@ jobs:
       - name: Install test dependencies
         run: sudo apt-get install libpthread-stubs0-dev lcov
 
-      - name: Build gtest from source
+      - name: Install gtest from source
         uses: ./.github/actions/gtest
 
       - name: Build tests
