@@ -1,4 +1,6 @@
 *.DS_Store
+*.gcda
+*.gcno
 *.log
 *.o
 *.tmp

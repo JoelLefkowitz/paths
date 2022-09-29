@@ -49,10 +49,18 @@ jobs:
       - name: Build tests
         run: |
           mkdir dist
-          clang++ -std=c++11 $(find src test -name "*.cpp") -lpthread -lgtest -o dist/test
+          clang++ -std=c++11 --coverage $(find src test -name "*.cpp") -lpthread -lgtest -o dist/test
 
       - name: Run tests
         run: |
           export FILENAME=$PWD/dist/test
           dist/test
+      
+      - name: Generate code coverage
+        run: geninfo "." --include "$(PWD)/src/*.cpp" -b "." -o coverage.info
           
+      - name: Report code coverage
+        uses: codacy/codacy-coverage-reporter-action@v1
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          coverage-reports: coverage.info
