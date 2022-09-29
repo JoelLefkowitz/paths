@@ -34,8 +34,8 @@ jobs:
           version: 13
           platform: x64
 
-      - name: Install pthread
-        run: sudo apt-get install libpthread-stubs0-dev
+      - name: Install test dependencies
+        run: sudo apt-get install libpthread-stubs0-dev lcov
 
       - name: Build gtest from source
         run: |
@@ -57,7 +57,7 @@ jobs:
           dist/test
       
       - name: Generate code coverage
-        run: geninfo "." --include "$(PWD)/src/*.cpp" -b "." -o coverage.info
+        run: geninfo "." --include "${GITHUB_WORKSPACE}/src/*.cpp" -b "." -o coverage.info
           
       - name: Report code coverage
         uses: codacy/codacy-coverage-reporter-action@v1
