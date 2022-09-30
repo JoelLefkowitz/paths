@@ -39,15 +39,11 @@ namespace paths {
     // Usage: segments("a/b/c") -> {"a", "b", "c"}
     std::vector<std::string> segments(const std::string &path);
 
-    // TODO: Add python equivalents
-    // TODO: Update README.md
-    // Converts a Unix path to a Windows path
-    // Python equivalent: 
+    // Converts a Windows path to a Unix path
     // Usage: unix_path("a\\b\\c") -> "a/b/c"
     std::string unix_path(const std::string &path);
 
-    // Converts a Windows path to a Unix path
-    // Python equivalent: 
+    // Converts a Unix path to a Windows path
     // Usage: windows_path("a/b/c") -> "a\\b\\c"
     std::string windows_path(const std::string &path);
 } // namespace paths

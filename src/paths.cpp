@@ -12,6 +12,10 @@
 #include <vector>
 
 std::string paths::normpath(const std::string &path) {
+    if (path == "/") {
+        return path;
+    }
+
     auto components = split(path, platform::sep);
     auto contentful = [](const std::string &x) { return x != "" && x != "."; };
 
