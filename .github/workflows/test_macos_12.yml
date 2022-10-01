@@ -1,12 +1,9 @@
 name: Test on MacOS 12
 
-on: [push, pull_request]
-
-# TODO: Replace
-# on:
-#   push:
-#     branches:
-#       - master
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   test:
@@ -18,9 +15,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install test dependencies
-        run: |
-          clang++ --version
-          brew install libpthread-stubs
+        run: brew install libpthread-stubs
 
       - name: Install gtest from source
         run: |

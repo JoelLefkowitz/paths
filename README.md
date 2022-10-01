@@ -19,7 +19,7 @@ Test environments:
 | -------- | ---------------- | ----------------------------------------------------- |
 | Linux    | Ubuntu 20.04     | ![test_ubuntu_20.04_shield][test_ubuntu_20.04_shield] |
 | Darwin   | MacOS 12         | ![test_macos_12_shield][test_macos_12_shield]         |
-| Windows  |                  |                                                       |
+| Windows  | Windows 2022     | ![test_windows_2022_shield][test_windows_2022_shield] |
 | BSD      |                  |                                                       |
 | Solaris  |                  |                                                       |
 | IOS      |                  |                                                       |
@@ -228,6 +228,7 @@ Lots of love to the open source community!
 
 [test_ubuntu_20.04_shield]: https://img.shields.io/github/workflow/status/JoelLefkowitz/paths/Test%20on%20Ubuntu%2020.04?label=tests
 [test_macos_12_shield]: https://img.shields.io/github/workflow/status/JoelLefkowitz/paths/Test%20on%20MacOS%2012?label=tests
+[test_windows_2022_shield]: https://img.shields.io/github/workflow/status/JoelLefkowitz/paths/Test%20on%20Windows%202022?label=tests
 
 <!-- Project shields -->
 
