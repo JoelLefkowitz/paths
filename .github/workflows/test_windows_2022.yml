@@ -20,8 +20,9 @@ jobs:
           git clone https://github.com/google/googletest.git -b release-1.12.0
           mkdir googletest/build
           cd googletest/build
-          CC=c:/programdata/chocolatey/bin/gcc.exe CXX=c:/programdata/chocolatey/bin/g++.exe \
-          cmake .. -G "MinGW Makefiles"
+          cmake .. -G "MinGW Makefiles" \
+          -DCMAKE_C_COMPILER==c:/programdata/chocolatey/bin/gcc.exe \
+          -DCMAKE_CXX_COMPILER==c:/programdata/chocolatey/bin/g++.exe
           make
 
       - name: Build tests
