@@ -20,14 +20,15 @@ jobs:
           git clone https://github.com/google/googletest.git -b release-1.12.0
           mkdir googletest/build
           cd googletest/build
+          CC=c:/programdata/chocolatey/bin/gcc.exe CXX=c:/programdata/chocolatey/bin/g++.exe \
           cmake .. -G "MinGW Makefiles"
           make
-          make install
 
       - name: Build tests
         run: |
           mkdir dist
-          g++ -std=c++11 $(find src test -name "*.cpp") -Igoogletest/googletest/include -Lgoogletest/build/lib -lgtest -o dist/test
+          c:/programdata/chocolatey/bin/g++.exe $(find src test -name "*.cpp") \
+          -std=c++11 -Igoogletest/googletest/include -Lgoogletest/build/lib -lgtest -o dist/test
 
       - name: Run tests
         run: |

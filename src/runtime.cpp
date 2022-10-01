@@ -41,7 +41,6 @@ std::string paths::filename() {
 
 #elif PLATFORMS_DETECTED_OS == PLATFORM_WINDOWS
 
-#include <iostream>
 #include <string>
 #include <windows.h>
 
