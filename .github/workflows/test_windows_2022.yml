@@ -7,6 +7,10 @@ jobs:
     name: Test on Windows 2022
     runs-on: windows-2022
 
+    defaults:
+      run:
+        shell: bash
+
     steps:
       - name: Checkout the source code
         uses: actions/checkout@v2
@@ -21,7 +25,6 @@ jobs:
           make install
 
       - name: Build tests
-        shell: bash
         run: |
           mkdir dist
           g++ -std=c++11 $(find src test -name "*.cpp") -Igoogletest/googletest/include -Lgoogletest/build/lib -lgtest -o dist/test
