@@ -22,9 +22,10 @@ jobs:
 
       - name: Build tests
         run: |
-          which find
           mkdir dist
-          g++ -std=c++11 $(/usr/bin/find src test -iname "*.cpp") -Igoogletest/googletest/include -Lgoogletest/build/lib -lgtest main.cpp -o dist/test
+          ls
+          find src test -name "*.cpp"
+          g++ -std=c++11 $(find src test -name "*.cpp") -Igoogletest/googletest/include -Lgoogletest/build/lib -lgtest main.cpp -o dist/test
 
       - name: Run tests
         run: |
