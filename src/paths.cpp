@@ -1,6 +1,6 @@
 // ʕ •ᴥ•ʔ Paths - paths.cpp ʕ•ᴥ• ʔ
-// OS specific path manipulation including retrieving the executable's path.
-// https://github.com/joellefkowitz/paths
+// OS specific path manipulation including retrieving the
+// executable's path. https://github.com/joellefkowitz/paths
 // Version: 0.1.0
 // License: MIT
 
@@ -12,34 +12,38 @@
 #include <vector>
 
 std::string paths::normpath(const std::string &path) {
-    if (path == "/") {
-        return path;
-    }
-
     auto components = split(path, platform::sep);
-    auto contentful = [](const std::string &x) { return x != "" && x != "."; };
 
-    if (std::none_of(components.begin(), components.end(), contentful)) {
+    std::vector<std::string> contentful;
+
+    std::copy_if(
+        components.begin(),
+        components.end(),
+        std::back_inserter(contentful),
+        [](const std::string &x) { return x != "" && x != "."; }
+    );
+
+    if (contentful.empty() && !starts_with(path, platform::sep)) {
         return ".";
     }
 
-    std::vector<std::string> content;
+    std::vector<std::string> filtered;
 
-    std::copy_if(
-        components.begin(), components.end(), std::back_inserter(content), contentful
-    );
-
-    std::vector<std::string> normalised;
-
-    for (auto i = content.begin(); i != content.end(); ++i) {
-        if (*i == ".." && !normalised.empty() && normalised.back() != "..") {
-            normalised.pop_back();
+    for (auto i = contentful.begin(); i != contentful.end(); ++i) {
+        if (*i == ".." && !filtered.empty() && filtered.back() != "..") {
+            filtered.pop_back();
         } else {
-            normalised.push_back(*i);
+            filtered.push_back(*i);
         }
     }
 
-    return join(normalised, platform::sep);
+    auto normalised = join(filtered, platform::sep);
+
+    if (starts_with(path, platform::sep)) {
+        normalised = platform::sep + normalised;
+    }
+
+    return normalised;
 }
 
 std::string paths::head(const std::string &path) {
@@ -62,7 +66,9 @@ std::string paths::resolve(const std::vector<std::string> &paths) {
 }
 
 std::vector<std::string> paths::segments(const std::string &path) {
-    return split(path == "" || path == "." ? "" : normpath(path), platform::sep);
+    return split(
+        path == "" || path == "." ? "" : normpath(path), platform::sep
+    );
 }
 
 std::string paths::unix_path(const std::string &path) {
