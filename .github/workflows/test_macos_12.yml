@@ -1,9 +1,12 @@
 name: Test on MacOS 12
 
-on:
-  push:
-    branches:
-      - master
+on: [push, pull_request]
+
+# TODO: Replace
+# on:
+#   push:
+#     branches:
+#       - master
 
 jobs:
   test:
