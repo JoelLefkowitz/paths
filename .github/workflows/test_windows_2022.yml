@@ -26,9 +26,8 @@ jobs:
 
       - name: Build tests
         run: |
-          which g++
           mkdir dist
-          C:/ProgramData/chocolatey/bin/gcc.exe $(find src test -name "*.cpp") -std=c++11 -Igoogletest/googletest/include -Lgoogletest/build/lib -lgtest -o dist/test
+          C:/ProgramData/chocolatey/bin/gcc.exe -std=c++11 $(find src test -name "*.cpp") -Igoogletest/googletest/include -Lgoogletest/build/lib -lgtest -o dist/test
 
       - name: Run tests
         run: |
