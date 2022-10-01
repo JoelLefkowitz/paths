@@ -18,12 +18,12 @@ jobs:
           cd googletest\build
           cmake .. -G "MinGW Makefiles"
           make
-           make install
+          make install
 
       - name: Build tests
         run: |
           mkdir dist
-          g++ -std=c++11 -g $(find src test -name "*.cpp") -lpthread -lgtest -o dist\test
+          g++ -std=c++11 $(find src test -iname "*.cpp") -Lgoogletest/build/lib -lpthread -lgtest -o dist\test
 
       - name: Run tests
         run: |
