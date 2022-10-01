@@ -22,16 +22,6 @@ jobs:
 
       - name: Build tests
         run: |
-          echo ls
-          ls
-          echo ls googletest
-          ls googletest
-          echo ls paths
-          ls paths
-          echo ls src
-          ls src
-          echo ls test
-          ls test
           echo find src test -iname "*.cpp"
           find src test -iname "*.cpp"
           mkdir dist
