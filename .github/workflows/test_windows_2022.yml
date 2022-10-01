@@ -20,9 +20,7 @@ jobs:
           git clone https://github.com/google/googletest.git -b release-1.12.0
           mkdir googletest/build
           cd googletest/build
-          export CC=$(which gcc)
-          export CXX=$(which g++)
-          cmake .. -G "MinGW Makefiles"
+          cmake .. -G "MinGW Makefiles" -D_GLIBCXX_USE_CXX11_ABI=1
           make
 
       - name: Build tests
