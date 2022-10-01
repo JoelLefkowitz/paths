@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install MinGW
-        run: choco install mingw      
+        run: choco install mingw
 
       - name: Install gtest from source
         run: |
@@ -30,7 +30,7 @@ jobs:
       - name: Build tests
         run: |
           mkdir dist
-          g++.exe -std=c++11 $(find src test -name "*.cpp") -Igoogletest/googletest/include -Lgoogletest/build/lib -lgtest -o dist/test
+          g++ -std=c++11 $(find src test -name "*.cpp") -Igoogletest/googletest/include -Lgoogletest/build/lib -lgtest -o dist/test
 
       - name: Run tests
         run: |
