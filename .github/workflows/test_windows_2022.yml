@@ -21,25 +21,9 @@ jobs:
           make install
 
       - name: Build tests
+        shell: bash
         run: |
           mkdir dist
-          
-          ls src
-          ls test
-
-          find src -name "paths.cpp"
-          find src -iname "paths.cpp"
-          find src -name paths.cpp
-          find src -iname paths.cpp
-
-          find src -name "paths.cpp"
-          find src -iname "paths.cpp"
-          find src -name paths.cpp
-          find src -iname paths.cpp
-
-          find src -name *.cpp
-          find src -name .cpp
-
           g++ -std=c++11 $(find src test -name "*.cpp") -Igoogletest/googletest/include -Lgoogletest/build/lib -lgtest -o dist/test
 
       - name: Run tests
