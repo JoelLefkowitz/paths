@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['linux_10',['Linux',['../namespaceplatform.html#a279b3c3077efba41bed9cbdf1a976ee0aa35812bc4eacdbfdbe2d4b1e38db05e2',1,'platform']]]
+  ['join_18',['join',['../namespacepaths.html#a23b9979dea03fd729427d2730fca8ebf',1,'paths::join(const std::vector&lt; std::string &gt; &amp;strs, char delimiter)'],['../namespacepaths.html#a6fbe44d42bb3abba6382d71f19466828',1,'paths::join(const std::vector&lt; std::string &gt; &amp;strs, const std::string &amp;delimiter=&quot;, &quot;)']]]
 ];

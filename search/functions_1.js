@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['ends_5fwith_52',['ends_with',['../namespacepaths.html#a3ab7c6ce09580003cbc613dede2a978d',1,'paths::ends_with(const std::string &amp;str, char suffix)'],['../namespacepaths.html#ae00d9864a19c9c3c5d7d4033e923a68b',1,'paths::ends_with(const std::string &amp;str, const std::string &amp;suffix)']]]
+  ['dirname_80',['dirname',['../namespacepaths.html#a932eb86fec5d46e4937adee88f5a5a41',1,'paths']]],
+  ['drive_81',['drive',['../namespacepaths.html#aa95b8ef5f8ffedbba4f690c58d4d941c',1,'paths']]]
 ];

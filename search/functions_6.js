@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['resolve_57',['resolve',['../namespacepaths.html#a4029492c3856da0d895e1fe012820af6',1,'paths']]]
+  ['normalised_86',['normalised',['../namespacepaths.html#a693ea7fd37636d5644539cd7521076c6',1,'paths']]],
+  ['normpath_87',['normpath',['../namespacepaths.html#a323feb92c5d6df2d88b511addad8dc8c',1,'paths']]]
 ];

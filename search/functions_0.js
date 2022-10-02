@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['dirname_51',['dirname',['../namespacepaths.html#a932eb86fec5d46e4937adee88f5a5a41',1,'paths']]]
+  ['absolute_78',['absolute',['../namespacepaths.html#ab91c834e2dfc2dd8e3a5c447d4ff3f49',1,'paths']]],
+  ['abspath_79',['abspath',['../namespacepaths.html#a5c28cb6e4bdc2d94565d06b02ec2f227',1,'paths']]]
 ];

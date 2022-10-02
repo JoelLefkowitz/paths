@@ -68,74 +68,161 @@ $(function() {
 <div class="title">Usage </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="mainpage"></a> </p><div class="fragment"><div class="line"><span class="keyword">namespace </span><a class="code" href="namespacepaths.html">paths</a> {</div>
+<div class="textblock"><p><a class="anchor" id="mainpage"></a> OS specific path operations and executable path retrieval.</p>
+<p>This package is inspired by <a href="https://github.com/gpakosz/whereami">whereami</a> and <a href="https://en.cppreference.com/w/cpp/filesystem">std::filesystem</a> but with:</p>
+<ul>
+<li>Simple interfaces</li>
+<li>Readable sources</li>
+<li>C++11 compatability</li>
+<li>Exception handling</li>
+</ul>
+<p>To separate the need to detect the operating system at runtime <a href="https://github.com/JoelLefkowitz/detect">detect</a> is dropped in.</p>
+<p>Since path manipulation is full of edge cases it is paramount to have an extensive set of unit tests. The test fixtures are verified to be consistent with python's standard library. To provide support to multiple platforms all test suites are verified against each target environment.</p>
+<p>Test environments:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Platform   </th><th class="markdownTableHeadNone">Test environment   </th><th class="markdownTableHeadNone">Status    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Linux   </td><td class="markdownTableBodyNone">Ubuntu 20.04   </td><td class="markdownTableBodyNone"><img src="https://img.shields.io/github/workflow/status/JoelLefkowitz/paths/Test%20on%20Ubuntu%2020.04?label=tests" alt="test_ubuntu_20.04_shield" class="inline"/>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Darwin   </td><td class="markdownTableBodyNone">MacOS 12   </td><td class="markdownTableBodyNone"><img src="https://img.shields.io/github/workflow/status/JoelLefkowitz/paths/Test%20on%20MacOS%2012?label=tests" alt="test_macos_12_shield" class="inline"/>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Windows   </td><td class="markdownTableBodyNone">Windows 2022   </td><td class="markdownTableBodyNone"><img src="https://img.shields.io/github/workflow/status/JoelLefkowitz/paths/Test%20on%20Windows%202022?label=tests" alt="test_windows_2022_shield" class="inline"/>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">BSD   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Solaris   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"></td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">IOS   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"></td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Android   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"></td></tr>
+</table>
+<h1><a class="anchor" id="autotoc_md0"></a>
+Usage</h1>
+<div class="fragment"><div class="line"><span class="keyword">namespace </span><a class="code" href="namespacepaths.html">paths</a> {</div>
 <div class="line">    <span class="comment">// Gets the path of the current executable file</span></div>
 <div class="line">    std::string <a class="code" href="namespacepaths.html#a8b2190367f784ecfeb7f159bb2389237">filename</a>();</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">// Gets the dirname of the current executable file</span></div>
 <div class="line">    std::string <a class="code" href="namespacepaths.html#a932eb86fec5d46e4937adee88f5a5a41">dirname</a>();</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Normalises the path</span></div>
-<div class="line">    <span class="comment">// Python equivalent: os.path.normpath(path)</span></div>
+<div class="line">    <span class="comment">// Gets the absolute path of a file</span></div>
+<div class="line">    std::string <a class="code" href="namespacepaths.html#a5c28cb6e4bdc2d94565d06b02ec2f227">abspath</a>(<span class="keyword">const</span> std::string &amp;path);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Normalises a path</span></div>
 <div class="line">    <span class="comment">// Usage: normpath(&quot;a/../a/b/c&quot;) -&gt; &quot;a/b/c&quot;</span></div>
 <div class="line">    std::string <a class="code" href="namespacepaths.html#a323feb92c5d6df2d88b511addad8dc8c">normpath</a>(<span class="keyword">const</span> std::string &amp;path);</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Gets the path&#39;s head</span></div>
+<div class="line">    <span class="comment">// Finds the relative path from a source to a target</span></div>
+<div class="line">    <span class="comment">// Usage: relpath(&quot;a/b&quot;, &quot;a/c&quot;) -&gt; &quot;../c&quot;</span></div>
+<div class="line">    std::string <a class="code" href="namespacepaths.html#ac786d77a02b59f5fa3978e627500cc41">relpath</a>(<span class="keyword">const</span> std::string &amp;source, <span class="keyword">const</span> std::string &amp;target);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Checks if a path is absolute</span></div>
+<div class="line">    <span class="keywordtype">bool</span> <a class="code" href="namespacepaths.html#ab91c834e2dfc2dd8e3a5c447d4ff3f49">absolute</a>(<span class="keyword">const</span> std::string &amp;path);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Checks if a path is normalised</span></div>
+<div class="line">    <span class="keywordtype">bool</span> <a class="code" href="namespacepaths.html#a693ea7fd37636d5644539cd7521076c6">normalised</a>(<span class="keyword">const</span> std::string &amp;path);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Checks if a path is relative</span></div>
+<div class="line">    <span class="keywordtype">bool</span> <a class="code" href="namespacepaths.html#af9fa1050378a5c5f7609b619c6de3fda">relative</a>(<span class="keyword">const</span> std::string &amp;path);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Gets a path&#39;s head</span></div>
 <div class="line">    <span class="comment">// Python equivalent: os.path.split(os.path.normpath(path))[1]</span></div>
 <div class="line">    <span class="comment">// Usage: head(&quot;a/b/c&quot;) -&gt; &quot;c&quot;</span></div>
 <div class="line">    std::string <a class="code" href="namespacepaths.html#a91ed880ca82be51c0c47b6f663966722">head</a>(<span class="keyword">const</span> std::string &amp;path);</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Gets the path&#39;s tail</span></div>
+<div class="line">    <span class="comment">// Gets a path&#39;s tail</span></div>
 <div class="line">    <span class="comment">// Python equivalent: os.path.split(os.path.normpath(path))[0]</span></div>
 <div class="line">    <span class="comment">// Usage: tail(&quot;a/b/c&quot;) -&gt; &quot;a/b&quot;</span></div>
 <div class="line">    std::string <a class="code" href="namespacepaths.html#aae2b55f0bc134f3c0b6888b0cf738373">tail</a>(<span class="keyword">const</span> std::string &amp;path);</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Joins and normalises the path segments</span></div>
+<div class="line">    <span class="comment">// Gets a path&#39;s drive</span></div>
+<div class="line">    <span class="comment">// Python equivalent: os.path.splitdrive(path)[0]</span></div>
+<div class="line">    <span class="comment">// Usage: drive(&quot;C:\a\b\c&quot;) -&gt; &quot;C:&quot;</span></div>
+<div class="line">    std::string <a class="code" href="namespacepaths.html#aa95b8ef5f8ffedbba4f690c58d4d941c">drive</a>(<span class="keyword">const</span> std::string &amp;path);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Determines if a path starts with a prefix</span></div>
+<div class="line">    <span class="keywordtype">bool</span> <a class="code" href="namespacepaths.html#a794735e7f1247089f928b0f39237d859">starts_with</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keywordtype">char</span> prefix);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Determines if a path starts with a prefix</span></div>
+<div class="line">    <span class="keywordtype">bool</span> <a class="code" href="namespacepaths.html#a794735e7f1247089f928b0f39237d859">starts_with</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keyword">const</span> std::string &amp;prefix);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Determines if a path ends with a suffix</span></div>
+<div class="line">    <span class="keywordtype">bool</span> <a class="code" href="namespacepaths.html#a3ab7c6ce09580003cbc613dede2a978d">ends_with</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keywordtype">char</span> suffix);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Determines if a path ends with a suffix</span></div>
+<div class="line">    <span class="keywordtype">bool</span> <a class="code" href="namespacepaths.html#a3ab7c6ce09580003cbc613dede2a978d">ends_with</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keyword">const</span> std::string &amp;suffix);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Joins strings with a delimeter</span></div>
+<div class="line">    <span class="comment">// Usage: join({&quot;a&quot;, &quot;b&quot;, &quot;c&quot;}, &#39;,&#39;) -&gt; &quot;a,b,c&quot;</span></div>
+<div class="line">    std::string <a class="code" href="namespacepaths.html#a23b9979dea03fd729427d2730fca8ebf">join</a>(<span class="keyword">const</span> std::vector&lt;std::string&gt; &amp;strs, <span class="keywordtype">char</span> delimiter);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Joins strings with a delimeter</span></div>
+<div class="line">    <span class="comment">// Usage: join({&quot;a&quot;, &quot;b&quot;, &quot;c&quot;}, &quot;, &quot;) -&gt; &quot;a, b, c&quot;</span></div>
+<div class="line">    std::string <a class="code" href="namespacepaths.html#a23b9979dea03fd729427d2730fca8ebf">join</a>(</div>
+<div class="line">        <span class="keyword">const</span> std::vector&lt;std::string&gt; &amp;strs,</div>
+<div class="line">        <span class="keyword">const</span> std::string              &amp;delimiter = <span class="stringliteral">&quot;, &quot;</span></div>
+<div class="line">    );</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Splits a string at each occurrence of a delimeter</span></div>
+<div class="line">    <span class="comment">// Usage: split(&quot;a,b,c&quot;, &#39;,&#39;) -&gt; {&quot;a&quot;, &quot;b&quot;, &quot;c&quot;}</span></div>
+<div class="line">    std::vector&lt;std::string&gt; <a class="code" href="namespacepaths.html#a3a52c2b7742a8e16259803c9f269f126">split</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keywordtype">char</span> delimiter);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Splits a string at each occurrence of a delimeter</span></div>
+<div class="line">    <span class="comment">// Usage: split(&quot;a, b, c&quot;, &quot;, &quot;) -&gt; {&quot;a&quot;, &quot;b&quot;, &quot;c&quot;}</span></div>
+<div class="line">    std::vector&lt;std::string&gt; <a class="code" href="namespacepaths.html#a3a52c2b7742a8e16259803c9f269f126">split</a>(</div>
+<div class="line">        <span class="keyword">const</span> std::string &amp;str,</div>
+<div class="line">        <span class="keyword">const</span> std::string &amp;delimiter = <span class="stringliteral">&quot; &quot;</span></div>
+<div class="line">    );</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Joins and normalises path segments</span></div>
 <div class="line">    <span class="comment">// Python equivalent: os.path.normpath(os.path.join(*paths))</span></div>
 <div class="line">    <span class="comment">// Usage: resolve(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;) -&gt; &quot;a/b/c&quot;</span></div>
 <div class="line">    std::string <a class="code" href="namespacepaths.html#a4029492c3856da0d895e1fe012820af6">resolve</a>(<span class="keyword">const</span> std::vector&lt;std::string&gt; &amp;<a class="code" href="namespacepaths.html">paths</a>);</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Normalises and splits the path into segments</span></div>
+<div class="line">    <span class="comment">// Normalises and splits a path into segments</span></div>
 <div class="line">    <span class="comment">// Python equivalent: os.path.normpath(path).split(os.path.sep)</span></div>
 <div class="line">    <span class="comment">// Usage: segments(&quot;a/b/c&quot;) -&gt; {&quot;a&quot;, &quot;b&quot;, &quot;c&quot;}</span></div>
 <div class="line">    std::vector&lt;std::string&gt; <a class="code" href="namespacepaths.html#a71847660502bd18eb659f1ef174baf0c">segments</a>(<span class="keyword">const</span> std::string &amp;path);</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Determines if the path starts with the prefix</span></div>
-<div class="line">    <span class="comment">// Python equivalent: str.startswith(prefix)</span></div>
-<div class="line">    <span class="comment">// Usage: starts_with(&quot;a/b/c&quot;, &quot;a/&quot;) -&gt; true</span></div>
-<div class="line">    <span class="keywordtype">bool</span> <a class="code" href="namespacepaths.html#a794735e7f1247089f928b0f39237d859">starts_with</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keywordtype">char</span> prefix);</div>
-<div class="line">    <span class="keywordtype">bool</span> <a class="code" href="namespacepaths.html#a794735e7f1247089f928b0f39237d859">starts_with</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keyword">const</span> std::string &amp;prefix);</div>
+<div class="line">    constexpr <span class="keywordtype">char</span> <a class="code" href="namespacepaths.html#a5e47de9ff740c43c6d69b22f1e515067">unix_sep</a>    = <span class="charliteral">&#39;/&#39;</span>;</div>
+<div class="line">    constexpr <span class="keywordtype">char</span> <a class="code" href="namespacepaths.html#aab6d519d6b0142b129b646d95f49de32">windows_sep</a> = <span class="charliteral">&#39;\\&#39;</span>;</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Determines if the path ends with the suffix</span></div>
-<div class="line">    <span class="comment">// Python equivalent: str.endswith(suffix)</span></div>
-<div class="line">    <span class="comment">// Usage: ends_with(&quot;a/b/c&quot;, &quot;/c&quot;) -&gt; true</span></div>
-<div class="line">    <span class="keywordtype">bool</span> <a class="code" href="namespacepaths.html#a3ab7c6ce09580003cbc613dede2a978d">ends_with</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keywordtype">char</span> suffix);</div>
-<div class="line">    <span class="keywordtype">bool</span> <a class="code" href="namespacepaths.html#a3ab7c6ce09580003cbc613dede2a978d">ends_with</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keyword">const</span> std::string &amp;suffix);</div>
+<div class="line">    <span class="comment">// Converts a Windows path to a Unix path</span></div>
+<div class="line">    <span class="comment">// Usage: unix_path(&quot;a\b\c&quot;) -&gt; &quot;a/b/c&quot;</span></div>
+<div class="line">    std::string <a class="code" href="namespacepaths.html#addb4e614ad09116103688615ced484a3">unix_path</a>(<span class="keyword">const</span> std::string &amp;path);</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Joins the strings with the delimeter</span></div>
-<div class="line">    <span class="comment">// Python equivalent: delimeter.join(strs)</span></div>
-<div class="line">    <span class="comment">// Usage: join({&quot;a&quot;, &quot;b&quot;, &quot;c&quot;}, &quot;, &quot;) -&gt; &quot;a, b, c&quot;</span></div>
-<div class="line">    std::string <a class="code" href="namespacepaths.html#a23b9979dea03fd729427d2730fca8ebf">join</a>(<span class="keyword">const</span> std::vector&lt;std::string&gt; &amp;strs, <span class="keywordtype">char</span> delimiter);</div>
-<div class="line">    std::string <a class="code" href="namespacepaths.html#a23b9979dea03fd729427d2730fca8ebf">join</a>(<span class="keyword">const</span> std::vector&lt;std::string&gt; &amp;strs, <span class="keyword">const</span> std::string &amp;delimiter = <span class="stringliteral">&quot;, &quot;</span>);</div>
+<div class="line">    <span class="comment">// Converts a Unix path to a Windows path</span></div>
+<div class="line">    <span class="comment">// Usage: windows_path(&quot;a/b/c&quot;) -&gt; &quot;a\b\c&quot;</span></div>
+<div class="line">    std::string <a class="code" href="namespacepaths.html#a0e6abfd74ccc93c022866e0d0d0599d9">windows_path</a>(<span class="keyword">const</span> std::string &amp;path);</div>
 <div class="line"> </div>
-<div class="line">    <span class="comment">// Splits the string at the delimeter</span></div>
-<div class="line">    <span class="comment">// Python equivalent: str.split(delimeter)</span></div>
-<div class="line">    <span class="comment">// Usage: split(&quot;a, b, c&quot;, &quot;, &quot;) -&gt; {&quot;a&quot;, &quot;b&quot;, &quot;c&quot;}</span></div>
-<div class="line">    std::vector&lt;std::string&gt; <a class="code" href="namespacepaths.html#a3a52c2b7742a8e16259803c9f269f126">split</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keywordtype">char</span> delimiter);</div>
-<div class="line">    std::vector&lt;std::string&gt; <a class="code" href="namespacepaths.html#a3a52c2b7742a8e16259803c9f269f126">split</a>(<span class="keyword">const</span> std::string &amp;str, <span class="keyword">const</span> std::string &amp;delimiter = <span class="stringliteral">&quot; &quot;</span>);</div>
-<div class="line">}</div>
-<div class="ttc" id="anamespacepaths_html"><div class="ttname"><a href="namespacepaths.html">paths</a></div><div class="ttdef"><b>Definition:</b> paths.hpp:13</div></div>
-<div class="ttc" id="anamespacepaths_html_a23b9979dea03fd729427d2730fca8ebf"><div class="ttname"><a href="namespacepaths.html#a23b9979dea03fd729427d2730fca8ebf">paths::join</a></div><div class="ttdeci">std::string join(const std::vector&lt; std::string &gt; &amp;strs, char delimiter)</div><div class="ttdef"><b>Definition:</b> strings.cpp:32</div></div>
-<div class="ttc" id="anamespacepaths_html_a323feb92c5d6df2d88b511addad8dc8c"><div class="ttname"><a href="namespacepaths.html#a323feb92c5d6df2d88b511addad8dc8c">paths::normpath</a></div><div class="ttdeci">std::string normpath(const std::string &amp;path)</div><div class="ttdef"><b>Definition:</b> paths.cpp:14</div></div>
-<div class="ttc" id="anamespacepaths_html_a3a52c2b7742a8e16259803c9f269f126"><div class="ttname"><a href="namespacepaths.html#a3a52c2b7742a8e16259803c9f269f126">paths::split</a></div><div class="ttdeci">std::vector&lt; std::string &gt; split(const std::string &amp;str, char delimiter)</div><div class="ttdef"><b>Definition:</b> strings.cpp:48</div></div>
-<div class="ttc" id="anamespacepaths_html_a3ab7c6ce09580003cbc613dede2a978d"><div class="ttname"><a href="namespacepaths.html#a3ab7c6ce09580003cbc613dede2a978d">paths::ends_with</a></div><div class="ttdeci">bool ends_with(const std::string &amp;str, char suffix)</div><div class="ttdef"><b>Definition:</b> strings.cpp:23</div></div>
+<div class="line">    <span class="comment">// Converts a path to a Windows path in a Windows</span></div>
+<div class="line">    <span class="comment">// environment and Unix path in a Unix environment</span></div>
+<div class="line">    std::string <a class="code" href="namespacepaths.html#a0759a7541721b93ba89e9e3b4d08292f">platform_path</a>(<span class="keyword">const</span> std::string &amp;path);</div>
+<div class="line">} <span class="comment">// namespace paths</span></div>
+<div class="ttc" id="anamespacepaths_html"><div class="ttname"><a href="namespacepaths.html">paths</a></div><div class="ttdef"><b>Definition:</b> components.hpp:12</div></div>
+<div class="ttc" id="anamespacepaths_html_a0759a7541721b93ba89e9e3b4d08292f"><div class="ttname"><a href="namespacepaths.html#a0759a7541721b93ba89e9e3b4d08292f">paths::platform_path</a></div><div class="ttdeci">std::string platform_path(const std::string &amp;path)</div><div class="ttdef"><b>Definition:</b> convert.cpp:22</div></div>
+<div class="ttc" id="anamespacepaths_html_a0e6abfd74ccc93c022866e0d0d0599d9"><div class="ttname"><a href="namespacepaths.html#a0e6abfd74ccc93c022866e0d0d0599d9">paths::windows_path</a></div><div class="ttdeci">std::string windows_path(const std::string &amp;path)</div><div class="ttdef"><b>Definition:</b> convert.cpp:16</div></div>
+<div class="ttc" id="anamespacepaths_html_a23b9979dea03fd729427d2730fca8ebf"><div class="ttname"><a href="namespacepaths.html#a23b9979dea03fd729427d2730fca8ebf">paths::join</a></div><div class="ttdeci">std::string join(const std::vector&lt; std::string &gt; &amp;strs, char delimiter)</div><div class="ttdef"><b>Definition:</b> strings.cpp:30</div></div>
+<div class="ttc" id="anamespacepaths_html_a323feb92c5d6df2d88b511addad8dc8c"><div class="ttname"><a href="namespacepaths.html#a323feb92c5d6df2d88b511addad8dc8c">paths::normpath</a></div><div class="ttdeci">std::string normpath(const std::string &amp;path)</div><div class="ttdef"><b>Definition:</b> normalise.cpp:15</div></div>
+<div class="ttc" id="anamespacepaths_html_a3a52c2b7742a8e16259803c9f269f126"><div class="ttname"><a href="namespacepaths.html#a3a52c2b7742a8e16259803c9f269f126">paths::split</a></div><div class="ttdeci">std::vector&lt; std::string &gt; split(const std::string &amp;str, char delimiter)</div><div class="ttdef"><b>Definition:</b> strings.cpp:47</div></div>
+<div class="ttc" id="anamespacepaths_html_a3ab7c6ce09580003cbc613dede2a978d"><div class="ttname"><a href="namespacepaths.html#a3ab7c6ce09580003cbc613dede2a978d">paths::ends_with</a></div><div class="ttdeci">bool ends_with(const std::string &amp;str, char suffix)</div><div class="ttdef"><b>Definition:</b> strings.cpp:21</div></div>
 <div class="ttc" id="anamespacepaths_html_a4029492c3856da0d895e1fe012820af6"><div class="ttname"><a href="namespacepaths.html#a4029492c3856da0d895e1fe012820af6">paths::resolve</a></div><div class="ttdeci">std::string resolve(const std::vector&lt; std::string &gt; &amp;paths)</div><div class="ttdef"><b>Definition:</b> paths.cpp:56</div></div>
+<div class="ttc" id="anamespacepaths_html_a5c28cb6e4bdc2d94565d06b02ec2f227"><div class="ttname"><a href="namespacepaths.html#a5c28cb6e4bdc2d94565d06b02ec2f227">paths::abspath</a></div><div class="ttdeci">std::string abspath(const std::string &amp;path)</div><div class="ttdef"><b>Definition:</b> runtime.cpp:96</div></div>
+<div class="ttc" id="anamespacepaths_html_a5e47de9ff740c43c6d69b22f1e515067"><div class="ttname"><a href="namespacepaths.html#a5e47de9ff740c43c6d69b22f1e515067">paths::unix_sep</a></div><div class="ttdeci">constexpr char unix_sep</div><div class="ttdef"><b>Definition:</b> convert.hpp:13</div></div>
+<div class="ttc" id="anamespacepaths_html_a693ea7fd37636d5644539cd7521076c6"><div class="ttname"><a href="namespacepaths.html#a693ea7fd37636d5644539cd7521076c6">paths::normalised</a></div><div class="ttdeci">bool normalised(const std::string &amp;path)</div><div class="ttdef"><b>Definition:</b> inspect.cpp:17</div></div>
 <div class="ttc" id="anamespacepaths_html_a71847660502bd18eb659f1ef174baf0c"><div class="ttname"><a href="namespacepaths.html#a71847660502bd18eb659f1ef174baf0c">paths::segments</a></div><div class="ttdeci">std::vector&lt; std::string &gt; segments(const std::string &amp;path)</div><div class="ttdef"><b>Definition:</b> paths.cpp:60</div></div>
-<div class="ttc" id="anamespacepaths_html_a794735e7f1247089f928b0f39237d859"><div class="ttname"><a href="namespacepaths.html#a794735e7f1247089f928b0f39237d859">paths::starts_with</a></div><div class="ttdeci">bool starts_with(const std::string &amp;str, char prefix)</div><div class="ttdef"><b>Definition:</b> strings.cpp:15</div></div>
+<div class="ttc" id="anamespacepaths_html_a794735e7f1247089f928b0f39237d859"><div class="ttname"><a href="namespacepaths.html#a794735e7f1247089f928b0f39237d859">paths::starts_with</a></div><div class="ttdeci">bool starts_with(const std::string &amp;str, char prefix)</div><div class="ttdef"><b>Definition:</b> strings.cpp:13</div></div>
 <div class="ttc" id="anamespacepaths_html_a8b2190367f784ecfeb7f159bb2389237"><div class="ttname"><a href="namespacepaths.html#a8b2190367f784ecfeb7f159bb2389237">paths::filename</a></div><div class="ttdeci">std::string filename()</div></div>
-<div class="ttc" id="anamespacepaths_html_a91ed880ca82be51c0c47b6f663966722"><div class="ttname"><a href="namespacepaths.html#a91ed880ca82be51c0c47b6f663966722">paths::head</a></div><div class="ttdeci">std::string head(const std::string &amp;path)</div><div class="ttdef"><b>Definition:</b> paths.cpp:41</div></div>
-<div class="ttc" id="anamespacepaths_html_a932eb86fec5d46e4937adee88f5a5a41"><div class="ttname"><a href="namespacepaths.html#a932eb86fec5d46e4937adee88f5a5a41">paths::dirname</a></div><div class="ttdeci">std::string dirname()</div><div class="ttdef"><b>Definition:</b> runtime.cpp:88</div></div>
-<div class="ttc" id="anamespacepaths_html_aae2b55f0bc134f3c0b6888b0cf738373"><div class="ttname"><a href="namespacepaths.html#aae2b55f0bc134f3c0b6888b0cf738373">paths::tail</a></div><div class="ttdeci">std::string tail(const std::string &amp;path)</div><div class="ttdef"><b>Definition:</b> paths.cpp:46</div></div>
+<div class="ttc" id="anamespacepaths_html_a91ed880ca82be51c0c47b6f663966722"><div class="ttname"><a href="namespacepaths.html#a91ed880ca82be51c0c47b6f663966722">paths::head</a></div><div class="ttdeci">std::string head(const std::string &amp;path)</div><div class="ttdef"><b>Definition:</b> components.cpp:13</div></div>
+<div class="ttc" id="anamespacepaths_html_a932eb86fec5d46e4937adee88f5a5a41"><div class="ttname"><a href="namespacepaths.html#a932eb86fec5d46e4937adee88f5a5a41">paths::dirname</a></div><div class="ttdeci">std::string dirname()</div><div class="ttdef"><b>Definition:</b> runtime.cpp:92</div></div>
+<div class="ttc" id="anamespacepaths_html_aa95b8ef5f8ffedbba4f690c58d4d941c"><div class="ttname"><a href="namespacepaths.html#aa95b8ef5f8ffedbba4f690c58d4d941c">paths::drive</a></div><div class="ttdeci">std::string drive(const std::string &amp;path)</div><div class="ttdef"><b>Definition:</b> components.cpp:28</div></div>
+<div class="ttc" id="anamespacepaths_html_aab6d519d6b0142b129b646d95f49de32"><div class="ttname"><a href="namespacepaths.html#aab6d519d6b0142b129b646d95f49de32">paths::windows_sep</a></div><div class="ttdeci">constexpr char windows_sep</div><div class="ttdef"><b>Definition:</b> convert.hpp:14</div></div>
+<div class="ttc" id="anamespacepaths_html_aae2b55f0bc134f3c0b6888b0cf738373"><div class="ttname"><a href="namespacepaths.html#aae2b55f0bc134f3c0b6888b0cf738373">paths::tail</a></div><div class="ttdeci">std::string tail(const std::string &amp;path)</div><div class="ttdef"><b>Definition:</b> components.cpp:18</div></div>
+<div class="ttc" id="anamespacepaths_html_ab91c834e2dfc2dd8e3a5c447d4ff3f49"><div class="ttname"><a href="namespacepaths.html#ab91c834e2dfc2dd8e3a5c447d4ff3f49">paths::absolute</a></div><div class="ttdeci">bool absolute(const std::string &amp;path)</div><div class="ttdef"><b>Definition:</b> inspect.cpp:12</div></div>
+<div class="ttc" id="anamespacepaths_html_ac786d77a02b59f5fa3978e627500cc41"><div class="ttname"><a href="namespacepaths.html#ac786d77a02b59f5fa3978e627500cc41">paths::relpath</a></div><div class="ttdeci">std::string relpath(const std::string &amp;source, const std::string &amp;target)</div><div class="ttdef"><b>Definition:</b> normalise.cpp:50</div></div>
+<div class="ttc" id="anamespacepaths_html_addb4e614ad09116103688615ced484a3"><div class="ttname"><a href="namespacepaths.html#addb4e614ad09116103688615ced484a3">paths::unix_path</a></div><div class="ttdeci">std::string unix_path(const std::string &amp;path)</div><div class="ttdef"><b>Definition:</b> convert.cpp:10</div></div>
+<div class="ttc" id="anamespacepaths_html_af9fa1050378a5c5f7609b619c6de3fda"><div class="ttname"><a href="namespacepaths.html#af9fa1050378a5c5f7609b619c6de3fda">paths::relative</a></div><div class="ttdeci">bool relative(const std::string &amp;path)</div><div class="ttdef"><b>Definition:</b> inspect.cpp:21</div></div>
 </div><!-- fragment --> </div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->

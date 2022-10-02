@@ -68,48 +68,19 @@ $(function() {
 </div>
 </div><!-- top -->
 <div class="header">
-  <div class="summary">
-<a href="#namespaces">Namespaces</a> &#124;
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">paths.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;string&gt;</code><br />
-<code>#include &lt;vector&gt;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="components_8hpp_source.html">components.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="convert_8hpp_source.html">convert.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="inspect_8hpp_source.html">inspect.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="normalise_8hpp_source.html">normalise.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="runtime_8hpp_source.html">runtime.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="segments_8hpp_source.html">segments.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="strings_8hpp_source.html">strings.hpp</a>&quot;</code><br />
 </div>
 <p><a href="paths_8hpp_source.html">Go to the source code of this file.</a></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
-Namespaces</h2></td></tr>
-<tr class="memitem:namespacepaths"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepaths.html">paths</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a323feb92c5d6df2d88b511addad8dc8c"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepaths.html#a323feb92c5d6df2d88b511addad8dc8c">paths::normpath</a> (const std::string &amp;path)</td></tr>
-<tr class="separator:a323feb92c5d6df2d88b511addad8dc8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91ed880ca82be51c0c47b6f663966722"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepaths.html#a91ed880ca82be51c0c47b6f663966722">paths::head</a> (const std::string &amp;path)</td></tr>
-<tr class="separator:a91ed880ca82be51c0c47b6f663966722"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae2b55f0bc134f3c0b6888b0cf738373"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepaths.html#aae2b55f0bc134f3c0b6888b0cf738373">paths::tail</a> (const std::string &amp;path)</td></tr>
-<tr class="separator:aae2b55f0bc134f3c0b6888b0cf738373"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4029492c3856da0d895e1fe012820af6"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepaths.html#a4029492c3856da0d895e1fe012820af6">paths::resolve</a> (const std::vector&lt; std::string &gt; &amp;paths)</td></tr>
-<tr class="separator:a4029492c3856da0d895e1fe012820af6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71847660502bd18eb659f1ef174baf0c"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepaths.html#a71847660502bd18eb659f1ef174baf0c">paths::segments</a> (const std::string &amp;path)</td></tr>
-<tr class="separator:a71847660502bd18eb659f1ef174baf0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:addb4e614ad09116103688615ced484a3"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepaths.html#addb4e614ad09116103688615ced484a3">paths::unix_path</a> (const std::string &amp;path)</td></tr>
-<tr class="separator:addb4e614ad09116103688615ced484a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e6abfd74ccc93c022866e0d0d0599d9"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepaths.html#a0e6abfd74ccc93c022866e0d0d0599d9">paths::windows_path</a> (const std::string &amp;path)</td></tr>
-<tr class="separator:a0e6abfd74ccc93c022866e0d0d0599d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:a5e47de9ff740c43c6d69b22f1e515067"><td class="memItemLeft" align="right" valign="top">constexpr char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepaths.html#a5e47de9ff740c43c6d69b22f1e515067">paths::unix_sep</a> = '/'</td></tr>
-<tr class="separator:a5e47de9ff740c43c6d69b22f1e515067"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab6d519d6b0142b129b646d95f49de32"><td class="memItemLeft" align="right" valign="top">constexpr char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepaths.html#aab6d519d6b0142b129b646d95f49de32">paths::windows_sep</a> = '\\'</td></tr>
-<tr class="separator:aab6d519d6b0142b129b646d95f49de32"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
