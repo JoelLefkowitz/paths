@@ -7,6 +7,8 @@
 #include "runtime.hpp"
 #include "components.hpp"
 #include "detect.hpp"
+#include "inspect.hpp"
+#include "segments.hpp"
 #include <string>
 
 #if PLATFORM_DETECTED_OS == PLATFORM_LINUX
@@ -92,5 +94,5 @@ std::string paths::dirname() {
 }
 
 std::string paths::abspath(const std::string &path) {
-    return path;
+    return absolute(path) ? path : resolve({dirname(), path});
 }

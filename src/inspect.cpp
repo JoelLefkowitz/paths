@@ -13,10 +13,11 @@ bool paths::absolute(const std::string &path) {
     return starts_with(path, platform::sep);
 }
 
+// TODO: Write without calling normpath()
 bool paths::normalised(const std::string &path) {
     return false;
 }
 
 bool paths::relative(const std::string &path) {
-    return false;
+    return !absolute(path);
 }
