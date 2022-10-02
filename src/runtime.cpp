@@ -1,13 +1,14 @@
 // ʕ •ᴥ•ʔ Paths - runtime.cpp ʕ•ᴥ• ʔ
-// OS specific path manipulation including retrieving the executable's path.
+// OS specific path operations and executable path retrieval.
 // https://github.com/joellefkowitz/paths
 // Version: 0.1.0
 // License: MIT
 
 #include "runtime.hpp"
+#include "components.hpp"
 #include "detect.hpp"
-#include "paths.hpp"
-#include "strings.hpp"
+#include "inspect.hpp"
+#include "segments.hpp"
 #include <string>
 
 #if PLATFORM_DETECTED_OS == PLATFORM_LINUX
@@ -21,9 +22,13 @@ std::string paths::filename() {
     return buffer;
 }
 
-#elif (PLATFORM_DETECTED_OS == PLATFORM_DARWIN || PLATFORM_DETECTED_OS == PLATFORM_IOS)
+#elif (                                                                        \
+    PLATFORM_DETECTED_OS == PLATFORM_DARWIN ||                                 \
+    PLATFORM_DETECTED_OS == PLATFORM_IOS                                       \
+)
 
 #include <mach-o/dyld.h>
+#include <stdexcept>
 
 std::string paths::filename() {
     auto bufsize = static_cast<uint32_t>(PATH_MAX);
@@ -39,10 +44,9 @@ std::string paths::filename() {
     return realpath(buffer, NULL);
 }
 
-#elif PLATFORMS_DETECTED_OS == PLATFORM_WINDOWS
+#elif PLATFORM_DETECTED_OS == PLATFORM_WINDOWS
 
-#include <iostream>
-#include <string>
+#include <stdexcept>
 #include <windows.h>
 
 std::string paths::filename() {
@@ -60,19 +64,19 @@ std::string paths::filename() {
     return std::string(ws.begin(), ws.end());
 }
 
-#elif PLATFORMS_DETECTED_OS == PLATFORM_BSD
+#elif PLATFORM_DETECTED_OS == PLATFORM_BSD
 
 std::string paths::filename() {
     return "";
 }
 
-#elif PLATFORMS_DETECTED_OS == PLATFORM_SOLARIS
+#elif PLATFORM_DETECTED_OS == PLATFORM_SOLARIS
 
 std::string paths::filename() {
     return "";
 }
 
-#elif PLATFORMS_DETECTED_OS == PLATFORM_ANDROID
+#elif PLATFORM_DETECTED_OS == PLATFORM_ANDROID
 
 std::string paths::filename() {
     char buffer[PATH_MAX];
@@ -87,4 +91,8 @@ std::string paths::filename() {
 
 std::string paths::dirname() {
     return tail(filename());
+}
+
+std::string paths::abspath(const std::string &path) {
+    return absolute(path) ? path : resolve({dirname(), path});
 }

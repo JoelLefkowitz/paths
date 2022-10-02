@@ -1,0 +1,37 @@
+name: Test on MacOS 12
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    name: Test on MacOS 12
+    runs-on: macos-12
+
+    steps:
+      - name: Checkout the source code
+        uses: actions/checkout@v2
+
+      - name: Install test dependencies
+        run: brew install libpthread-stubs
+
+      - name: Install gtest from source
+        run: |
+          git clone https://github.com/google/googletest.git -b release-1.12.0
+          mkdir googletest/build
+          cd googletest/build
+          cmake ..
+          make
+          sudo make install
+
+      - name: Build tests
+        run: |
+          mkdir dist
+          clang++ -std=c++11 -g $(find src test -name "*.cpp") -lpthread -lgtest -o dist/test
+
+      - name: Run tests
+        run: |
+          export FILENAME=$PWD/dist/test
+          dist/test

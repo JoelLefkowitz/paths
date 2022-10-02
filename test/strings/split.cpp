@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-TEST(Paths_Strings, split) {
+TEST(strings, split) {
     struct TestCase {
         std::string              str;
         std::string              delimiter;
