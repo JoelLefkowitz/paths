@@ -2,7 +2,7 @@
 #include <gtest/gtest.h>
 #include <string>
 
-TEST(Paths_Strings, starts_with) {
+TEST(strings, starts_with) {
     struct TestCase {
         std::string str;
         std::string prefix;

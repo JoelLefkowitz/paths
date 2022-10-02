@@ -1,17 +1,19 @@
-#include "../../src/paths.hpp"
+#include "../../src/convert.hpp"
 #include <gtest/gtest.h>
 #include <string>
+#include <vector>
 
-TEST(Paths_Paths, unix_path) {
+TEST(convert, platform_path) {
+    GTEST_SKIP();
+
     struct TestCase {
         std::string path;
         std::string expected;
     };
 
-    // TODO: Add unix_path test cases
     std::vector<TestCase> cases = {};
 
     for (auto test : cases) {
-        EXPECT_EQ(paths::unix_path(test.path), test.expected);
+        EXPECT_EQ(paths::platform_path(test.path), test.expected);
     }
 }

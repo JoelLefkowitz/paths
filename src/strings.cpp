@@ -1,13 +1,11 @@
 // ʕ •ᴥ•ʔ Paths - strings.cpp ʕ•ᴥ• ʔ
-// OS specific path manipulation including retrieving the executable's path.
+// OS specific path operations and executable path retrieval.
 // https://github.com/joellefkowitz/paths
 // Version: 0.1.0
 // License: MIT
 
 #include "strings.hpp"
-#include "detect.hpp"
 #include <cstddef>
-#include <iostream>
 #include <numeric>
 #include <string>
 #include <vector>
@@ -41,7 +39,8 @@ std::string paths::join(
         return acc + x + delimiter;
     };
 
-    auto joined = std::accumulate(strs.begin(), strs.end(), std::string(), concat);
+    auto joined =
+        std::accumulate(strs.begin(), strs.end(), std::string(), concat);
     return joined.substr(0, joined.length() - delimiter.length());
 }
 

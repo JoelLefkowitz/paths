@@ -1,9 +1,8 @@
 #include "../../src/strings.hpp"
 #include <gtest/gtest.h>
 #include <string>
-#include <vector>
 
-TEST(Paths_Strings, ends_with) {
+TEST(strings, ends_with) {
     struct TestCase {
         std::string str;
         std::string prefix;
@@ -42,6 +41,7 @@ TEST(Paths_Strings, ends_with) {
         {"a", "b" },
         {"a", "aa"},
     };
+
     for (const auto test : true_cases) {
         EXPECT_TRUE(paths::ends_with(test.str, test.prefix));
     }

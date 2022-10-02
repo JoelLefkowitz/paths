@@ -1,14 +1,16 @@
-#include "../../src/paths.hpp"
+#include "../../src/convert.hpp"
 #include <gtest/gtest.h>
 #include <string>
+#include <vector>
 
-TEST(Paths_Paths, windows_path) {
+TEST(convert, windows_path) {
+    GTEST_SKIP();
+
     struct TestCase {
         std::string path;
         std::string expected;
     };
 
-    // TODO: Add windows_path test cases
     std::vector<TestCase> cases = {};
 
     for (auto test : cases) {

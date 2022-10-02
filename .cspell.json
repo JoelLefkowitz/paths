@@ -16,6 +16,7 @@
   "words": [
     "aabc",
     "abcc",
+    "abspath",
     "bumpversion",
     "cfmt",
     "codacy",
@@ -31,7 +32,9 @@
     "normalised",
     "normalises",
     "normpath",
+    "relpath",
     "remarkrc",
+    "splitdrive",
     "startswith",
     "suppr",
     "whereami"

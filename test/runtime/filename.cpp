@@ -1,8 +1,9 @@
 #include "../../src/runtime.hpp"
 #include <cstdlib>
 #include <gtest/gtest.h>
+#include <string>
 
-TEST(Paths_Runtime, filename) {
+TEST(runtime, filename) {
     if (const char *expected = std::getenv("FILENAME")) {
         EXPECT_EQ(paths::filename(), expected);
     } else {

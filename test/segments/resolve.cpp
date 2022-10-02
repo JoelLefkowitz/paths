@@ -1,10 +1,10 @@
-#include "../../src/detect.hpp"
-#include "../../src/paths.hpp"
+#include "../../src/convert.hpp"
+#include "../../src/segments.hpp"
 #include <gtest/gtest.h>
 #include <string>
 #include <vector>
 
-TEST(Paths_Paths, resolve) {
+TEST(segments, resolve) {
     GTEST_SKIP();
 
     struct TestCase {
@@ -171,10 +171,7 @@ TEST(Paths_Paths, resolve) {
     };
 
     for (auto test : cases) {
-        if (platform::sep == paths::windows_sep) {
-            test.expected = paths::windows_path(test.expected);
-        }
-
+        test.expected = paths::platform_path(test.expected);
         EXPECT_EQ(paths::resolve(test.paths), test.expected);
     }
 }

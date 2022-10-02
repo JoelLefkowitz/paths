@@ -27,9 +27,9 @@ MaxEmptyLinesToKeep: 1
 PenaltyBreakAssignment: 50
 PenaltyBreakBeforeFirstCallParameter: 0
 PenaltyBreakFirstLessLess: 0
-PenaltyBreakString: 200
+PenaltyBreakString: 100
 PenaltyBreakTemplateDeclaration: 0
-PenaltyExcessCharacter: 1000
+PenaltyExcessCharacter: 200
 PenaltyIndentedWhitespace: 0
 SeparateDefinitionBlocks: Always
 PenaltyReturnTypeOnItsOwnLine: 300

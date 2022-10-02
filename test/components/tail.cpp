@@ -1,9 +1,10 @@
-#include "../../src/detect.hpp"
-#include "../../src/paths.hpp"
+#include "../../src/components.hpp"
+#include "../../src/convert.hpp"
 #include <gtest/gtest.h>
 #include <string>
+#include <vector>
 
-TEST(Paths_Paths, tail) {
+TEST(components, tail) {
     GTEST_SKIP();
 
     struct TestCase {
@@ -170,11 +171,8 @@ TEST(Paths_Paths, tail) {
     };
 
     for (auto test : cases) {
-        if (platform::sep == paths::windows_sep) {
-            test.path     = paths::windows_path(test.path);
-            test.expected = paths::windows_path(test.expected);
-        }
-
+        test.path     = paths::platform_path(test.path);
+        test.expected = paths::platform_path(test.expected);
         EXPECT_EQ(paths::tail(test.path), test.expected);
     }
 }
