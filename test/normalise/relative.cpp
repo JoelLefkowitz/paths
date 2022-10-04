@@ -1,10 +1,10 @@
 #include "../../src/convert.hpp"
-#include "../../src/inspect.hpp"
+#include "../../src/normalise.hpp"
 #include <gtest/gtest.h>
 #include <string>
 #include <vector>
 
-TEST(inspect, absolute) {
+TEST(normalise, relative) {
     GTEST_SKIP();
 
     std::vector<std::string> true_cases = {};

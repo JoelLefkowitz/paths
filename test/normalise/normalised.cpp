@@ -1,10 +1,10 @@
 #include "../../src/convert.hpp"
-#include "../../src/inspect.hpp"
+#include "../../src/normalise.hpp"
 #include <gtest/gtest.h>
 #include <string>
 #include <vector>
 
-TEST(inspect, relative) {
+TEST(normalise, normalised) {
     GTEST_SKIP();
 
     std::vector<std::string> true_cases = {};
@@ -13,11 +13,11 @@ TEST(inspect, relative) {
 
     for (auto test : true_cases) {
         test = paths::platform_path(test);
-        EXPECT_TRUE(paths::relative(test));
+        EXPECT_TRUE(paths::normalised(test));
     }
 
     for (auto test : false_cases) {
         test = paths::platform_path(test);
-        EXPECT_FALSE(paths::relative(test));
+        EXPECT_FALSE(paths::normalised(test));
     }
 }

@@ -156,6 +156,14 @@ To compile the test suites:
 clang++ -std=c++11 $(find src test -name "*.cpp") -lpthread -lgtest
 ```
 
+The runtime tests use environment variables to confirm they retrieve the executable path of the tests binary. For example, if the tests binary is at  `dist/test`:
+
+```bash
+export DIRNAME=$PWD/dist
+export FILENAME=$DIRNAME/test
+export ABSPATH=$DIRNAME/a/b/c
+```
+
 ## Docs
 
 Documentation is hosted on [GitHub Pages][pages].

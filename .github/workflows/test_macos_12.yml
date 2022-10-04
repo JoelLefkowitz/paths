@@ -33,5 +33,7 @@ jobs:
 
       - name: Run tests
         run: |
-          export FILENAME=$PWD/dist/test
+          export DIRNAME=$PWD/dist
+          export FILENAME=$DIRNAME/test
+          export ABSPATH=$DIRNAME/a/b/c
           dist/test

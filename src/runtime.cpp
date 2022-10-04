@@ -7,7 +7,7 @@
 #include "runtime.hpp"
 #include "components.hpp"
 #include "detect.hpp"
-#include "inspect.hpp"
+#include "strings.hpp"
 #include "segments.hpp"
 #include <string>
 
@@ -95,4 +95,8 @@ std::string paths::dirname() {
 
 std::string paths::abspath(const std::string &path) {
     return absolute(path) ? path : resolve({dirname(), path});
+}
+
+bool paths::absolute(const std::string &path) {
+    return starts_with(path, platform::sep);
 }

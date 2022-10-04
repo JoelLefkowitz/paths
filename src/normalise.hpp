@@ -14,9 +14,15 @@ namespace paths {
     // Usage: normpath("a/../a/b/c") -> "a/b/c"
     std::string normpath(const std::string &path);
 
+    // Checks if a path is normalised
+    bool normalised(const std::string &path);
+
     // Finds the relative path from a source to a target
     // Usage: relpath("a/b", "a/c") -> "../c"
     std::string relpath(const std::string &source, const std::string &target);
+
+    // Checks if a path is relative
+    bool relative(const std::string &path);
 } // namespace paths
 
 #endif

@@ -9,7 +9,6 @@
 
 #include "components.hpp"
 #include "convert.hpp"
-#include "inspect.hpp"
 #include "normalise.hpp"
 #include "runtime.hpp"
 #include "segments.hpp"

@@ -18,6 +18,9 @@ namespace paths {
 
     // Gets the absolute path of a file
     std::string abspath(const std::string &path);
+
+    // Checks if a path is absolute
+    bool absolute(const std::string &path);
 } // namespace paths
 
 #endif

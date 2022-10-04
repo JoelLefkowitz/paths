@@ -6,7 +6,7 @@
 
 #include "normalise.hpp"
 #include "detect.hpp"
-#include "inspect.hpp"
+#include "runtime.hpp"
 #include "strings.hpp"
 #include <algorithm>
 #include <string>
@@ -47,9 +47,17 @@ std::string paths::normpath(const std::string &path) {
     return normalised;
 }
 
+bool paths::normalised(const std::string &path) {
+    return false;
+}
+
 std::string paths::relpath(
     const std::string &source,
     const std::string &target
 ) {
     return "";
+}
+
+bool paths::relative(const std::string &path) {
+    return !absolute(path);
 }

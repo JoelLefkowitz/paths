@@ -1,32 +1,5 @@
 # Usage {#mainpage}
 
-OS specific path operations and executable path retrieval.
-
-This package is inspired by [whereami][whereami] and [std::filesystem][std_filesystem] but with:
-
-- Simple interfaces
-- Readable sources
-- C++11 compatability
-- Exception handling
-
-To separate the need to detect the operating system at runtime [detect][detect] is dropped in.
-
-Since path manipulation is full of edge cases it is paramount to have an extensive set of unit tests. The test fixtures are verified to be consistent with python's standard library. To provide support to multiple platforms all test suites are verified against each target environment.
-
-Test environments:
-
-| Platform | Test environment | Status                                                |
-| -------- | ---------------- | ----------------------------------------------------- |
-| Linux    | Ubuntu 20.04     | ![test_ubuntu_20.04_shield][test_ubuntu_20.04_shield] |
-| Darwin   | MacOS 12         | ![test_macos_12_shield][test_macos_12_shield]         |
-| Windows  | Windows 2022     | ![test_windows_2022_shield][test_windows_2022_shield] |
-| BSD      |                  |                                                       |
-| Solaris  |                  |                                                       |
-| IOS      |                  |                                                       |
-| Android  |                  |                                                       |
-
-## Usage
-
 ```cpp
 namespace paths {
     // Gets the path of the current executable file
@@ -130,15 +103,3 @@ namespace paths {
     std::string platform_path(const std::string &path);
 } // namespace paths
 ```
-
-<!-- External links -->
-
-[detect]: https://github.com/JoelLefkowitz/detect
-[std_filesystem]: https://en.cppreference.com/w/cpp/filesystem
-[whereami]: https://github.com/gpakosz/whereami
-
-<!-- Test environment shields -->
-
-[test_ubuntu_20.04_shield]: https://img.shields.io/github/workflow/status/JoelLefkowitz/paths/Test%20on%20Ubuntu%2020.04?label=tests
-[test_macos_12_shield]: https://img.shields.io/github/workflow/status/JoelLefkowitz/paths/Test%20on%20MacOS%2012?label=tests
-[test_windows_2022_shield]: https://img.shields.io/github/workflow/status/JoelLefkowitz/paths/Test%20on%20Windows%202022?label=tests
