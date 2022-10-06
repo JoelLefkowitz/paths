@@ -12,13 +12,21 @@
 
 namespace paths {
     // Joins and normalises path segments
-    // Python equivalent: os.path.normpath(os.path.join(*paths))
-    // Usage: resolve("a", "b", "c") -> "a/b/c"
+    //
+    // Python equivalent:
+    //   os.path.normpath(os.path.join(*paths))
+    //
+    // Usage:
+    //   resolve("a", "b", "c") -> "a/b/c"
     std::string resolve(const std::vector<std::string> &paths);
 
     // Normalises and splits a path into segments
-    // Python equivalent: os.path.normpath(path).split(os.path.sep)
-    // Usage: segments("a/b/c") -> {"a", "b", "c"}
+    //
+    // Python equivalent:
+    //   os.path.normpath(path).split(os.path.sep)
+    //
+    // Usage:
+    //   segments("a/b/c") -> {"a", "b", "c"}
     std::vector<std::string> segments(const std::string &path);
 } // namespace paths
 

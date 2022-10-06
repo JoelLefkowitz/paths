@@ -8,7 +8,6 @@
 #include "components.hpp"
 #include "detect.hpp"
 #include "strings.hpp"
-#include "segments.hpp"
 #include <string>
 
 #if PLATFORM_DETECTED_OS == PLATFORM_LINUX
@@ -16,7 +15,7 @@
 #include <linux/limits.h>
 #include <unistd.h>
 
-std::string paths::filename() {
+std::string paths::filepath() {
     char buffer[PATH_MAX];
     readlink("/proc/self/exe", buffer, PATH_MAX);
     return buffer;
@@ -30,14 +29,14 @@ std::string paths::filename() {
 #include <mach-o/dyld.h>
 #include <stdexcept>
 
-std::string paths::filename() {
+std::string paths::filepath() {
     auto bufsize = static_cast<uint32_t>(PATH_MAX);
 
     char buffer[bufsize];
 
     if (_NSGetExecutablePath(buffer, &bufsize) == -1) {
         throw std::length_error(
-            "Filename exceeds maximum path length: " + std::to_string(PATH_MAX)
+            "Filepath exceeds maximum path length: " + std::to_string(PATH_MAX)
         );
     }
 
@@ -49,13 +48,13 @@ std::string paths::filename() {
 #include <stdexcept>
 #include <windows.h>
 
-std::string paths::filename() {
+std::string paths::filepath() {
     wchar_t buffer[MAX_PATH];
-    auto    size = GetModuleFileNameW(NULL, buffer, MAX_PATH);
+    auto    size = GetModuleFilepathW(NULL, buffer, MAX_PATH);
 
     if (size > MAX_PATH + 1) {
         throw std::length_error(
-            "Filename exceeds maximum path length: " + std::to_string(MAX_PATH)
+            "Filepath exceeds maximum path length: " + std::to_string(MAX_PATH)
         );
     }
 
@@ -66,19 +65,19 @@ std::string paths::filename() {
 
 #elif PLATFORM_DETECTED_OS == PLATFORM_BSD
 
-std::string paths::filename() {
+std::string paths::filepath() {
     return "";
 }
 
 #elif PLATFORM_DETECTED_OS == PLATFORM_SOLARIS
 
-std::string paths::filename() {
+std::string paths::filepath() {
     return "";
 }
 
 #elif PLATFORM_DETECTED_OS == PLATFORM_ANDROID
 
-std::string paths::filename() {
+std::string paths::filepath() {
     char buffer[PATH_MAX];
     readlink("/proc/self/maps", buffer, PATH_MAX);
     // realpath(path, buffer);
@@ -89,14 +88,14 @@ std::string paths::filename() {
 
 #endif
 
+std::string paths::filename() {
+    return head(filepath());
+}
+
+std::string paths::dirpath() {
+    return tail(filepath());
+}
+
 std::string paths::dirname() {
-    return tail(filename());
-}
-
-std::string paths::abspath(const std::string &path) {
-    return absolute(path) ? path : resolve({dirname(), path});
-}
-
-bool paths::absolute(const std::string &path) {
-    return starts_with(path, platform::sep);
+    return head(tail(filepath()));
 }

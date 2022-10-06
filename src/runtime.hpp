@@ -11,16 +11,16 @@
 
 namespace paths {
     // Gets the path of the current executable file
+    std::string filepath();
+
+    // Gets the name of the current executable file
     std::string filename();
 
-    // Gets the dirname of the current executable file
+    // Gets the path of the directory of the current executable file
+    std::string dirpath();
+
+    // Gets the name of the directory of the current executable file
     std::string dirname();
-
-    // Gets the absolute path of a file
-    std::string abspath(const std::string &path);
-
-    // Checks if a path is absolute
-    bool absolute(const std::string &path);
 } // namespace paths
 
 #endif

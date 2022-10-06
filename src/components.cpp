@@ -10,6 +10,10 @@
 #include "strings.hpp"
 #include <string>
 
+std::string paths::drive(const std::string &path) {
+    return "";
+}
+
 std::string paths::head(const std::string &path) {
     auto components = split(normpath(path), platform::sep);
     return components.size() == size_t(1) ? path : components.back();
@@ -25,6 +29,10 @@ std::string paths::tail(const std::string &path) {
     return join(components, platform::sep);
 }
 
-std::string paths::drive(const std::string &path) {
+std::string paths::root(const std::string &path) {
+    return "";
+}
+
+std::string paths::extension(const std::string &path) {
     return "";
 }

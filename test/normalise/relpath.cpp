@@ -8,15 +8,29 @@ TEST(normalise, relpath) {
     GTEST_SKIP();
 
     struct TestCase {
-        std::string path;
+        std::string source;
+        std::string target;
         std::string expected;
     };
 
-    std::vector<TestCase> cases = {};
+    std::vector<TestCase> cases = {
+        {"a",         "a",     "."            },
+        {"a",         "b",     "../a"         },
+        {"",          "a",     ".."           },
+        {".",         "a",     ".."           },
+        {"..",        "a",     "../.."        },
+        {"/",         "/a",    ".."           },
+        {"/",         "/a/b",  "../.."        },
+        {"/..",       "/",     "."            },
+        {"C:/a",      "C:/b",  "../a"         },
+        {"a/b/c",     "a/d/e", "../../b/c"    },
+        {"a/b/c.ext", "a/d/e", "../../b/c.ext"},
+    };
 
     for (auto test : cases) {
-        test.path     = paths::platform_path(test.path);
+        test.source   = paths::platform_path(test.source);
+        test.target   = paths::platform_path(test.target);
         test.expected = paths::platform_path(test.expected);
-        EXPECT_EQ(paths::normpath(test.path), test.expected);
+        EXPECT_EQ(paths::relpath(test.source, test.target), test.expected);
     }
 };

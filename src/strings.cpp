@@ -41,6 +41,7 @@ std::string paths::join(
 
     auto joined =
         std::accumulate(strs.begin(), strs.end(), std::string(), concat);
+
     return joined.substr(0, joined.length() - delimiter.length());
 }
 

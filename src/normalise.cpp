@@ -7,6 +7,7 @@
 #include "normalise.hpp"
 #include "detect.hpp"
 #include "runtime.hpp"
+#include "segments.hpp"
 #include "strings.hpp"
 #include <algorithm>
 #include <string>
@@ -49,6 +50,14 @@ std::string paths::normpath(const std::string &path) {
 
 bool paths::normalised(const std::string &path) {
     return false;
+}
+
+std::string paths::abspath(const std::string &path) {
+    return absolute(path) ? path : resolve({dirname(), path});
+}
+
+bool paths::absolute(const std::string &path) {
+    return starts_with(path, platform::sep);
 }
 
 std::string paths::relpath(

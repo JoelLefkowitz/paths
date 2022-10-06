@@ -12,34 +12,54 @@
 
 namespace paths {
     // Determines if a path starts with a prefix
+    //
+    // Usage:
+    //   starts_with("abc", "a") -> true
     bool starts_with(const std::string &str, char prefix);
 
     // Determines if a path starts with a prefix
+    //
+    // Usage:
+    //   starts_with("abc", "a") -> true
     bool starts_with(const std::string &str, const std::string &prefix);
 
-    // Determines if a path ends with a suffix
+    // Determines if a path ends with a prefix
+    //
+    // Usage:
+    //   ends_with("abc", "c") -> true
     bool ends_with(const std::string &str, char suffix);
 
-    // Determines if a path ends with a suffix
+    // Determines if a path ends with a prefix
+    //
+    // Usage:
+    //   ends_with("abc", "c") -> true
     bool ends_with(const std::string &str, const std::string &suffix);
 
     // Joins strings with a delimeter
-    // Usage: join({"a", "b", "c"}, ',') -> "a,b,c"
+    //
+    // Usage:
+    //   join({"a", "b", "c"}, ',') -> "a,b,c"
     std::string join(const std::vector<std::string> &strs, char delimiter);
 
     // Joins strings with a delimeter
-    // Usage: join({"a", "b", "c"}, ", ") -> "a, b, c"
+    //
+    // Usage:
+    //   join({"a", "b", "c"}, ",") -> "a,b,c"
     std::string join(
         const std::vector<std::string> &strs,
         const std::string              &delimiter = ", "
     );
 
     // Splits a string at each occurrence of a delimeter
-    // Usage: split("a,b,c", ',') -> {"a", "b", "c"}
+    //
+    // Usage:
+    //   split("a,b,c", ',') -> {"a", "b", "c"}
     std::vector<std::string> split(const std::string &str, char delimiter);
 
     // Splits a string at each occurrence of a delimeter
-    // Usage: split("a, b, c", ", ") -> {"a", "b", "c"}
+    //
+    // Usage:
+    //   split("a,b,c", ",") -> {"a", "b", "c"}
     std::vector<std::string> split(
         const std::string &str,
         const std::string &delimiter = " "
