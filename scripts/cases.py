@@ -2,10 +2,10 @@ import os
 import itertools
 
 
-def alphbetise(arr):
+def alphabetise(arr):
     """
-    Replace all occurances of "x" with "a", then "b" and so on.
-    Example: alphbetise("x/x/y/x") -> "a/b/y/c"
+    Replace all occurrences of "x" with "a", then "b" and so on.
+    Example: alphabetise("x/x/y/x") -> "a/b/y/c"
     """
     replacements = ["a", "b", "c", "d"][: arr.count("x")]
 
@@ -22,7 +22,7 @@ def sequences(length=3):
     return [
         "/".join(i)
         for i in [
-            alphbetise(list(x))
+            alphabetise(list(x))
             for n in range(1, length + 1)
             for x in itertools.product(["", ".", "..", "x"], repeat=n)
         ]

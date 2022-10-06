@@ -17,6 +17,7 @@
     "aabc",
     "abcc",
     "abspath",
+    "alphabetise",
     "bumpversion",
     "cfmt",
     "codacy",
@@ -25,6 +26,7 @@
     "doxyfile",
     "endswith",
     "gtest",
+    "isabs",
     "lefkowitz",
     "lgtest",
     "lpthread",
@@ -35,6 +37,7 @@
     "relpath",
     "remarkrc",
     "splitdrive",
+    "splitext",
     "startswith",
     "suppr",
     "whereami"

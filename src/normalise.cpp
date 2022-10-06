@@ -39,13 +39,13 @@ std::string paths::normpath(const std::string &path) {
         }
     }
 
-    auto normalised = join(filtered, platform::sep);
+    auto joined = join(filtered, platform::sep);
 
     if (absolute(path)) {
-        normalised = platform::sep + normalised;
+        joined = platform::sep + joined;
     }
 
-    return normalised;
+    return joined;
 }
 
 bool paths::normalised(const std::string &path) {
@@ -53,7 +53,7 @@ bool paths::normalised(const std::string &path) {
 }
 
 std::string paths::abspath(const std::string &path) {
-    return absolute(path) ? path : resolve({dirname(), path});
+    return absolute(path) ? path : resolve({dirpath(), path});
 }
 
 bool paths::absolute(const std::string &path) {
