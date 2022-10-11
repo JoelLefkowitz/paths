@@ -20,16 +20,30 @@ def sequences(length=3):
     Generate sequences of ["", ".", "..", "x"] tokens joined wih "/"
     """
     return [
-        "/".join(i)
-        for i in [
-            alphabetise(list(x))
-            for n in range(1, length + 1)
-            for x in itertools.product(["", ".", "..", "x"], repeat=n)
-        ]
+        alphabetise(list(x))
+        for n in range(1, length + 1)
+        for x in itertools.product(["", ".", "..", "x"], repeat=n)
     ]
 
 
+def fmt_arr(items):
+    return "{" + ", ".join([f'"{i}"' for i in items]) + "}"
+
+
 if __name__ == "__main__":
-    expected = os.path.normpath
-    cases = ["".join(['    {"', i, '", "', expected(i), '"},']) for i in sequences(3)]
+
+    cases = [
+        "".join(
+            [
+                " " * 4,
+                "{",
+                fmt_arr(i),
+                ", ",
+                fmt_arr(os.path.normpath("/".join(i)).split("/")),
+                "}",
+                ",",
+            ]
+        )
+        for i in sequences(3)
+    ]
     print("\n".join(["{", *cases, "}"]))
