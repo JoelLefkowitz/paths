@@ -7,10 +7,9 @@
 #include "runtime.hpp"
 #include "components.hpp"
 #include "detect.hpp"
-#include "strings.hpp"
 #include <string>
 
-#if PLATFORM_DETECTED_OS == PLATFORM_LINUX
+#if PLATFORM_OS == PLATFORM_OS_LINUX
 
 #include <linux/limits.h>
 #include <unistd.h>
@@ -21,29 +20,13 @@ std::string paths::filepath() {
     return buffer;
 }
 
-#elif (                                                                        \
-    PLATFORM_DETECTED_OS == PLATFORM_DARWIN ||                                 \
-    PLATFORM_DETECTED_OS == PLATFORM_IOS                                       \
-)
-
-#include <mach-o/dyld.h>
-#include <stdexcept>
+#elif PLATFORM_OS == PLATFORM_OS_SOLARIS
 
 std::string paths::filepath() {
-    auto bufsize = static_cast<uint32_t>(PATH_MAX);
-
-    char buffer[bufsize];
-
-    if (_NSGetExecutablePath(buffer, &bufsize) == -1) {
-        throw std::length_error(
-            "Filepath exceeds maximum path length: " + std::to_string(PATH_MAX)
-        );
-    }
-
-    return realpath(buffer, NULL);
+    return "";
 }
 
-#elif PLATFORM_DETECTED_OS == PLATFORM_WINDOWS
+#elif PLATFORM_OS == PLATFORM_OS_WINDOWS
 
 #include <stdexcept>
 #include <windows.h>
@@ -63,19 +46,33 @@ std::string paths::filepath() {
     return std::string(ws.begin(), ws.end());
 }
 
-#elif PLATFORM_DETECTED_OS == PLATFORM_BSD
+#elif PLATFORM_OS == PLATFORM_OS_BSD
 
 std::string paths::filepath() {
     return "";
 }
 
-#elif PLATFORM_DETECTED_OS == PLATFORM_SOLARIS
+#elif (PLATFORM_OS == PLATFORM_OS_MACOS) || (PLATFORM_OS == PLATFORM_OS_IOS) || \
+    (PLATFORM_OS == PLATFORM_OS_WATCHOS) || (PLATFORM_OS == PLATFORM_OS_TVOS)
+
+#include <mach-o/dyld.h>
+#include <stdexcept>
 
 std::string paths::filepath() {
-    return "";
+    auto bufsize = static_cast<uint32_t>(PATH_MAX);
+
+    char buffer[bufsize];
+
+    if (_NSGetExecutablePath(buffer, &bufsize) == -1) {
+        throw std::length_error(
+            "Filepath exceeds maximum path length: " + std::to_string(PATH_MAX)
+        );
+    }
+
+    return realpath(buffer, NULL);
 }
 
-#elif PLATFORM_DETECTED_OS == PLATFORM_ANDROID
+#elif PLATFORM_OS == PLATFORM_OS_ANDROID
 
 std::string paths::filepath() {
     char buffer[PATH_MAX];
@@ -85,6 +82,10 @@ std::string paths::filepath() {
     // fclose(maps);
     return buffer;
 }
+
+#else
+
+#error "Unrecognised OS, could not define paths::filepath()"
 
 #endif
 

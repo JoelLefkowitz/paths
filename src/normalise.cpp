@@ -5,68 +5,52 @@
 // License: MIT
 
 #include "normalise.hpp"
+#include "absolute.hpp"
+#include "chunks.hpp"
 #include "detect.hpp"
-#include "runtime.hpp"
-#include "segments.hpp"
-#include "strings.hpp"
+#include "relative.hpp"
+#include "words.hpp"
 #include <algorithm>
 #include <string>
 #include <vector>
 
-std::string paths::normpath(const std::string &path) {
-    auto components = split(path, platform::sep);
-
+std::vector<std::string> paths::normalise(const std::vector<std::string> &paths) {
     std::vector<std::string> contentful;
 
     std::copy_if(
-        components.begin(),
-        components.end(),
+        paths.begin(),
+        paths.end(),
         std::back_inserter(contentful),
         [](const std::string &x) { return x != "" && x != "."; }
     );
-
-    if (contentful.empty() && !starts_with(path, platform::sep)) {
-        return ".";
-    }
 
     std::vector<std::string> filtered;
 
     for (auto i = contentful.begin(); i != contentful.end(); ++i) {
         if (*i == ".." && !filtered.empty() && filtered.back() != "..") {
             filtered.pop_back();
-        } else {
+        } else if (*i != ".." || !filtered.empty()) {
             filtered.push_back(*i);
         }
     }
 
-    auto joined = join(filtered, platform::sep);
+    return filtered;
+}
+
+std::string paths::normpath(const std::string &path) {
+    auto joined = join(normalise(split(path, platform::sep)), platform::sep);
+
+    if (starts_with(path, "//") && !starts_with(path, "///")) {
+        return "//" + joined;
+    }
 
     if (absolute(path)) {
-        joined = platform::sep + joined;
+        return "/" + joined;
+    }
+
+    if (joined == "") {
+        return ".";
     }
 
     return joined;
-}
-
-bool paths::normalised(const std::string &path) {
-    return false;
-}
-
-std::string paths::abspath(const std::string &path) {
-    return absolute(path) ? path : resolve({dirpath(), path});
-}
-
-bool paths::absolute(const std::string &path) {
-    return starts_with(path, platform::sep);
-}
-
-std::string paths::relpath(
-    const std::string &source,
-    const std::string &target
-) {
-    return "";
-}
-
-bool paths::relative(const std::string &path) {
-    return !absolute(path);
 }

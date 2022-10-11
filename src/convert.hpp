@@ -4,8 +4,8 @@
 // Version: 0.1.0
 // License: MIT
 
-#ifndef PATHS_CONVERT_H
-#define PATHS_CONVERT_H
+#ifndef LIB_PATHS_CONVERT_H
+#define LIB_PATHS_CONVERT_H
 
 #include <string>
 
@@ -17,7 +17,7 @@ namespace paths {
     //
     // Usage:
     //   unix_path("a\b\c") -> "a/b/c"
-    //   unix_path: {"C:\a\b\c", "/a/b/c" },
+    //   unix_path("C:\a\b\c") -> "/a/b/c"
     std::string unix_path(const std::string &path);
 
     // Converts a Unix path to a Windows path

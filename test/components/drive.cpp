@@ -6,8 +6,6 @@
 #include <vector>
 
 TEST(components, drive) {
-    GTEST_SKIP();
-
     struct TestCase {
         std::string path;
         std::string expected;

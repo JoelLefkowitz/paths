@@ -4,15 +4,15 @@
 // Version: 0.1.0
 // License: MIT
 
-#ifndef PATHS_COMPONENTS_H
-#define PATHS_COMPONENTS_H
+#ifndef LIB_PATHS_COMPONENTS_H
+#define LIB_PATHS_COMPONENTS_H
 
 #include <string>
 
 namespace paths {
     // Gets a path's drive
     //
-    // Python equivalent:
+    // Complies with its python equivalent:
     //   os.path.splitdrive(path)[0]
     //
     // Usage [Windows]:
@@ -26,7 +26,7 @@ namespace paths {
 
     // Gets a path's head
     //
-    // Python equivalent:
+    // Complies with its python equivalent:
     //   os.path.split(os.path.normpath(path))[1]
     //
     // Usage:
@@ -37,7 +37,7 @@ namespace paths {
 
     // Gets a path's tail
     //
-    // Python equivalent:
+    // Complies with its python equivalent:
     //   os.path.split(os.path.normpath(path))[0]
     //
     // Usage:
@@ -47,7 +47,7 @@ namespace paths {
 
     // Gets a path's root
     //
-    // Python equivalent:
+    // Complies with its python equivalent:
     //   os.path.split(os.path.splitext(path)[0])[0]
     //
     // Usage:
@@ -56,7 +56,7 @@ namespace paths {
 
     // Gets a path's extension
     //
-    // Python equivalent:
+    // Complies with its python equivalent:
     //   os.path.splitext(path)[1]
     //
     // Usage:

@@ -2,6 +2,7 @@
 #include "../../src/convert.hpp"
 #include <gtest/gtest.h>
 #include <string>
+#include <vector>
 
 TEST(components, head) {
     GTEST_SKIP();

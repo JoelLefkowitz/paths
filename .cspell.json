@@ -23,6 +23,7 @@
     "codacy",
     "cppcheck",
     "cppclean",
+    "docstrings",
     "doxyfile",
     "endswith",
     "gtest",

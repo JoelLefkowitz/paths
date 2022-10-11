@@ -1,9 +1,9 @@
-#include "../../src/strings.hpp"
+#include "../../src/chunks.hpp"
 #include <gtest/gtest.h>
 #include <string>
 #include <vector>
 
-TEST(strings, join) {
+TEST(chunks, join) {
     struct TestCase {
         std::vector<std::string> strs;
         std::string              delimiter;

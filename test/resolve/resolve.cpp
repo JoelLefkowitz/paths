@@ -1,10 +1,10 @@
+#include "../../src/resolve.hpp"
 #include "../../src/convert.hpp"
-#include "../../src/segments.hpp"
 #include <gtest/gtest.h>
 #include <string>
 #include <vector>
 
-TEST(segments, resolve) {
+TEST(resolve, resolve) {
     GTEST_SKIP();
 
     struct TestCase {

@@ -1,7 +1,7 @@
 const glob = require("glob");
 const { simple } = require("quick-grunt");
 
-const srcs = glob.sync("src/**/*.{hpp,cpp}").join(" ");
+const srcs = glob.sync("{src,test}/**/*.{hpp,cpp}").join(" ");
 
 module.exports = simple(
   {

@@ -2,6 +2,7 @@
 #include "../../src/normalise.hpp"
 #include <gtest/gtest.h>
 #include <string>
+#include <vector>
 
 TEST(normalise, normpath) {
     GTEST_SKIP();

@@ -4,8 +4,8 @@
 // Version: 0.1.0
 // License: MIT
 
-#ifndef PATHS_RUNTIME_H
-#define PATHS_RUNTIME_H
+#ifndef LIB_PATHS_RUNTIME_H
+#define LIB_PATHS_RUNTIME_H
 
 #include <string>
 

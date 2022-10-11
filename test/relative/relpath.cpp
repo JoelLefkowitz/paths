@@ -1,10 +1,10 @@
 #include "../../src/convert.hpp"
-#include "../../src/normalise.hpp"
+#include "../../src/relative.hpp"
 #include <gtest/gtest.h>
 #include <string>
 #include <vector>
 
-TEST(normalise, relpath) {
+TEST(relative, relpath) {
     GTEST_SKIP();
 
     struct TestCase {

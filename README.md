@@ -7,11 +7,11 @@ This package is inspired by [whereami][whereami] and [std::filesystem][std_files
 - Simple functions
 - Readable sources
 - C++11 compatability
-- Exception handling
+- Sensible exception handling
 
 To separate the need to detect the operating system at runtime [detect][detect] is dropped in.
 
-Since path manipulation is full of edge cases it is paramount to have an extensive set of unit tests. The function implementations and test fixtures are verified to be consistent with python's standard library. To provide support to multiple platforms all test suites are verified against each target environment.
+Since path manipulation is full of edge cases it is paramount to have an extensive set of unit tests. The function implementations and test fixtures are verified to be consistent with python's standard library. To provide support to multiple platforms all test suites are verified against each multiple target environments.
 
 Test environments:
 
@@ -20,10 +20,6 @@ Test environments:
 | Linux    | Ubuntu 20.04     | ![test_ubuntu_20.04_shield][test_ubuntu_20.04_shield] |
 | Darwin   | MacOS 12         | ![test_macos_12_shield][test_macos_12_shield]         |
 | Windows  | Windows 2022     | ![test_windows_2022_shield][test_windows_2022_shield] |
-| BSD      |                  |                                                       |
-| Solaris  |                  |                                                       |
-| IOS      |                  |                                                       |
-| Android  |                  |                                                       |
 
 ## Status
 
@@ -56,31 +52,55 @@ namespace paths {
     // Gets the name of the directory of the current executable file
     std::string dirname();
 
+    // Joins and normalises path chunks
+    //
+    // Complies with its python equivalent:
+    //   os.path.normpath(os.path.join(*paths))
+    //
+    // Usage:
+    //   resolve({"a", "b", "c"}) -> "a/b/c"
+    //   resolve({"a", "b", "..", "c"}) -> "a/c"
+    std::string resolve(const std::vector<std::string> &paths);
+
+    // Splits a path into normalised segments
+    //
+    // Complies with its python equivalent:
+    //   os.path.normpath(path).split(os.path.sep)
+    //
+    // Usage:
+    //   segments("a/b/c") -> {"a", "b", "c"}
+    //   segments("a/b/../c") -> {"a", "c"}
+    std::vector<std::string> segments(const std::string &path);
+
+    // Normalises path chunks
+    //
+    // Usage:
+    //   normalise({"a", ".", "b"}) -> {"a", "b"}
+    //   normalise({"a", "..", "b"}) -> {"b"}
+    std::vector<std::string> normalise(const std::vector<std::string> &paths);
+
     // Normalises a path
     //
-    // Python equivalent:
+    // Complies with its python equivalent:
     //   os.path.normpath(path)
     //
     // Usage:
-    //   normpath("a/../a/b/c") -> "a/b/c"
+    //   normpath("a/../b/c") -> "a/c"
     std::string normpath(const std::string &path);
 
-    // Checks if a path is normalised
+    // Gets the absolute path of a file using the
+    // current executable's directory as a base.
+    //
+    // Complies with its python equivalent:
+    //   os.path.abspath(path)
     //
     // Usage:
-    //   normalised("a/b/c") -> true
-    //   normalised("a/../a/b/c") -> false
-    bool normalised(const std::string &path);
-
-    // Gets the absolute path of a file
-    //
-    // Python equivalent:
-    //   os.path.abspath(path)
+    //   abspath("a/b/c") -> <current executable's directory>/a/b/c
     std::string abspath(const std::string &path);
 
     // Checks if a path is absolute
     //
-    // Python equivalent:
+    // Complies with its python equivalent:
     //   os.path.isabs(path)
     //
     // Usage:
@@ -90,7 +110,7 @@ namespace paths {
 
     // Finds the relative path from a source to a target
     //
-    // Python equivalent:
+    // Complies with its python equivalent:
     //   os.path.relpath(target, source)
     //
     // Usage:
@@ -99,7 +119,7 @@ namespace paths {
 
     // Checks if a path is relative
     //
-    // Python equivalent:
+    // Complies with its python equivalent:
     //   not os.path.isabs(path)
     //
     // Usage:
@@ -109,7 +129,7 @@ namespace paths {
 
     // Gets a path's drive
     //
-    // Python equivalent:
+    // Complies with its python equivalent:
     //   os.path.splitdrive(path)[0]
     //
     // Usage [Windows]:
@@ -123,7 +143,7 @@ namespace paths {
 
     // Gets a path's head
     //
-    // Python equivalent:
+    // Complies with its python equivalent:
     //   os.path.split(os.path.normpath(path))[1]
     //
     // Usage:
@@ -134,7 +154,7 @@ namespace paths {
 
     // Gets a path's tail
     //
-    // Python equivalent:
+    // Complies with its python equivalent:
     //   os.path.split(os.path.normpath(path))[0]
     //
     // Usage:
@@ -144,7 +164,7 @@ namespace paths {
 
     // Gets a path's root
     //
-    // Python equivalent:
+    // Complies with its python equivalent:
     //   os.path.split(os.path.splitext(path)[0])[0]
     //
     // Usage:
@@ -153,7 +173,7 @@ namespace paths {
 
     // Gets a path's extension
     //
-    // Python equivalent:
+    // Complies with its python equivalent:
     //   os.path.splitext(path)[1]
     //
     // Usage:
@@ -161,6 +181,59 @@ namespace paths {
     //   extension("a/b.ext1.ext2") -> ".ext1.ext2"
     //   extension("a/b") -> ""
     std::string extension(const std::string &path);
+
+    constexpr char unix_sep    = '/';
+    constexpr char windows_sep = '\\';
+
+    // Converts a Windows path to a Unix path
+    //
+    // Usage:
+    //   unix_path("a\b\c") -> "a/b/c"
+    //   unix_path("C:\a\b\c") -> "/a/b/c"
+    std::string unix_path(const std::string &path);
+
+    // Converts a Unix path to a Windows path
+    //
+    // Usage:
+    //   windows_path("a/b/c") -> "a\b\c"
+    //   windows_path("C:/a/b/c") -> "C:\a\b\c"
+    std::string windows_path(const std::string &path);
+
+    // Converts a path to a Windows path in a Windows
+    // environment and Unix path in a Unix environment
+    //
+    // Usage [Windows]:
+    //   platform_path("a/b") -> "a\\b"
+    //   platform_path("a\\b") -> "a\\b"
+    //
+    // Usage [Otherwise]:
+    //   platform_path("a/b") -> "a/b"
+    //   platform_path("a\\b") -> "a/b"
+    std::string platform_path(const std::string &path);
+
+    // Joins strings with a delimeter
+    //
+    // Usage:
+    //   join({"a", "b", "c"}, ',') -> "a,b,c"
+    std::string join(const std::vector<std::string> &strs, char delimiter);
+
+    // Joins strings with a delimeter
+    //
+    // Usage:
+    //   join({"a", "b", "c"}, ",") -> "a,b,c"
+    std::string join(const std::vector<std::string> &strs, const std::string &delimiter);
+
+    // Splits a string at each occurrence of a delimeter
+    //
+    // Usage:
+    //   split("a,b,c", ',') -> {"a", "b", "c"}
+    std::vector<std::string> split(const std::string &str, char delimiter);
+
+    // Splits a string at each occurrence of a delimeter
+    //
+    // Usage:
+    //   split("a,b,c", ",") -> {"a", "b", "c"}
+    std::vector<std::string> split(const std::string &str, const std::string &delimiter);
 
     // Determines if a path starts with a prefix
     //
@@ -185,94 +258,36 @@ namespace paths {
     // Usage:
     //   ends_with("abc", "c") -> true
     bool ends_with(const std::string &str, const std::string &suffix);
-
-    // Joins strings with a delimeter
-    //
-    // Usage:
-    //   join({"a", "b", "c"}, ',') -> "a,b,c"
-    std::string join(const std::vector<std::string> &strs, char delimiter);
-
-    // Joins strings with a delimeter
-    //
-    // Usage:
-    //   join({"a", "b", "c"}, ",") -> "a,b,c"
-    std::string join(
-        const std::vector<std::string> &strs,
-        const std::string              &delimiter = ", "
-    );
-
-    // Splits a string at each occurrence of a delimeter
-    //
-    // Usage:
-    //   split("a,b,c", ',') -> {"a", "b", "c"}
-    std::vector<std::string> split(const std::string &str, char delimiter);
-
-    // Splits a string at each occurrence of a delimeter
-    //
-    // Usage:
-    //   split("a,b,c", ",") -> {"a", "b", "c"}
-    std::vector<std::string> split(
-        const std::string &str,
-        const std::string &delimiter = " "
-    );
-
-    // Joins and normalises path segments
-    //
-    // Python equivalent:
-    //   os.path.normpath(os.path.join(*paths))
-    //
-    // Usage:
-    //   resolve("a", "b", "c") -> "a/b/c"
-    std::string resolve(const std::vector<std::string> &paths);
-
-    // Normalises and splits a path into segments
-    //
-    // Python equivalent:
-    //   os.path.normpath(path).split(os.path.sep)
-    //
-    // Usage:
-    //   segments("a/b/c") -> {"a", "b", "c"}
-    std::vector<std::string> segments(const std::string &path);
-
-    constexpr char unix_sep    = '/';
-    constexpr char windows_sep = '\\';
-
-    // Converts a Windows path to a Unix path
-    //
-    // Usage:
-    //   unix_path("a\b\c") -> "a/b/c"
-    //   unix_path: {"C:\a\b\c", "/a/b/c" },
-    std::string unix_path(const std::string &path);
-
-    // Converts a Unix path to a Windows path
-    //
-    // Usage:
-    //   windows_path("a/b/c") -> "a\b\c"
-    //   windows_path("C:/a/b/c") -> "C:\a\b\c"
-    std::string windows_path(const std::string &path);
-
-    // Converts a path to a Windows path in a Windows
-    // environment and Unix path in a Unix environment
-    //
-    // Usage [Windows]:
-    //   platform_path("a/b") -> "a\\b"
-    //   platform_path("a\\b") -> "a\\b"
-    //
-    // Usage [Otherwise]:
-    //   platform_path("a/b") -> "a/b"
-    //   platform_path("a\\b") -> "a/b"
-    std::string platform_path(const std::string &path);
 } // namespace paths
 ```
 
-Notable differences with python's standard library:
+## Commentary
 
-- The function to join paths is called `resolve` to differentiate itself from `join`
-- `head`, `tail`, `resolve` and `segments` normalise paths
+### Terminology
+
+Effort has been made to use consistent terminology in this library's source. These terms appear frequently as variable names and in docstrings:
+
+- `segments`: Normalised path chunks
+- `components`: Parts of a path such as its head and tail
+- `chunks`: Substrings
+
+### Notes
+
+To increase this library's ease of use there are some notable differences with python's standard library:
+
+Names:
+
+- The functions to join and split path chunks are called `resolve` and `segments` whereas `join` and `split` act on strings and have a delimeter parameter.
+
+Behaviour:
+
+- `resolve`, `segments`, `head`, and `tail`, normalise paths
+- `resolve` takes a vector of paths strings rather than being variadic
+
+Parameters:
+
 - `relpath` can take an empty source parameter
 - `split` can take an empty delimeter parameter
-- `resolve` takes a vector of paths strings rather than being variadic
-- `segments` doesn't produce an leading empty segment as would `path.split('/')` for an absolute path
 
 For more details read the [documentation][pages].
 
