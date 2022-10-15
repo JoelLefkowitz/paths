@@ -1,6 +1,6 @@
 // ʕ •ᴥ•ʔ Paths - resolve.cpp ʕ•ᴥ• ʔ
-// OS specific path operations and executable path retrieval.
-// https://github.com/joellefkowitz/paths
+// OS specific path operations and executable path
+// retrieval. https://github.com/joellefkowitz/paths
 // Version: 0.1.0
 // License: MIT
 
@@ -15,6 +15,5 @@ std::string paths::resolve(const std::vector<std::string> &paths) {
 }
 
 std::vector<std::string> paths::segments(const std::string &path) {
-    auto normalised = normalise(split(path, platform::sep));
-    return normalised.empty() ? std::vector<std::string>({""}) : normalised;
+    return split(normpath(path), platform::sep);
 }

@@ -1,6 +1,6 @@
 // ʕ •ᴥ•ʔ Paths - runtime.cpp ʕ•ᴥ• ʔ
-// OS specific path operations and executable path retrieval.
-// https://github.com/joellefkowitz/paths
+// OS specific path operations and executable path
+// retrieval. https://github.com/joellefkowitz/paths
 // Version: 0.1.0
 // License: MIT
 
@@ -52,7 +52,8 @@ std::string paths::filepath() {
     return "";
 }
 
-#elif (PLATFORM_OS == PLATFORM_OS_MACOS) || (PLATFORM_OS == PLATFORM_OS_IOS) || \
+#elif (PLATFORM_OS == PLATFORM_OS_MACOS) ||                                    \
+    (PLATFORM_OS == PLATFORM_OS_IOS) ||                                        \
     (PLATFORM_OS == PLATFORM_OS_WATCHOS) || (PLATFORM_OS == PLATFORM_OS_TVOS)
 
 #include <mach-o/dyld.h>

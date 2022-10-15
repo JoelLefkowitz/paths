@@ -1,6 +1,6 @@
 // ʕ •ᴥ•ʔ Paths - words.cpp ʕ•ᴥ• ʔ
-// OS specific path operations and executable path retrieval.
-// https://github.com/joellefkowitz/paths
+// OS specific path operations and executable path
+// retrieval. https://github.com/joellefkowitz/paths
 // Version: 0.1.0
 // License: MIT
 
@@ -8,15 +8,16 @@
 #include <string>
 
 bool paths::starts_with(const std::string &str, char prefix) {
-    return starts_with(str, std::string(1, prefix));
+    return !str.empty() && str.front() == prefix;
 }
 
 bool paths::starts_with(const std::string &str, const std::string &prefix) {
-    return str.substr(0, prefix.length()) == prefix;
+    return str.length() >= prefix.length() &&
+        str.substr(0, prefix.length()) == prefix;
 }
 
 bool paths::ends_with(const std::string &str, char suffix) {
-    return ends_with(str, std::string(1, suffix));
+    return !str.empty() && str.back() == suffix;
 }
 
 bool paths::ends_with(const std::string &str, const std::string &suffix) {

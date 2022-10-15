@@ -1,6 +1,6 @@
 // ʕ •ᴥ•ʔ Paths - resolve.hpp ʕ•ᴥ• ʔ
-// OS specific path operations and executable path retrieval.
-// https://github.com/joellefkowitz/paths
+// OS specific path operations and executable path
+// retrieval. https://github.com/joellefkowitz/paths
 // Version: 0.1.0
 // License: MIT
 
@@ -23,7 +23,7 @@ namespace paths {
     // Splits a path into normalised segments
     //
     // Complies with its python equivalent:
-    //   os.path.normpath(path).split(os.path.sep)
+    //   os.path.normpath(path).split(os.sep)
     //
     // Usage:
     //   segments("a/b/c") -> {"a", "b", "c"}

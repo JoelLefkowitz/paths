@@ -1,14 +1,10 @@
-import json
-import os
 import platform
 from functools import reduce
 from glob import glob
-from shutil import copytree
 
 import psutil
 from emoji import emojize
 from SCons.Environment import Environment
-from SCons.Script import AddOption
 
 
 def prefix(arr, x):
@@ -26,8 +22,8 @@ def find(include, exclude):
 compiler = "g++" if platform.system() == "Windows" else "clang++"
 
 flags = [
-    "-std=c++17",
-    "-fvisibility=hidden",
+    "-g",
+    "-std=c++11",
 ]
 
 libs = [
@@ -40,6 +36,7 @@ warnings = [
     "conversion",
     "extra-semi",
     "extra",
+    "error",
     "missing-declarations",
     "pedantic",
     "shadow-uncaptured-local",
@@ -48,10 +45,7 @@ warnings = [
 
 ignore = [
     "vla-extension",
-    "missing-braces",
-    "unknown-warning-option",
     "unused-parameter",
-    "deprecated-declarations",
 ]
 
 env = Environment(

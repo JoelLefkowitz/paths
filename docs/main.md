@@ -8,10 +8,12 @@ namespace paths {
     // Gets the name of the current executable file
     std::string filename();
 
-    // Gets the path of the directory of the current executable file
+    // Gets the path of the directory of the current
+    // executable file
     std::string dirpath();
 
-    // Gets the name of the directory of the current executable file
+    // Gets the name of the directory of the current
+    // executable file
     std::string dirname();
 
     // Joins and normalises path chunks
@@ -27,7 +29,7 @@ namespace paths {
     // Splits a path into normalised segments
     //
     // Complies with its python equivalent:
-    //   os.path.normpath(path).split(os.path.sep)
+    //   os.path.normpath(path).split(os.sep)
     //
     // Usage:
     //   segments("a/b/c") -> {"a", "b", "c"}
@@ -36,7 +38,12 @@ namespace paths {
 
     // Normalises path chunks
     //
+    // Complies with its python equivalent:
+    //   os.path.normpath(os.path.join(*paths)).split(os.sep)
+    //
     // Usage:
+    //   normalise({}) -> {"."}
+    //   normalise({""}) -> {"."}
     //   normalise({"a", ".", "b"}) -> {"a", "b"}
     //   normalise({"a", "..", "b"}) -> {"b"}
     std::vector<std::string> normalise(const std::vector<std::string> &paths);
@@ -47,7 +54,18 @@ namespace paths {
     //   os.path.normpath(path)
     //
     // Usage:
+    //   normpath("") -> "."
+    //   normpath("/..") -> "/"
+    //   normpath("a/./b") -> "a/b"
     //   normpath("a/../b/c") -> "a/c"
+    //
+    // [Windows]
+    //   normpath("C:/..") -> "C:/"
+    //   normpath("//a/b/..") -> "//a/b"
+    //
+    // [Otherwise]
+    //   normpath("C:/..") -> ""
+    //   normpath("//a/b/..") -> "/a"
     std::string normpath(const std::string &path);
 
     // Gets the absolute path of a file using the
@@ -144,33 +162,41 @@ namespace paths {
     //   extension("a/b") -> ""
     std::string extension(const std::string &path);
 
-    constexpr char unix_sep    = '/';
+    constexpr char posix_sep   = '/';
     constexpr char windows_sep = '\\';
 
-    // Converts a Windows path to a Unix path
+    // Converts a Windows path to a Posix path
     //
     // Usage:
-    //   unix_path("a\b\c") -> "a/b/c"
-    //   unix_path("C:\a\b\c") -> "/a/b/c"
-    std::string unix_path(const std::string &path);
+    //   posix_path("") -> ""
+    //   posix_path(".") -> "."
+    //   posix_path("a\b\c") -> "a/b/c"
+    //   posix_path("C:\a\b\c") -> "/a/b/c"
+    std::string posix_path(const std::string &path);
 
-    // Converts a Unix path to a Windows path
+    // Converts a Posix path to a Windows path
     //
     // Usage:
+    //   windows_path("") -> ""
+    //   windows_path(".") -> "."
     //   windows_path("a/b/c") -> "a\b\c"
     //   windows_path("C:/a/b/c") -> "C:\a\b\c"
     std::string windows_path(const std::string &path);
 
     // Converts a path to a Windows path in a Windows
-    // environment and Unix path in a Unix environment
+    // environment and Posix path in a Posix environment
     //
-    // Usage [Windows]:
-    //   platform_path("a/b") -> "a\\b"
-    //   platform_path("a\\b") -> "a\\b"
+    // Usage:
+    // platform_path("") -> ""
+    // platform_path(".") -> "."
     //
-    // Usage [Otherwise]:
+    // [Windows]
+    //   platform_path("a/b") -> "a\b"
+    //   platform_path("a\b") -> "a\b"
+    //
+    // [Otherwise]
     //   platform_path("a/b") -> "a/b"
-    //   platform_path("a\\b") -> "a/b"
+    //   platform_path("a\b") -> "a/b"
     std::string platform_path(const std::string &path);
 
     // Joins strings with a delimeter
@@ -183,7 +209,10 @@ namespace paths {
     //
     // Usage:
     //   join({"a", "b", "c"}, ",") -> "a,b,c"
-    std::string join(const std::vector<std::string> &strs, const std::string &delimiter);
+    std::string join(
+        const std::vector<std::string> &strs,
+        const std::string              &delimiter
+    );
 
     // Splits a string at each occurrence of a delimeter
     //
@@ -195,7 +224,10 @@ namespace paths {
     //
     // Usage:
     //   split("a,b,c", ",") -> {"a", "b", "c"}
-    std::vector<std::string> split(const std::string &str, const std::string &delimiter);
+    std::vector<std::string> split(
+        const std::string &str,
+        const std::string &delimiter
+    );
 
     // Determines if a path starts with a prefix
     //

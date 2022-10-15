@@ -1,6 +1,6 @@
 // ʕ •ᴥ•ʔ Paths - normalise.cpp ʕ•ᴥ• ʔ
-// OS specific path operations and executable path retrieval.
-// https://github.com/joellefkowitz/paths
+// OS specific path operations and executable path
+// retrieval. https://github.com/joellefkowitz/paths
 // Version: 0.1.0
 // License: MIT
 
@@ -11,10 +11,12 @@
 #include "relative.hpp"
 #include "words.hpp"
 #include <algorithm>
+#include <iostream>
 #include <string>
 #include <vector>
 
-std::vector<std::string> paths::normalise(const std::vector<std::string> &paths) {
+std::vector<std::string> paths::normalise(const std::vector<std::string> &paths
+) {
     std::vector<std::string> contentful;
 
     std::copy_if(
@@ -29,27 +31,44 @@ std::vector<std::string> paths::normalise(const std::vector<std::string> &paths)
     for (auto i = contentful.begin(); i != contentful.end(); ++i) {
         if (*i == ".." && !filtered.empty() && filtered.back() != "..") {
             filtered.pop_back();
-        } else if (*i != ".." || !filtered.empty()) {
+        } else {
             filtered.push_back(*i);
         }
     }
 
-    return filtered;
+    return filtered.empty() ? std::vector<std::string>({"."}) : filtered;
 }
 
 std::string paths::normpath(const std::string &path) {
-    auto joined = join(normalise(split(path, platform::sep)), platform::sep);
+    auto normalised = normalise(split(path, platform::sep));
 
-    if (starts_with(path, "//") && !starts_with(path, "///")) {
-        return "//" + joined;
+    if (absolute(path)) {
+        std::vector<std::string> _normalised = {};
+
+        for (auto i = normalised.begin(); i != normalised.end(); ++i) {
+            if (*i != ".." || !_normalised.empty()) {
+                _normalised.push_back(*i);
+            }
+        }
+
+        normalised = _normalised;
+
+        if (normalised == std::vector<std::string>({"."})) {
+            normalised = {};
+        }
+    }
+
+    auto joined = join(normalised, platform::sep);
+
+    // TODO: Move to drive
+
+    if (starts_with(path, std::string(2, platform::sep)) &&
+        !starts_with(path, std::string(3, platform::sep))) {
+        return std::string(2, platform::sep) + joined;
     }
 
     if (absolute(path)) {
-        return "/" + joined;
-    }
-
-    if (joined == "") {
-        return ".";
+        return platform::sep + joined;
     }
 
     return joined;

@@ -5,9 +5,9 @@ import itertools
 def alphabetise(arr):
     """
     Replace all occurrences of "x" with "a", then "b" and so on.
-    Example: alphabetise("x/x/y/x") -> "a/b/y/c"
+    Example: alphabetise(["x", "x", "y", "x"]) -> ["a", "b", "y", "c"]
     """
-    replacements = ["a", "b", "c", "d"][: arr.count("x")]
+    replacements = ["a", "b", "c", "d", "e"][: arr.count("x")]
 
     for i in replacements:
         arr[arr.index("x")] = i
@@ -15,7 +15,7 @@ def alphabetise(arr):
     return arr
 
 
-def sequences(length=3):
+def sequences(length):
     """
     Generate sequences of ["", ".", "..", "x"] tokens joined wih "/"
     """
@@ -26,24 +26,29 @@ def sequences(length=3):
     ]
 
 
-def fmt_arr(items):
-    return "{" + ", ".join([f'"{i}"' for i in items]) + "}"
+def fmt(x):
+    return (
+        "{" + ", ".join([f'"{i}"' for i in x]) + "}"
+        if isinstance(x, list)
+        else f'"{x}"'
+    )
 
 
 if __name__ == "__main__":
+    paths = lambda x: os.path.join(*x)
+    expected = lambda x: os.path.isabs(os.path.join(*x))
 
-    cases = [
+    cases = {
         "".join(
             [
-                " " * 4,
-                "{",
-                fmt_arr(i),
+                "    {",
+                fmt(paths(i)),
                 ", ",
-                fmt_arr(os.path.normpath("/".join(i)).split("/")),
-                "}",
-                ",",
+                "true" if expected(i) else "false",
+                "},",
             ]
-        )
-        for i in sequences(3)
-    ]
-    print("\n".join(["{", *cases, "}"]))
+        ): None
+        for i in sequences(5)
+    }
+
+    print("\n".join(["{", *cases.keys(), "}"]))

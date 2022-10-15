@@ -1,6 +1,6 @@
 // ʕ •ᴥ•ʔ Paths - chunks.cpp ʕ•ᴥ• ʔ
-// OS specific path operations and executable path retrieval.
-// https://github.com/joellefkowitz/paths
+// OS specific path operations and executable path
+// retrieval. https://github.com/joellefkowitz/paths
 // Version: 0.1.0
 // License: MIT
 
@@ -23,7 +23,8 @@ std::string paths::join(
         return acc + x + delimiter;
     };
 
-    auto joined = std::accumulate(strs.begin(), strs.end(), std::string(), concat);
+    auto joined =
+        std::accumulate(strs.begin(), strs.end(), std::string(), concat);
 
     return joined.substr(0, joined.length() - delimiter.length());
 }
@@ -36,15 +37,25 @@ std::vector<std::string> paths::split(
     const std::string &str,
     const std::string &delimiter
 ) {
-    if (str.empty() || delimiter.empty()) {
+    if (str.empty()) {
         return {str};
     }
+
+    if (delimiter.empty()) {
+        std::vector<std::string> strs;
+
+        for (auto i = str.begin(); i != str.end(); ++i) {
+            strs.push_back(std::string(1, *i));
+        }
+
+        return strs;
+    }
+
+    size_t pos = 0;
 
     std::string copy = str;
 
     std::vector<std::string> chunks;
-
-    size_t pos = 0;
 
     while ((pos = copy.find(delimiter, 0)) != std::string::npos) {
         chunks.push_back(copy.substr(0, pos));

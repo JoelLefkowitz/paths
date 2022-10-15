@@ -1,10 +1,10 @@
 import os
 
 
-def docstring(name):
+def docstring(filename):
     return "\n".join(
         [
-            f"// ʕ •ᴥ•ʔ Paths - {name} ʕ•ᴥ• ʔ",
+            f"// ʕ •ᴥ•ʔ Paths - {filename} ʕ•ᴥ• ʔ",
             "// OS specific path operations and executable path retrieval.",
             "// https://github.com/joellefkowitz/paths",
             "// Version: 0.1.0",
@@ -13,8 +13,8 @@ def docstring(name):
     )
 
 
-def guard(name):
-    upper = name.upper()
+def guard(filename):
+    upper = filename.upper()
     return "\n".join(
         [
             f"#ifndef LIB_PATHS_{upper}_H",
@@ -25,19 +25,22 @@ def guard(name):
 
 src = os.path.normpath(os.path.join(__file__, "..", "..", "src"))
 
-for name in os.listdir(src):
-    path = os.path.join(src, name)
-    title = docstring(name)
+for filename in os.listdir(src):
+    filepath = os.path.join(src, filename)
+    title = docstring(filename)
 
-    if name == "detect.hpp":
+    if filename == "detect.hpp":
         continue
 
-    if name.endswith(".hpp"):
-        title += "\n" * 2 + guard(name[:-4])
+    if filename.endswith(".hpp"):
+        title += "\n" * 2 + guard(filename[:-4])
 
-    if name.endswith(".cpp"):
-        title += "\n" * 2 + f'#include "{name[:-4]}.hpp"'
+    elif filename.endswith(".cpp"):
+        title += "\n" * 2 + f'#include "{filename[:-4]}.hpp"'
 
-    with open(path, "r") as stream:
-        print(name)
+    else:
+        continue
+
+    with open(filepath, "r") as stream:
         assert stream.read().startswith(title)
+        print(f"✓ {filename}")

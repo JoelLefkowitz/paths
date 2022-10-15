@@ -1,6 +1,6 @@
 # Paths
 
-OS specific path operations and executable path retrieval.
+Cross platform OS path operations and executable path retrieval.
 
 This package is inspired by [whereami][whereami] and [std::filesystem][std_filesystem] but with:
 
@@ -46,10 +46,12 @@ namespace paths {
     // Gets the name of the current executable file
     std::string filename();
 
-    // Gets the path of the directory of the current executable file
+    // Gets the path of the directory of the current
+    // executable file
     std::string dirpath();
 
-    // Gets the name of the directory of the current executable file
+    // Gets the name of the directory of the current
+    // executable file
     std::string dirname();
 
     // Joins and normalises path chunks
@@ -65,7 +67,7 @@ namespace paths {
     // Splits a path into normalised segments
     //
     // Complies with its python equivalent:
-    //   os.path.normpath(path).split(os.path.sep)
+    //   os.path.normpath(path).split(os.sep)
     //
     // Usage:
     //   segments("a/b/c") -> {"a", "b", "c"}
@@ -74,7 +76,12 @@ namespace paths {
 
     // Normalises path chunks
     //
+    // Complies with its python equivalent:
+    //   os.path.normpath(os.path.join(*paths)).split(os.sep)
+    //
     // Usage:
+    //   normalise({}) -> {"."}
+    //   normalise({""}) -> {"."}
     //   normalise({"a", ".", "b"}) -> {"a", "b"}
     //   normalise({"a", "..", "b"}) -> {"b"}
     std::vector<std::string> normalise(const std::vector<std::string> &paths);
@@ -85,7 +92,18 @@ namespace paths {
     //   os.path.normpath(path)
     //
     // Usage:
+    //   normpath("") -> "."
+    //   normpath("/..") -> "/"
+    //   normpath("a/./b") -> "a/b"
     //   normpath("a/../b/c") -> "a/c"
+    //
+    // [Windows]
+    //   normpath("C:/..") -> "C:/"
+    //   normpath("//a/b/..") -> "//a/b"
+    //
+    // [Otherwise]
+    //   normpath("C:/..") -> ""
+    //   normpath("//a/b/..") -> "/a"
     std::string normpath(const std::string &path);
 
     // Gets the absolute path of a file using the
@@ -182,33 +200,41 @@ namespace paths {
     //   extension("a/b") -> ""
     std::string extension(const std::string &path);
 
-    constexpr char unix_sep    = '/';
+    constexpr char posix_sep   = '/';
     constexpr char windows_sep = '\\';
 
-    // Converts a Windows path to a Unix path
+    // Converts a Windows path to a Posix path
     //
     // Usage:
-    //   unix_path("a\b\c") -> "a/b/c"
-    //   unix_path("C:\a\b\c") -> "/a/b/c"
-    std::string unix_path(const std::string &path);
+    //   posix_path("") -> ""
+    //   posix_path(".") -> "."
+    //   posix_path("a\b\c") -> "a/b/c"
+    //   posix_path("C:\a\b\c") -> "/a/b/c"
+    std::string posix_path(const std::string &path);
 
-    // Converts a Unix path to a Windows path
+    // Converts a Posix path to a Windows path
     //
     // Usage:
+    //   windows_path("") -> ""
+    //   windows_path(".") -> "."
     //   windows_path("a/b/c") -> "a\b\c"
     //   windows_path("C:/a/b/c") -> "C:\a\b\c"
     std::string windows_path(const std::string &path);
 
     // Converts a path to a Windows path in a Windows
-    // environment and Unix path in a Unix environment
+    // environment and Posix path in a Posix environment
     //
-    // Usage [Windows]:
-    //   platform_path("a/b") -> "a\\b"
-    //   platform_path("a\\b") -> "a\\b"
+    // Usage:
+    // platform_path("") -> ""
+    // platform_path(".") -> "."
     //
-    // Usage [Otherwise]:
+    // [Windows]
+    //   platform_path("a/b") -> "a\b"
+    //   platform_path("a\b") -> "a\b"
+    //
+    // [Otherwise]
     //   platform_path("a/b") -> "a/b"
-    //   platform_path("a\\b") -> "a/b"
+    //   platform_path("a\b") -> "a/b"
     std::string platform_path(const std::string &path);
 
     // Joins strings with a delimeter
@@ -221,7 +247,10 @@ namespace paths {
     //
     // Usage:
     //   join({"a", "b", "c"}, ",") -> "a,b,c"
-    std::string join(const std::vector<std::string> &strs, const std::string &delimiter);
+    std::string join(
+        const std::vector<std::string> &strs,
+        const std::string              &delimiter
+    );
 
     // Splits a string at each occurrence of a delimeter
     //
@@ -233,7 +262,10 @@ namespace paths {
     //
     // Usage:
     //   split("a,b,c", ",") -> {"a", "b", "c"}
-    std::vector<std::string> split(const std::string &str, const std::string &delimiter);
+    std::vector<std::string> split(
+        const std::string &str,
+        const std::string &delimiter
+    );
 
     // Determines if a path starts with a prefix
     //
@@ -273,6 +305,16 @@ Effort has been made to use consistent terminology in this library's source. The
 
 ### Notes
 
+Cross platform support for file discovery and iteration will be added in a future release:
+
+- `exists`
+- `lexists`
+- `isfile`
+- `islink`
+- `isdir`
+- `listdir`
+- `iterdir`
+
 To increase this library's ease of use there are some notable differences with python's standard library:
 
 Names:
@@ -289,6 +331,17 @@ Parameters:
 - `relpath` can take an empty source parameter
 - `split` can take an empty delimeter parameter
 
+Internals:
+
+The docstring for `normalise` says:
+
+```cpp
+// Complies with its python equivalent:
+//   os.path.normpath(os.path.join(*paths)).split(os.sep)
+```
+
+In this library the implementation of `normpath` instead calls `normalise` to do most of the heavy lifting. This design allows other functions that act on path chunks such as `resolve` and `segments` to use `normalise` where calling `normpath` would require joining the chunks beforehand and then spliting the normalised result.
+
 For more details read the [documentation][pages].
 
 ## Tests
@@ -299,7 +352,7 @@ To compile the test suites:
 clang++ -std=c++11 $(find src test -name "*.cpp") -lpthread -lgtest
 ```
 
-For more flexible local development and to compile the test suites in parallel install `scons`:
+For more flexible local development and to compile the test suites in parallel install `scons` and the `SConstruct.py` script's dependencies:
 
 ```bash
 pip install emoji psutil scons

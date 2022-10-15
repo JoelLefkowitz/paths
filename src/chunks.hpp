@@ -1,6 +1,6 @@
 // ʕ •ᴥ•ʔ Paths - chunks.hpp ʕ•ᴥ• ʔ
-// OS specific path operations and executable path retrieval.
-// https://github.com/joellefkowitz/paths
+// OS specific path operations and executable path
+// retrieval. https://github.com/joellefkowitz/paths
 // Version: 0.1.0
 // License: MIT
 
@@ -21,7 +21,10 @@ namespace paths {
     //
     // Usage:
     //   join({"a", "b", "c"}, ",") -> "a,b,c"
-    std::string join(const std::vector<std::string> &strs, const std::string &delimiter);
+    std::string join(
+        const std::vector<std::string> &strs,
+        const std::string              &delimiter
+    );
 
     // Splits a string at each occurrence of a delimeter
     //
@@ -33,7 +36,10 @@ namespace paths {
     //
     // Usage:
     //   split("a,b,c", ",") -> {"a", "b", "c"}
-    std::vector<std::string> split(const std::string &str, const std::string &delimiter);
+    std::vector<std::string> split(
+        const std::string &str,
+        const std::string &delimiter
+    );
 } // namespace paths
 
 #endif
