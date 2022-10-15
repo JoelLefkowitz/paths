@@ -25,22 +25,23 @@ def guard(filename):
 
 src = os.path.normpath(os.path.join(__file__, "..", "..", "src"))
 
-for filename in os.listdir(src):
-    filepath = os.path.join(src, filename)
-    title = docstring(filename)
+if __name__ == "__main__":
+    for filename in os.listdir(src):
+        filepath = os.path.join(src, filename)
+        title = docstring(filename)
 
-    if filename == "detect.hpp":
-        continue
+        if filename == "detect.hpp":
+            continue
 
-    if filename.endswith(".hpp"):
-        title += "\n" * 2 + guard(filename[:-4])
+        if filename.endswith(".hpp"):
+            title += "\n" * 2 + guard(filename[:-4])
 
-    elif filename.endswith(".cpp"):
-        title += "\n" * 2 + f'#include "{filename[:-4]}.hpp"'
+        elif filename.endswith(".cpp"):
+            title += "\n" * 2 + f'#include "{filename[:-4]}.hpp"'
 
-    else:
-        continue
+        else:
+            continue
 
-    with open(filepath, "r") as stream:
-        assert stream.read().startswith(title)
-        print(f"✓ {filename}")
+        with open(filepath, "r") as stream:
+            assert stream.read().startswith(title)
+            print(f"✓ {filename}")

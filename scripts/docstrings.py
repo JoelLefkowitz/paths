@@ -42,4 +42,5 @@ namespace = "\n\n".join(
     filter(lambda x: x != "", map(lambda x: extract(x, start, end), headers))
 )
 
-print("```cpp\n" + "\n".join([start, namespace, end]) + "\n```")
+if __name__ == "__main__":
+    print("```cpp\n" + "\n".join([start, namespace, end]) + "\n```")

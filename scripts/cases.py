@@ -15,40 +15,56 @@ def alphabetise(arr):
     return arr
 
 
-def sequences(length):
+def sequences(length, tokens=["", ".", "..", "x"]):
     """
     Generate sequences of ["", ".", "..", "x"] tokens joined wih "/"
     """
     return [
         alphabetise(list(x))
         for n in range(1, length + 1)
-        for x in itertools.product(["", ".", "..", "x"], repeat=n)
+        for x in itertools.product(tokens, repeat=n)
     ]
 
 
 def fmt(x):
-    return (
-        "{" + ", ".join([f'"{i}"' for i in x]) + "}"
-        if isinstance(x, list)
-        else f'"{x}"'
-    )
+    if isinstance(x, list):
+        return "{" + ", ".join([f'"{i}"' for i in x]) + "}"
+
+    if isinstance(x, bool):
+        return "true" if x else "false"
+
+    return f'"{x}"'
 
 
 if __name__ == "__main__":
-    paths = lambda x: os.path.join(*x)
-    expected = lambda x: os.path.isabs(os.path.join(*x))
+    # path = lambda x: os.sep.join(x)
+    # expected = lambda x: os.path.split(os.path.normpath(x))[0]
 
-    cases = {
-        "".join(
-            [
-                "    {",
-                fmt(paths(i)),
-                ", ",
-                "true" if expected(i) else "false",
-                "},",
-            ]
-        ): None
-        for i in sequences(5)
-    }
+    # cases = {
+    #     "".join(
+    #         [
+    #             "    {",
+    #             fmt(path(i)),
+    #             ", ",
+    #             fmt(expected(path(i))),
+    #             "},",
+    #         ]
+    #     ): None
+    #     for i in sequences(4)
+    # }
 
-    print("\n".join(["{", *cases.keys(), "}"]))
+    # print("\n".join(["{", *cases.keys(), "}"]))
+
+
+    print(os.path.splitext("")[1])
+    print(os.path.splitext(".")[1])
+    print(os.path.splitext(".x")[1])
+    print(os.path.splitext("a")[1])
+    print(os.path.splitext("a.x")[1])
+    print(os.path.splitext("..")[1])
+    print(os.path.splitext("..x")[1])
+    print(os.path.splitext("...")[1])
+    print(os.path.splitext("...x")[1])
+    print(os.path.splitext("a/b")[1])
+    print(os.path.splitext("a/b.x")[1])
+    print(os.path.splitext("a/b.x.y")[1])

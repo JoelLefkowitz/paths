@@ -15,11 +15,12 @@ namespace paths {
     // Complies with its python equivalent:
     //   os.path.splitdrive(path)[0]
     //
-    // Usage [Windows]:
+    // Usage:
+    // [Windows]
     //   drive("C:/a/b") -> "C:"
     //   drive("//a/b/c") -> "//a/b"
     //
-    // Usage [Otherwise]:
+    // [Otherwise]
     //   drive("C:/a/b") -> ""
     //   drive("//a/b/c") -> ""
     std::string drive(const std::string &path);
@@ -30,9 +31,18 @@ namespace paths {
     //   os.path.split(os.path.normpath(path))[1]
     //
     // Usage:
+    //   head("") -> "."
+    //   head(".") -> "."
     //   head("a") -> "a"
     //   head("a/b") -> "b"
-    //   head("a/b.ext") -> "b.ext"
+    //
+    // [Windows]
+    //   head("C:") -> ""
+    //   head("//a/b") -> "b"
+    //
+    // [Otherwise]
+    //   head("C:") -> "C:"
+    //   head("//a/b") -> "b"
     std::string head(const std::string &path);
 
     // Gets a path's tail
@@ -41,18 +51,23 @@ namespace paths {
     //   os.path.split(os.path.normpath(path))[0]
     //
     // Usage:
+    //   tail("") -> ""
+    //   tail(".") -> ""
+    //   tail("a") -> ""
+    //   tail("/a") -> "/"
     //   tail("a/b") -> "a"
     //   tail("a/b/c") -> "a/b"
+    //
+    // [Windows]
+    //   tail("C:") -> ""
+    //   tail("//a/b") -> "//a/b"
+    //   tail("//a/b/c") -> "//a/b"
+    //
+    // [Otherwise]
+    //   tail("C:") -> ""
+    //   tail("//a/b") -> "//a"
+    //   tail("//a/b/c") -> "//a/b"
     std::string tail(const std::string &path);
-
-    // Gets a path's root
-    //
-    // Complies with its python equivalent:
-    //   os.path.split(os.path.splitext(path)[0])[0]
-    //
-    // Usage:
-    //   root("a/b.ext") -> "b"
-    std::string root(const std::string &path);
 
     // Gets a path's extension
     //
@@ -60,9 +75,10 @@ namespace paths {
     //   os.path.splitext(path)[1]
     //
     // Usage:
-    //   extension("a/b.ext") -> ".ext"
-    //   extension("a/b.ext1.ext2") -> ".ext1.ext2"
+    //   extension("a") -> ""
     //   extension("a/b") -> ""
+    //   extension("a/b.x") -> ".x"
+    //   extension("a/b.x.y") -> ".y"
     std::string extension(const std::string &path);
 } // namespace paths
 

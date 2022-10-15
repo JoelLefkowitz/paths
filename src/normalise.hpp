@@ -34,12 +34,14 @@ namespace paths {
     //   normpath("a/../b/c") -> "a/c"
     //
     // [Windows]
-    //   normpath("C:/..") -> "C:/"
+    //   normpath("C:/..") -> "C:"
     //   normpath("//a/b/..") -> "//a/b"
     //
     // [Otherwise]
     //   normpath("C:/..") -> ""
-    //   normpath("//a/b/..") -> "/a"
+    //   normpath("//a/b") -> "//a/b"
+    //   normpath("//a/b/..") -> "//a"
+    //   normpath("///a/b") -> "/a/b"
     std::string normpath(const std::string &path);
 } // namespace paths
 

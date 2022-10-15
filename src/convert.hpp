@@ -20,6 +20,7 @@ namespace paths {
     //   posix_path(".") -> "."
     //   posix_path("a\b\c") -> "a/b/c"
     //   posix_path("C:\a\b\c") -> "/a/b/c"
+    //   posix_path("\\a\b\c") -> "//a/b/c"
     std::string posix_path(const std::string &path);
 
     // Converts a Posix path to a Windows path
@@ -29,6 +30,7 @@ namespace paths {
     //   windows_path(".") -> "."
     //   windows_path("a/b/c") -> "a\b\c"
     //   windows_path("C:/a/b/c") -> "C:\a\b\c"
+    //   windows_path("//a/b/c") -> "\\a\b\c"
     std::string windows_path(const std::string &path);
 
     // Converts a path to a Windows path in a Windows

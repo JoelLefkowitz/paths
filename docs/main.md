@@ -217,12 +217,14 @@ namespace paths {
     // Splits a string at each occurrence of a delimeter
     //
     // Usage:
+    //   split("abc", '') -> {"a", "b", "c"}
     //   split("a,b,c", ',') -> {"a", "b", "c"}
     std::vector<std::string> split(const std::string &str, char delimiter);
 
     // Splits a string at each occurrence of a delimeter
     //
     // Usage:
+    //   split("abc", "") -> {"a", "b", "c"}
     //   split("a,b,c", ",") -> {"a", "b", "c"}
     std::vector<std::string> split(
         const std::string &str,

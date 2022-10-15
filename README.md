@@ -255,12 +255,14 @@ namespace paths {
     // Splits a string at each occurrence of a delimeter
     //
     // Usage:
+    //   split("abc", '') -> {"a", "b", "c"}
     //   split("a,b,c", ',') -> {"a", "b", "c"}
     std::vector<std::string> split(const std::string &str, char delimiter);
 
     // Splits a string at each occurrence of a delimeter
     //
     // Usage:
+    //   split("abc", "") -> {"a", "b", "c"}
     //   split("a,b,c", ",") -> {"a", "b", "c"}
     std::vector<std::string> split(
         const std::string &str,
@@ -341,6 +343,23 @@ The docstring for `normalise` says:
 ```
 
 In this library the implementation of `normpath` instead calls `normalise` to do most of the heavy lifting. This design allows other functions that act on path chunks such as `resolve` and `segments` to use `normalise` where calling `normpath` would require joining the chunks beforehand and then spliting the normalised result.
+
+The docstring for `tail` says:
+
+```cpp
+// Complies with its python equivalent:
+//   os.path.split(os.path.normpath(path))[0]
+//
+// ...
+//
+//   tail("//a/b/c") -> "//a/b"
+```
+
+However its python equivalent actually produces a different and unexpected result:
+
+```py
+os.path.split(os.path.normpath("//a/b/c"))[0] -> "//a/b/"
+```
 
 For more details read the [documentation][pages].
 

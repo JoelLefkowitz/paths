@@ -5,6 +5,7 @@
 // License: MIT
 
 #include "convert.hpp"
+#include "detect.hpp"
 #include <string>
 
 std::string paths::posix_path(const std::string &path) {
@@ -30,5 +31,6 @@ std::string paths::windows_path(const std::string &path) {
 }
 
 std::string paths::platform_path(const std::string &path) {
-    return path;
+    return platform::os == platform::Windows ? windows_path(path)
+                                             : posix_path(path);
 }

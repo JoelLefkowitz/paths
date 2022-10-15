@@ -27,10 +27,6 @@ std::string paths::tail(const std::string &path) {
     return drive(path) + join(normalised, platform::sep);
 }
 
-std::string paths::root(const std::string &path) {
-    return "";
-}
-
 std::string paths::extension(const std::string &path) {
     return "";
 }

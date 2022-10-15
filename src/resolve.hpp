@@ -23,11 +23,23 @@ namespace paths {
     // Splits a path into normalised segments
     //
     // Complies with its python equivalent:
-    //   os.path.normpath(path).split(os.sep)
+    //   [i for i in os.path.normpath(path).split(os.sep) if i != ""]
     //
     // Usage:
-    //   segments("a/b/c") -> {"a", "b", "c"}
+    //   segments("") -> {"."}
+    //   segments(".") -> {"."}
+    //   segments("/") -> {}
+    //   segments("a/b") -> {"a", "b"}
+    //   segments("/a/b") -> {"a", "b"}
     //   segments("a/b/../c") -> {"a", "c"}
+    //
+    // [Windows]
+    //   segments("C:/a/b") -> {"a", "b"}
+    //   segments("//a/b/c") -> {"c"}
+    //
+    // [Otherwise]
+    //   segments("C:/a/b") -> {"C:", "a", "b"}
+    //   segments("//a/b/c") -> {"a", "b", "c"}
     std::vector<std::string> segments(const std::string &path);
 } // namespace paths
 
