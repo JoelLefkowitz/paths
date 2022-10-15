@@ -22,6 +22,7 @@ std::string paths::filepath() {
 
 #elif PLATFORM_OS == PLATFORM_OS_SOLARIS
 
+// TODO: PLATFORM_OS_SOLARIS filepath
 std::string paths::filepath() {
     return "";
 }
@@ -48,6 +49,7 @@ std::string paths::filepath() {
 
 #elif PLATFORM_OS == PLATFORM_OS_BSD
 
+// TODO: PLATFORM_OS_BSD filepath
 std::string paths::filepath() {
     return "";
 }
@@ -75,6 +77,7 @@ std::string paths::filepath() {
 
 #elif PLATFORM_OS == PLATFORM_OS_ANDROID
 
+// TODO: PLATFORM_OS_ANDROID filepath
 std::string paths::filepath() {
     char buffer[PATH_MAX];
     readlink("/proc/self/maps", buffer, PATH_MAX);

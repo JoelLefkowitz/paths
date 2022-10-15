@@ -43,10 +43,10 @@ jobs:
           export DIRNAME=dist
           export ABSPATH=$PWD/dist/a/b/c
           kcov --include-path=$(pwd)/src --clean coverage dist/test
-          echo "::set-output name=cobertura::$(find coverage -name cobertura.xml)"
+          echo "{COBERTURA}={$(find coverage -name cobertura.xml)}" >> $GITHUB_ENV
 
       - name: Report code coverage
         uses: codacy/codacy-coverage-reporter-action@v1
         with:
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-          coverage-reports: ${{ steps.coverage.outputs.cobertura }}
+          coverage-reports: ${{ env.action_state }}

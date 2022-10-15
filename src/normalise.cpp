@@ -60,8 +60,6 @@ std::string paths::normpath(const std::string &path) {
 
     auto joined = join(normalised, platform::sep);
 
-    // TODO: Move to drive
-
     if (starts_with(path, std::string(2, platform::sep)) &&
         !starts_with(path, std::string(3, platform::sep))) {
         return std::string(2, platform::sep) + joined;

@@ -1,4 +1,5 @@
 #include "environment.hpp"
+#include <stdexcept>
 #include <cstdlib>
 #include <string>
 

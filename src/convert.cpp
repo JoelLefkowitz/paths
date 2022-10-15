@@ -6,6 +6,7 @@
 
 #include "convert.hpp"
 #include "detect.hpp"
+#include <algorithm>
 #include <string>
 
 std::string paths::posix_path(const std::string &path) {
