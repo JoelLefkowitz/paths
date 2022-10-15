@@ -5,7 +5,7 @@ def docstring(filename):
     return "\n".join(
         [
             f"// ʕ •ᴥ•ʔ Paths - {filename} ʕ•ᴥ• ʔ",
-            "// OS specific path operations and executable path retrieval.",
+            "// Cross platform OS path operations and executable path retrieval.",
             "// https://github.com/joellefkowitz/paths",
             "// Version: 0.1.0",
             "// License: MIT",
@@ -44,4 +44,4 @@ if __name__ == "__main__":
 
         with open(filepath, "r") as stream:
             assert stream.read().startswith(title)
-            print(f"✓ {filename}")
+            print(f"✓ {filepath}")

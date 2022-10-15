@@ -1,6 +1,6 @@
 // ʕ •ᴥ•ʔ Paths - runtime.hpp ʕ•ᴥ• ʔ
-// OS specific path operations and executable path
-// retrieval. https://github.com/joellefkowitz/paths
+// Cross platform OS path operations and executable path retrieval.
+// https://github.com/joellefkowitz/paths
 // Version: 0.1.0
 // License: MIT
 

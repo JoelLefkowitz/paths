@@ -1,5 +1,18 @@
 # Usage {#mainpage}
 
+Cross platform OS path operations and executable path retrieval.
+
+This package is inspired by [whereami][whereami] and [std::filesystem][std_filesystem] but with:
+
+- Simple functions
+- Readable sources
+- C++11 compatability
+- Sensible exception handling
+
+To separate the need to detect the operating system at runtime [detect][detect] is dropped in.
+
+Since path manipulation is full of edge cases it is paramount to have an extensive set of unit tests. The function implementations and test fixtures are verified to be consistent with python's standard library. To provide support to multiple platforms all test suites are verified against each multiple target environments.
+
 ```cpp
 namespace paths {
     // Gets the path of the current executable file
@@ -29,11 +42,23 @@ namespace paths {
     // Splits a path into normalised segments
     //
     // Complies with its python equivalent:
-    //   os.path.normpath(path).split(os.sep)
+    //   [i for i in os.path.normpath(path).split(os.sep) if i != ""]
     //
     // Usage:
-    //   segments("a/b/c") -> {"a", "b", "c"}
+    //   segments("") -> {"."}
+    //   segments(".") -> {"."}
+    //   segments("/") -> {}
+    //   segments("a/b") -> {"a", "b"}
+    //   segments("/a/b") -> {"a", "b"}
     //   segments("a/b/../c") -> {"a", "c"}
+    //
+    // [Windows]
+    //   segments("C:/a/b") -> {"a", "b"}
+    //   segments("//a/b/c") -> {"c"}
+    //
+    // [Otherwise]
+    //   segments("C:/a/b") -> {"C:", "a", "b"}
+    //   segments("//a/b/c") -> {"a", "b", "c"}
     std::vector<std::string> segments(const std::string &path);
 
     // Normalises path chunks
@@ -60,12 +85,14 @@ namespace paths {
     //   normpath("a/../b/c") -> "a/c"
     //
     // [Windows]
-    //   normpath("C:/..") -> "C:/"
+    //   normpath("C:/..") -> "C:"
     //   normpath("//a/b/..") -> "//a/b"
     //
     // [Otherwise]
     //   normpath("C:/..") -> ""
-    //   normpath("//a/b/..") -> "/a"
+    //   normpath("//a/b") -> "//a/b"
+    //   normpath("//a/b/..") -> "//a"
+    //   normpath("///a/b") -> "/a/b"
     std::string normpath(const std::string &path);
 
     // Gets the absolute path of a file using the
@@ -112,11 +139,12 @@ namespace paths {
     // Complies with its python equivalent:
     //   os.path.splitdrive(path)[0]
     //
-    // Usage [Windows]:
+    // Usage:
+    // [Windows]
     //   drive("C:/a/b") -> "C:"
     //   drive("//a/b/c") -> "//a/b"
     //
-    // Usage [Otherwise]:
+    // [Otherwise]
     //   drive("C:/a/b") -> ""
     //   drive("//a/b/c") -> ""
     std::string drive(const std::string &path);
@@ -127,9 +155,18 @@ namespace paths {
     //   os.path.split(os.path.normpath(path))[1]
     //
     // Usage:
+    //   head("") -> "."
+    //   head(".") -> "."
     //   head("a") -> "a"
     //   head("a/b") -> "b"
-    //   head("a/b.ext") -> "b.ext"
+    //
+    // [Windows]
+    //   head("C:") -> ""
+    //   head("//a/b") -> "b"
+    //
+    // [Otherwise]
+    //   head("C:") -> "C:"
+    //   head("//a/b") -> "b"
     std::string head(const std::string &path);
 
     // Gets a path's tail
@@ -138,18 +175,23 @@ namespace paths {
     //   os.path.split(os.path.normpath(path))[0]
     //
     // Usage:
+    //   tail("") -> ""
+    //   tail(".") -> ""
+    //   tail("a") -> ""
+    //   tail("/a") -> "/"
     //   tail("a/b") -> "a"
     //   tail("a/b/c") -> "a/b"
+    //
+    // [Windows]
+    //   tail("C:") -> ""
+    //   tail("//a/b") -> "//a/b"
+    //   tail("//a/b/c") -> "//a/b"
+    //
+    // [Otherwise]
+    //   tail("C:") -> ""
+    //   tail("//a/b") -> "//a"
+    //   tail("//a/b/c") -> "//a/b"
     std::string tail(const std::string &path);
-
-    // Gets a path's root
-    //
-    // Complies with its python equivalent:
-    //   os.path.split(os.path.splitext(path)[0])[0]
-    //
-    // Usage:
-    //   root("a/b.ext") -> "b"
-    std::string root(const std::string &path);
 
     // Gets a path's extension
     //
@@ -157,9 +199,10 @@ namespace paths {
     //   os.path.splitext(path)[1]
     //
     // Usage:
-    //   extension("a/b.ext") -> ".ext"
-    //   extension("a/b.ext1.ext2") -> ".ext1.ext2"
+    //   extension("a") -> ""
     //   extension("a/b") -> ""
+    //   extension("a/b.x") -> ".x"
+    //   extension("a/b.x.y") -> ".y"
     std::string extension(const std::string &path);
 
     constexpr char posix_sep   = '/';
@@ -172,6 +215,7 @@ namespace paths {
     //   posix_path(".") -> "."
     //   posix_path("a\b\c") -> "a/b/c"
     //   posix_path("C:\a\b\c") -> "/a/b/c"
+    //   posix_path("\\a\b\c") -> "//a/b/c"
     std::string posix_path(const std::string &path);
 
     // Converts a Posix path to a Windows path
@@ -181,6 +225,7 @@ namespace paths {
     //   windows_path(".") -> "."
     //   windows_path("a/b/c") -> "a\b\c"
     //   windows_path("C:/a/b/c") -> "C:\a\b\c"
+    //   windows_path("//a/b/c") -> "\\a\b\c"
     std::string windows_path(const std::string &path);
 
     // Converts a path to a Windows path in a Windows
@@ -256,3 +301,73 @@ namespace paths {
     bool ends_with(const std::string &str, const std::string &suffix);
 } // namespace paths
 ```
+
+## Commentary
+
+### Terminology
+
+Effort has been made to use consistent terminology in this library's source. These terms appear frequently as variable names and in docstrings:
+
+- `segments`: Normalised path chunks
+- `components`: Parts of a path such as its head and tail
+- `chunks`: Substrings
+
+### Notes
+
+Cross platform support for file discovery and iteration will be added in a future release:
+
+- `exists`
+- `lexists`
+- `isfile`
+- `islink`
+- `isdir`
+- `listdir`
+- `iterdir`
+
+To increase this library's ease of use there are some notable differences with python's standard library:
+
+Names:
+
+- The functions to join and split path chunks are called `resolve` and `segments` whereas `join` and `split` act on strings and have a delimeter parameter.
+
+Behaviour:
+
+- `resolve`, `segments`, `head`, and `tail`, normalise paths
+- `resolve` takes a vector of paths strings rather than being variadic
+
+Parameters:
+
+- `relpath` can take an empty source parameter
+- `split` can take an empty delimeter parameter
+
+Internals:
+
+The docstring for `normalise` says:
+
+```cpp
+// Complies with its python equivalent:
+//   os.path.normpath(os.path.join(*paths)).split(os.sep)
+```
+
+In this library the implementation of `normpath` instead calls `normalise` to do most of the heavy lifting. This design allows other functions that act on path chunks such as `resolve` and `segments` to use `normalise` where calling `normpath` would require joining the chunks beforehand and then spliting the normalised result.
+
+The docstring for `tail` says:
+
+```cpp
+// Complies with its python equivalent:
+//   os.path.split(os.path.normpath(path))[0]
+//
+// ...
+//
+//   tail("//a/b/c") -> "//a/b"
+```
+
+However its python equivalent actually produces a different and unexpected result:
+
+```py
+os.path.split(os.path.normpath("//a/b/c"))[0] -> "//a/b/"
+```
+
+[detect]: https://github.com/JoelLefkowitz/detect
+[std_filesystem]: https://en.cppreference.com/w/cpp/filesystem
+[whereami]: https://github.com/gpakosz/whereami

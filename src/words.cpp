@@ -1,6 +1,6 @@
 // ʕ •ᴥ•ʔ Paths - words.cpp ʕ•ᴥ• ʔ
-// OS specific path operations and executable path
-// retrieval. https://github.com/joellefkowitz/paths
+// Cross platform OS path operations and executable path retrieval.
+// https://github.com/joellefkowitz/paths
 // Version: 0.1.0
 // License: MIT
 

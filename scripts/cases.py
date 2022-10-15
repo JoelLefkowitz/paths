@@ -37,34 +37,12 @@ def fmt(x):
 
 
 if __name__ == "__main__":
-    # path = lambda x: os.sep.join(x)
-    # expected = lambda x: os.path.split(os.path.normpath(x))[0]
+    path = lambda x: os.sep.join(x)
+    expected = lambda x: os.path.split(os.path.normpath(x))[0]
 
-    # cases = {
-    #     "".join(
-    #         [
-    #             "    {",
-    #             fmt(path(i)),
-    #             ", ",
-    #             fmt(expected(path(i))),
-    #             "},",
-    #         ]
-    #     ): None
-    #     for i in sequences(4)
-    # }
+    cases = {
+        "".join(["    {", fmt(path(i)), ", ", fmt(expected(path(i))), "},"]): None
+        for i in sequences(4)
+    }
 
-    # print("\n".join(["{", *cases.keys(), "}"]))
-
-
-    print(os.path.splitext("")[1])
-    print(os.path.splitext(".")[1])
-    print(os.path.splitext(".x")[1])
-    print(os.path.splitext("a")[1])
-    print(os.path.splitext("a.x")[1])
-    print(os.path.splitext("..")[1])
-    print(os.path.splitext("..x")[1])
-    print(os.path.splitext("...")[1])
-    print(os.path.splitext("...x")[1])
-    print(os.path.splitext("a/b")[1])
-    print(os.path.splitext("a/b.x")[1])
-    print(os.path.splitext("a/b.x.y")[1])
+    print("\n".join(["{", *cases.keys(), "}"]))
