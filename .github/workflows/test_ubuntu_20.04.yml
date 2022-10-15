@@ -37,7 +37,11 @@ jobs:
       - name: Run tests and generate coverage
         id: coverage
         run: |
-          export FILENAME=$PWD/dist/test
+          export FILEPATH=$PWD/dist/test
+          export FILENAME=test
+          export DIRPATH=$PWD/dist
+          export DIRNAME=dist
+          export ABSPATH=$PWD/dist/a/b/c
           kcov --include-path=$(pwd)/src --clean coverage dist/test
           echo "::set-output name=cobertura::$(find coverage -name cobertura.xml)"
 

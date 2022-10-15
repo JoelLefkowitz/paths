@@ -34,5 +34,9 @@ jobs:
 
       - name: Run tests
         run: |
-          export FILENAME=$PWD/dist/test
+          export FILEPATH=$PWD/dist/test.exe
+          export FILENAME=test.exe
+          export DIRPATH=$PWD/dist
+          export DIRNAME=dist
+          export ABSPATH=$PWD/dist/a/b/c
           dist/test.exe
