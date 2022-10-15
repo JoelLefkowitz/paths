@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['unix_5fsep_98',['unix_sep',['../namespacepaths.html#a5e47de9ff740c43c6d69b22f1e515067',1,'paths']]]
+  ['devnull_120',['devnull',['../namespaceplatform.html#af56098ecc8139df0b116a82013997dc6',1,'platform']]]
 ];

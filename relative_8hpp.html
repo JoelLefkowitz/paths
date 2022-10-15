@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Paths: src/strings.hpp File Reference</title>
+<title>Paths: src/relative.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -72,13 +72,12 @@ $(function() {
 <a href="#namespaces">Namespaces</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">strings.hpp File Reference</div>  </div>
+<div class="title">relative.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;string&gt;</code><br />
-<code>#include &lt;vector&gt;</code><br />
 </div>
-<p><a href="strings_8hpp_source.html">Go to the source code of this file.</a></p>
+<p><a href="relative_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
@@ -87,22 +86,10 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a794735e7f1247089f928b0f39237d859"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepaths.html#a794735e7f1247089f928b0f39237d859">paths::starts_with</a> (const std::string &amp;str, char prefix)</td></tr>
-<tr class="separator:a794735e7f1247089f928b0f39237d859"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a655cccadf060f62fcc1dd869385b0fb9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepaths.html#a655cccadf060f62fcc1dd869385b0fb9">paths::starts_with</a> (const std::string &amp;str, const std::string &amp;prefix)</td></tr>
-<tr class="separator:a655cccadf060f62fcc1dd869385b0fb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ab7c6ce09580003cbc613dede2a978d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepaths.html#a3ab7c6ce09580003cbc613dede2a978d">paths::ends_with</a> (const std::string &amp;str, char suffix)</td></tr>
-<tr class="separator:a3ab7c6ce09580003cbc613dede2a978d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae00d9864a19c9c3c5d7d4033e923a68b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepaths.html#ae00d9864a19c9c3c5d7d4033e923a68b">paths::ends_with</a> (const std::string &amp;str, const std::string &amp;suffix)</td></tr>
-<tr class="separator:ae00d9864a19c9c3c5d7d4033e923a68b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23b9979dea03fd729427d2730fca8ebf"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepaths.html#a23b9979dea03fd729427d2730fca8ebf">paths::join</a> (const std::vector&lt; std::string &gt; &amp;strs, char delimiter)</td></tr>
-<tr class="separator:a23b9979dea03fd729427d2730fca8ebf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6fbe44d42bb3abba6382d71f19466828"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepaths.html#a6fbe44d42bb3abba6382d71f19466828">paths::join</a> (const std::vector&lt; std::string &gt; &amp;strs, const std::string &amp;delimiter=&quot;, &quot;)</td></tr>
-<tr class="separator:a6fbe44d42bb3abba6382d71f19466828"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a52c2b7742a8e16259803c9f269f126"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepaths.html#a3a52c2b7742a8e16259803c9f269f126">paths::split</a> (const std::string &amp;str, char delimiter)</td></tr>
-<tr class="separator:a3a52c2b7742a8e16259803c9f269f126"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae823ab8ca893fdd4abfa16eb294dad23"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepaths.html#ae823ab8ca893fdd4abfa16eb294dad23">paths::split</a> (const std::string &amp;str, const std::string &amp;delimiter=&quot; &quot;)</td></tr>
-<tr class="separator:ae823ab8ca893fdd4abfa16eb294dad23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac786d77a02b59f5fa3978e627500cc41"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepaths.html#ac786d77a02b59f5fa3978e627500cc41">paths::relpath</a> (const std::string &amp;source, const std::string &amp;target)</td></tr>
+<tr class="separator:ac786d77a02b59f5fa3978e627500cc41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9fa1050378a5c5f7609b619c6de3fda"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepaths.html#af9fa1050378a5c5f7609b619c6de3fda">paths::relative</a> (const std::string &amp;path)</td></tr>
+<tr class="separator:af9fa1050378a5c5f7609b619c6de3fda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['filename_13',['filename',['../namespacepaths.html#a8b2190367f784ecfeb7f159bb2389237',1,'paths']]]
+  ['filename_19',['filename',['../namespacepaths.html#a8b2190367f784ecfeb7f159bb2389237',1,'paths']]],
+  ['filepath_20',['filepath',['../namespacepaths.html#ab55d26085a0c9dfc31332850cfde4e2e',1,'paths']]]
 ];

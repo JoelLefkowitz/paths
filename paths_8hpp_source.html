@@ -73,30 +73,34 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 <a href="paths_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// ʕ •ᴥ•ʔ Paths - paths.hpp ʕ•ᴥ• ʔ</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// OS specific path operations and executable path retrieval.</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// Cross platform OS path operations and executable path retrieval.</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// https://github.com/joellefkowitz/paths</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// Version: 0.1.0</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">// License: MIT</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#ifndef PATHS_PATHS_H</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#define PATHS_PATHS_H</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#ifndef LIB_PATHS_PATHS_H</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#define LIB_PATHS_PATHS_H</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="components_8hpp.html">components.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="convert_8hpp.html">convert.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="inspect_8hpp.html">inspect.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="normalise_8hpp.html">normalise.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="runtime_8hpp.html">runtime.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="segments_8hpp.html">segments.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="strings_8hpp.html">strings.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="absolute_8hpp.html">absolute.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="chunks_8hpp.html">chunks.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="components_8hpp.html">components.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="convert_8hpp.html">convert.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="normalise_8hpp.html">normalise.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="relative_8hpp.html">relative.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="resolve_8hpp.html">resolve.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="runtime_8hpp.html">runtime.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="words_8hpp.html">words.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aabsolute_8hpp_html"><div class="ttname"><a href="absolute_8hpp.html">absolute.hpp</a></div></div>
+<div class="ttc" id="achunks_8hpp_html"><div class="ttname"><a href="chunks_8hpp.html">chunks.hpp</a></div></div>
 <div class="ttc" id="acomponents_8hpp_html"><div class="ttname"><a href="components_8hpp.html">components.hpp</a></div></div>
 <div class="ttc" id="aconvert_8hpp_html"><div class="ttname"><a href="convert_8hpp.html">convert.hpp</a></div></div>
-<div class="ttc" id="ainspect_8hpp_html"><div class="ttname"><a href="inspect_8hpp.html">inspect.hpp</a></div></div>
 <div class="ttc" id="anormalise_8hpp_html"><div class="ttname"><a href="normalise_8hpp.html">normalise.hpp</a></div></div>
+<div class="ttc" id="arelative_8hpp_html"><div class="ttname"><a href="relative_8hpp.html">relative.hpp</a></div></div>
+<div class="ttc" id="aresolve_8hpp_html"><div class="ttname"><a href="resolve_8hpp.html">resolve.hpp</a></div></div>
 <div class="ttc" id="aruntime_8hpp_html"><div class="ttname"><a href="runtime_8hpp.html">runtime.hpp</a></div></div>
-<div class="ttc" id="asegments_8hpp_html"><div class="ttname"><a href="segments_8hpp.html">segments.hpp</a></div></div>
-<div class="ttc" id="astrings_8hpp_html"><div class="ttname"><a href="strings_8hpp.html">strings.hpp</a></div></div>
+<div class="ttc" id="awords_8hpp_html"><div class="ttname"><a href="words_8hpp.html">words.hpp</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

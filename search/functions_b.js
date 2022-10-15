@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['unix_5fpath_96',['unix_path',['../namespacepaths.html#addb4e614ad09116103688615ced484a3',1,'paths']]]
+  ['windows_5fpath_119',['windows_path',['../namespacepaths.html#a0e6abfd74ccc93c022866e0d0d0599d9',1,'paths']]]
 ];

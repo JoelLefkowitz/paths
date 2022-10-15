@@ -1,10 +1,13 @@
 var searchData=
 [
-  ['platform_5fandroid_108',['PLATFORM_ANDROID',['../detect_8hpp.html#a5cee1c7e5378115e4d04a4fc87e40e9b',1,'detect.hpp']]],
-  ['platform_5fbsd_109',['PLATFORM_BSD',['../detect_8hpp.html#a0005f1633e87cd5d869465804354ca2a',1,'detect.hpp']]],
-  ['platform_5fdarwin_110',['PLATFORM_DARWIN',['../detect_8hpp.html#ad119ce584740cada56765beff0b0bb56',1,'detect.hpp']]],
-  ['platform_5fios_111',['PLATFORM_IOS',['../detect_8hpp.html#a29238b2c3b760685303952453cdcb37e',1,'detect.hpp']]],
-  ['platform_5flinux_112',['PLATFORM_LINUX',['../detect_8hpp.html#affcc3790504b838f9ce56a008cce0950',1,'detect.hpp']]],
-  ['platform_5fsolaris_113',['PLATFORM_SOLARIS',['../detect_8hpp.html#acf1ecc53ae6fbd3f85a4cf7699445bba',1,'detect.hpp']]],
-  ['platform_5fwindows_114',['PLATFORM_WINDOWS',['../detect_8hpp.html#a20cd3c4775f1897fb5658d2dc61382c3',1,'detect.hpp']]]
+  ['platform_5fos_5fandroid_137',['PLATFORM_OS_ANDROID',['../detect_8hpp.html#a116d3790c55ab625f99f1de1234db72a',1,'detect.hpp']]],
+  ['platform_5fos_5fbsd_138',['PLATFORM_OS_BSD',['../detect_8hpp.html#a04d794e49fa5972f224180bceb8137bc',1,'detect.hpp']]],
+  ['platform_5fos_5fios_139',['PLATFORM_OS_IOS',['../detect_8hpp.html#a3f00516c2ee31a4ffbc2c009b73d8db5',1,'detect.hpp']]],
+  ['platform_5fos_5flinux_140',['PLATFORM_OS_LINUX',['../detect_8hpp.html#acda9454baf1577bf27dd598c5cdb9429',1,'detect.hpp']]],
+  ['platform_5fos_5fmacos_141',['PLATFORM_OS_MACOS',['../detect_8hpp.html#ad1e9515ef3e6e1ff81467191e6d8c13a',1,'detect.hpp']]],
+  ['platform_5fos_5fsolaris_142',['PLATFORM_OS_SOLARIS',['../detect_8hpp.html#ac13d529a3409277d37f863c12447ff45',1,'detect.hpp']]],
+  ['platform_5fos_5ftvos_143',['PLATFORM_OS_TVOS',['../detect_8hpp.html#a81393feb8db833ebb9d8e001ee1ece91',1,'detect.hpp']]],
+  ['platform_5fos_5fwatchos_144',['PLATFORM_OS_WATCHOS',['../detect_8hpp.html#a8f1a923f780726c4c86b12bd32b75d5a',1,'detect.hpp']]],
+  ['platform_5fos_5fwindows_145',['PLATFORM_OS_WINDOWS',['../detect_8hpp.html#a41b78006dbbc8115e44b94ca0bae48b1',1,'detect.hpp']]],
+  ['platform_5funix_146',['PLATFORM_UNIX',['../detect_8hpp.html#affc7221af60296a2254e861682bbfedc',1,'detect.hpp']]]
 ];

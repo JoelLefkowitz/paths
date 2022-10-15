@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['inspect_2ecpp_65',['inspect.cpp',['../inspect_8cpp.html',1,'']]],
-  ['inspect_2ehpp_66',['inspect.hpp',['../inspect_8hpp.html',1,'']]]
+  ['detect_2ehpp_84',['detect.hpp',['../detect_8hpp.html',1,'']]]
 ];

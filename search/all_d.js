@@ -1,15 +1,20 @@
 var searchData=
 [
-  ['paths_26',['paths',['../namespacepaths.html',1,'']]],
-  ['paths_2ecpp_27',['paths.cpp',['../paths_8cpp.html',1,'']]],
-  ['paths_2ehpp_28',['paths.hpp',['../paths_8hpp.html',1,'']]],
-  ['platform_29',['platform',['../namespaceplatform.html',1,'']]],
-  ['platform_5fandroid_30',['PLATFORM_ANDROID',['../detect_8hpp.html#a5cee1c7e5378115e4d04a4fc87e40e9b',1,'detect.hpp']]],
-  ['platform_5fbsd_31',['PLATFORM_BSD',['../detect_8hpp.html#a0005f1633e87cd5d869465804354ca2a',1,'detect.hpp']]],
-  ['platform_5fdarwin_32',['PLATFORM_DARWIN',['../detect_8hpp.html#ad119ce584740cada56765beff0b0bb56',1,'detect.hpp']]],
-  ['platform_5fios_33',['PLATFORM_IOS',['../detect_8hpp.html#a29238b2c3b760685303952453cdcb37e',1,'detect.hpp']]],
-  ['platform_5flinux_34',['PLATFORM_LINUX',['../detect_8hpp.html#affcc3790504b838f9ce56a008cce0950',1,'detect.hpp']]],
-  ['platform_5fpath_35',['platform_path',['../namespacepaths.html#a0759a7541721b93ba89e9e3b4d08292f',1,'paths']]],
-  ['platform_5fsolaris_36',['PLATFORM_SOLARIS',['../detect_8hpp.html#acf1ecc53ae6fbd3f85a4cf7699445bba',1,'detect.hpp']]],
-  ['platform_5fwindows_37',['PLATFORM_WINDOWS',['../detect_8hpp.html#a20cd3c4775f1897fb5658d2dc61382c3',1,'detect.hpp']]]
+  ['paths_33',['paths',['../namespacepaths.html',1,'']]],
+  ['paths_2ehpp_34',['paths.hpp',['../paths_8hpp.html',1,'']]],
+  ['platform_35',['platform',['../namespaceplatform.html',1,'']]],
+  ['platform_5fos_5fandroid_36',['PLATFORM_OS_ANDROID',['../detect_8hpp.html#a116d3790c55ab625f99f1de1234db72a',1,'detect.hpp']]],
+  ['platform_5fos_5fbsd_37',['PLATFORM_OS_BSD',['../detect_8hpp.html#a04d794e49fa5972f224180bceb8137bc',1,'detect.hpp']]],
+  ['platform_5fos_5fios_38',['PLATFORM_OS_IOS',['../detect_8hpp.html#a3f00516c2ee31a4ffbc2c009b73d8db5',1,'detect.hpp']]],
+  ['platform_5fos_5flinux_39',['PLATFORM_OS_LINUX',['../detect_8hpp.html#acda9454baf1577bf27dd598c5cdb9429',1,'detect.hpp']]],
+  ['platform_5fos_5fmacos_40',['PLATFORM_OS_MACOS',['../detect_8hpp.html#ad1e9515ef3e6e1ff81467191e6d8c13a',1,'detect.hpp']]],
+  ['platform_5fos_5fsolaris_41',['PLATFORM_OS_SOLARIS',['../detect_8hpp.html#ac13d529a3409277d37f863c12447ff45',1,'detect.hpp']]],
+  ['platform_5fos_5ftvos_42',['PLATFORM_OS_TVOS',['../detect_8hpp.html#a81393feb8db833ebb9d8e001ee1ece91',1,'detect.hpp']]],
+  ['platform_5fos_5fwatchos_43',['PLATFORM_OS_WATCHOS',['../detect_8hpp.html#a8f1a923f780726c4c86b12bd32b75d5a',1,'detect.hpp']]],
+  ['platform_5fos_5fwindows_44',['PLATFORM_OS_WINDOWS',['../detect_8hpp.html#a41b78006dbbc8115e44b94ca0bae48b1',1,'detect.hpp']]],
+  ['platform_5fpath_45',['platform_path',['../namespacepaths.html#a0759a7541721b93ba89e9e3b4d08292f',1,'paths']]],
+  ['platform_5funix_46',['PLATFORM_UNIX',['../detect_8hpp.html#affc7221af60296a2254e861682bbfedc',1,'detect.hpp']]],
+  ['posix_47',['posix',['../namespaceplatform.html#a723ab8b87a4c68b4d2bae6dfc6919850',1,'platform']]],
+  ['posix_5fpath_48',['posix_path',['../namespacepaths.html#aa2ea512fd82f53099c1adc61052be46c',1,'paths']]],
+  ['posix_5fsep_49',['posix_sep',['../namespacepaths.html#a10912648f2be714f7f426a829b9fe24a',1,'paths']]]
 ];

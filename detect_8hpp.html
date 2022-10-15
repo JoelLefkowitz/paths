@@ -71,7 +71,8 @@ $(function() {
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
 <a href="#define-members">Macros</a> &#124;
-<a href="#enum-members">Enumerations</a>  </div>
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">detect.hpp File Reference</div>  </div>
 </div><!--header-->
@@ -86,129 +87,193 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:affcc3790504b838f9ce56a008cce0950"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="detect_8hpp.html#affcc3790504b838f9ce56a008cce0950">PLATFORM_LINUX</a>&#160;&#160;&#160;1</td></tr>
-<tr class="separator:affcc3790504b838f9ce56a008cce0950"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad119ce584740cada56765beff0b0bb56"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="detect_8hpp.html#ad119ce584740cada56765beff0b0bb56">PLATFORM_DARWIN</a>&#160;&#160;&#160;2</td></tr>
-<tr class="separator:ad119ce584740cada56765beff0b0bb56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20cd3c4775f1897fb5658d2dc61382c3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="detect_8hpp.html#a20cd3c4775f1897fb5658d2dc61382c3">PLATFORM_WINDOWS</a>&#160;&#160;&#160;3</td></tr>
-<tr class="separator:a20cd3c4775f1897fb5658d2dc61382c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0005f1633e87cd5d869465804354ca2a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="detect_8hpp.html#a0005f1633e87cd5d869465804354ca2a">PLATFORM_BSD</a>&#160;&#160;&#160;4</td></tr>
-<tr class="separator:a0005f1633e87cd5d869465804354ca2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf1ecc53ae6fbd3f85a4cf7699445bba"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="detect_8hpp.html#acf1ecc53ae6fbd3f85a4cf7699445bba">PLATFORM_SOLARIS</a>&#160;&#160;&#160;5</td></tr>
-<tr class="separator:acf1ecc53ae6fbd3f85a4cf7699445bba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29238b2c3b760685303952453cdcb37e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="detect_8hpp.html#a29238b2c3b760685303952453cdcb37e">PLATFORM_IOS</a>&#160;&#160;&#160;6</td></tr>
-<tr class="separator:a29238b2c3b760685303952453cdcb37e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5cee1c7e5378115e4d04a4fc87e40e9b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="detect_8hpp.html#a5cee1c7e5378115e4d04a4fc87e40e9b">PLATFORM_ANDROID</a>&#160;&#160;&#160;7</td></tr>
-<tr class="separator:a5cee1c7e5378115e4d04a4fc87e40e9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acda9454baf1577bf27dd598c5cdb9429"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="detect_8hpp.html#acda9454baf1577bf27dd598c5cdb9429">PLATFORM_OS_LINUX</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:acda9454baf1577bf27dd598c5cdb9429"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac13d529a3409277d37f863c12447ff45"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="detect_8hpp.html#ac13d529a3409277d37f863c12447ff45">PLATFORM_OS_SOLARIS</a>&#160;&#160;&#160;2</td></tr>
+<tr class="separator:ac13d529a3409277d37f863c12447ff45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41b78006dbbc8115e44b94ca0bae48b1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="detect_8hpp.html#a41b78006dbbc8115e44b94ca0bae48b1">PLATFORM_OS_WINDOWS</a>&#160;&#160;&#160;3</td></tr>
+<tr class="separator:a41b78006dbbc8115e44b94ca0bae48b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04d794e49fa5972f224180bceb8137bc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="detect_8hpp.html#a04d794e49fa5972f224180bceb8137bc">PLATFORM_OS_BSD</a>&#160;&#160;&#160;4</td></tr>
+<tr class="separator:a04d794e49fa5972f224180bceb8137bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1e9515ef3e6e1ff81467191e6d8c13a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="detect_8hpp.html#ad1e9515ef3e6e1ff81467191e6d8c13a">PLATFORM_OS_MACOS</a>&#160;&#160;&#160;5</td></tr>
+<tr class="separator:ad1e9515ef3e6e1ff81467191e6d8c13a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f00516c2ee31a4ffbc2c009b73d8db5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="detect_8hpp.html#a3f00516c2ee31a4ffbc2c009b73d8db5">PLATFORM_OS_IOS</a>&#160;&#160;&#160;6</td></tr>
+<tr class="separator:a3f00516c2ee31a4ffbc2c009b73d8db5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f1a923f780726c4c86b12bd32b75d5a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="detect_8hpp.html#a8f1a923f780726c4c86b12bd32b75d5a">PLATFORM_OS_WATCHOS</a>&#160;&#160;&#160;7</td></tr>
+<tr class="separator:a8f1a923f780726c4c86b12bd32b75d5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81393feb8db833ebb9d8e001ee1ece91"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="detect_8hpp.html#a81393feb8db833ebb9d8e001ee1ece91">PLATFORM_OS_TVOS</a>&#160;&#160;&#160;8</td></tr>
+<tr class="separator:a81393feb8db833ebb9d8e001ee1ece91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a116d3790c55ab625f99f1de1234db72a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="detect_8hpp.html#a116d3790c55ab625f99f1de1234db72a">PLATFORM_OS_ANDROID</a>&#160;&#160;&#160;9</td></tr>
+<tr class="separator:a116d3790c55ab625f99f1de1234db72a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affc7221af60296a2254e861682bbfedc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="detect_8hpp.html#affc7221af60296a2254e861682bbfedc">PLATFORM_UNIX</a>&#160;&#160;&#160;false</td></tr>
+<tr class="separator:affc7221af60296a2254e861682bbfedc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:a279b3c3077efba41bed9cbdf1a976ee0"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceplatform.html#a279b3c3077efba41bed9cbdf1a976ee0">platform::OS</a> { <br />
 &#160;&#160;<a class="el" href="namespaceplatform.html#a279b3c3077efba41bed9cbdf1a976ee0aa35812bc4eacdbfdbe2d4b1e38db05e2">platform::Linux</a>
-, <a class="el" href="namespaceplatform.html#a279b3c3077efba41bed9cbdf1a976ee0a6dc4909b6d7c31e4f0eb14eccc577226">platform::Darwin</a>
-, <a class="el" href="namespaceplatform.html#a279b3c3077efba41bed9cbdf1a976ee0a900213723803c28810d9d1345ebfa9c3">platform::Windows</a>
+, <a class="el" href="namespaceplatform.html#a279b3c3077efba41bed9cbdf1a976ee0ab6a0da4a1cecbe83a7e513cb035e8539">platform::Solaris</a>
 , <a class="el" href="namespaceplatform.html#a279b3c3077efba41bed9cbdf1a976ee0a06170de39bafa250aed2c020532bf9e1">platform::BSD</a>
+, <a class="el" href="namespaceplatform.html#a279b3c3077efba41bed9cbdf1a976ee0a900213723803c28810d9d1345ebfa9c3">platform::Windows</a>
 , <br />
-&#160;&#160;<a class="el" href="namespaceplatform.html#a279b3c3077efba41bed9cbdf1a976ee0ab6a0da4a1cecbe83a7e513cb035e8539">platform::Solaris</a>
-, <a class="el" href="namespaceplatform.html#a279b3c3077efba41bed9cbdf1a976ee0a47e71c4c000304bcb708c698e509daca">platform::IOS</a>
-, <a class="el" href="namespaceplatform.html#a279b3c3077efba41bed9cbdf1a976ee0a75044e5cb0452752d131d3f67422618d">platform::Android</a>
+&#160;&#160;<a class="el" href="namespaceplatform.html#a279b3c3077efba41bed9cbdf1a976ee0ab1c1f0423ea0c049aa1950df993f4173">platform::macOS</a>
+, <a class="el" href="namespaceplatform.html#a279b3c3077efba41bed9cbdf1a976ee0ac4f0d74c6a2d05146c60a5180db057b0">platform::iOS</a>
+, <a class="el" href="namespaceplatform.html#a279b3c3077efba41bed9cbdf1a976ee0a652a12ff53eacf751141eb64fd9eb18e">platform::watchOS</a>
+, <a class="el" href="namespaceplatform.html#a279b3c3077efba41bed9cbdf1a976ee0ac856f55021751e4fcaacfbb438968e4a">platform::tvOS</a>
+, <br />
+&#160;&#160;<a class="el" href="namespaceplatform.html#a279b3c3077efba41bed9cbdf1a976ee0a75044e5cb0452752d131d3f67422618d">platform::Android</a>
 <br />
  }</td></tr>
 <tr class="separator:a279b3c3077efba41bed9cbdf1a976ee0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a2203523d3df48c2f06187810b62924a2"><td class="memItemLeft" align="right" valign="top">constexpr char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceplatform.html#a2203523d3df48c2f06187810b62924a2">platform::sep</a> = '/'</td></tr>
+<tr class="separator:a2203523d3df48c2f06187810b62924a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af56098ecc8139df0b116a82013997dc6"><td class="memItemLeft" align="right" valign="top">constexpr char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceplatform.html#af56098ecc8139df0b116a82013997dc6">platform::devnull</a> [] = &quot;/dev/null&quot;</td></tr>
+<tr class="separator:af56098ecc8139df0b116a82013997dc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95c5a54e5244529cad7412951ebdeed3"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceplatform.html#a95c5a54e5244529cad7412951ebdeed3">platform::unix</a> = false</td></tr>
+<tr class="separator:a95c5a54e5244529cad7412951ebdeed3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a723ab8b87a4c68b4d2bae6dfc6919850"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceplatform.html#a723ab8b87a4c68b4d2bae6dfc6919850">platform::posix</a> = false</td></tr>
+<tr class="separator:a723ab8b87a4c68b4d2bae6dfc6919850"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fe9b6b9fe0bc124c6f17e73bcb79ad4"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceplatform.html#a6fe9b6b9fe0bc124c6f17e73bcb79ad4">platform::mobile</a> = false</td></tr>
+<tr class="separator:a6fe9b6b9fe0bc124c6f17e73bcb79ad4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="a5cee1c7e5378115e4d04a4fc87e40e9b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5cee1c7e5378115e4d04a4fc87e40e9b">&#9670;&nbsp;</a></span>PLATFORM_ANDROID</h2>
+<a id="a116d3790c55ab625f99f1de1234db72a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a116d3790c55ab625f99f1de1234db72a">&#9670;&nbsp;</a></span>PLATFORM_OS_ANDROID</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define PLATFORM_ANDROID&#160;&#160;&#160;7</td>
+          <td class="memname">#define PLATFORM_OS_ANDROID&#160;&#160;&#160;9</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a0005f1633e87cd5d869465804354ca2a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0005f1633e87cd5d869465804354ca2a">&#9670;&nbsp;</a></span>PLATFORM_BSD</h2>
+<a id="a04d794e49fa5972f224180bceb8137bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04d794e49fa5972f224180bceb8137bc">&#9670;&nbsp;</a></span>PLATFORM_OS_BSD</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define PLATFORM_BSD&#160;&#160;&#160;4</td>
+          <td class="memname">#define PLATFORM_OS_BSD&#160;&#160;&#160;4</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="ad119ce584740cada56765beff0b0bb56"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad119ce584740cada56765beff0b0bb56">&#9670;&nbsp;</a></span>PLATFORM_DARWIN</h2>
+<a id="a3f00516c2ee31a4ffbc2c009b73d8db5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f00516c2ee31a4ffbc2c009b73d8db5">&#9670;&nbsp;</a></span>PLATFORM_OS_IOS</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define PLATFORM_DARWIN&#160;&#160;&#160;2</td>
+          <td class="memname">#define PLATFORM_OS_IOS&#160;&#160;&#160;6</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a29238b2c3b760685303952453cdcb37e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a29238b2c3b760685303952453cdcb37e">&#9670;&nbsp;</a></span>PLATFORM_IOS</h2>
+<a id="acda9454baf1577bf27dd598c5cdb9429"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acda9454baf1577bf27dd598c5cdb9429">&#9670;&nbsp;</a></span>PLATFORM_OS_LINUX</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define PLATFORM_IOS&#160;&#160;&#160;6</td>
+          <td class="memname">#define PLATFORM_OS_LINUX&#160;&#160;&#160;1</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="affcc3790504b838f9ce56a008cce0950"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#affcc3790504b838f9ce56a008cce0950">&#9670;&nbsp;</a></span>PLATFORM_LINUX</h2>
+<a id="ad1e9515ef3e6e1ff81467191e6d8c13a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1e9515ef3e6e1ff81467191e6d8c13a">&#9670;&nbsp;</a></span>PLATFORM_OS_MACOS</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define PLATFORM_LINUX&#160;&#160;&#160;1</td>
+          <td class="memname">#define PLATFORM_OS_MACOS&#160;&#160;&#160;5</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="acf1ecc53ae6fbd3f85a4cf7699445bba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acf1ecc53ae6fbd3f85a4cf7699445bba">&#9670;&nbsp;</a></span>PLATFORM_SOLARIS</h2>
+<a id="ac13d529a3409277d37f863c12447ff45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac13d529a3409277d37f863c12447ff45">&#9670;&nbsp;</a></span>PLATFORM_OS_SOLARIS</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define PLATFORM_SOLARIS&#160;&#160;&#160;5</td>
+          <td class="memname">#define PLATFORM_OS_SOLARIS&#160;&#160;&#160;2</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a20cd3c4775f1897fb5658d2dc61382c3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a20cd3c4775f1897fb5658d2dc61382c3">&#9670;&nbsp;</a></span>PLATFORM_WINDOWS</h2>
+<a id="a81393feb8db833ebb9d8e001ee1ece91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81393feb8db833ebb9d8e001ee1ece91">&#9670;&nbsp;</a></span>PLATFORM_OS_TVOS</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define PLATFORM_WINDOWS&#160;&#160;&#160;3</td>
+          <td class="memname">#define PLATFORM_OS_TVOS&#160;&#160;&#160;8</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8f1a923f780726c4c86b12bd32b75d5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f1a923f780726c4c86b12bd32b75d5a">&#9670;&nbsp;</a></span>PLATFORM_OS_WATCHOS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PLATFORM_OS_WATCHOS&#160;&#160;&#160;7</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a41b78006dbbc8115e44b94ca0bae48b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41b78006dbbc8115e44b94ca0bae48b1">&#9670;&nbsp;</a></span>PLATFORM_OS_WINDOWS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PLATFORM_OS_WINDOWS&#160;&#160;&#160;3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="affc7221af60296a2254e861682bbfedc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affc7221af60296a2254e861682bbfedc">&#9670;&nbsp;</a></span>PLATFORM_UNIX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PLATFORM_UNIX&#160;&#160;&#160;false</td>
         </tr>
       </table>
 </div><div class="memdoc">
