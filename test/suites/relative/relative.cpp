@@ -2,7 +2,7 @@
 #include "../../../src/convert.hpp"
 #include "../../../src/detect.hpp"
 #include "../../../src/relative.hpp"
-#include "../../utils/vectors.hpp"
+#include "../../support/vectors.hpp"
 #include <gtest/gtest.h>
 #include <string>
 
