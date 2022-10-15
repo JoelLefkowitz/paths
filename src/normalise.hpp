@@ -8,6 +8,7 @@
 #define LIB_PATHS_NORMALISE_H
 
 #include <string>
+#include <vector>
 
 namespace paths {
     // Normalises path chunks

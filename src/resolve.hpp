@@ -8,6 +8,7 @@
 #define LIB_PATHS_RESOLVE_H
 
 #include <string>
+#include <vector>
 
 namespace paths {
     // Joins and normalises path chunks
