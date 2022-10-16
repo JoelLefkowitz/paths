@@ -15,14 +15,14 @@ def alphabetise(arr):
     return arr
 
 
-def sequences(length, tokens=["", ".", "..", "x"]):
+def sequences(length):
     """
     Generate sequences of ["", ".", "..", "x"] tokens joined wih "/"
     """
     return [
         alphabetise(list(x))
         for n in range(1, length + 1)
-        for x in itertools.product(tokens, repeat=n)
+        for x in itertools.product(["", ".", "..", "x"], repeat=n)
     ]
 
 
@@ -37,7 +37,7 @@ def fmt(x):
 
 
 if __name__ == "__main__":
-    path = lambda x: os.sep.join(x)
+    path = os.sep.join
     expected = lambda x: os.path.split(os.path.normpath(x))[0]
 
     cases = {

@@ -19,26 +19,13 @@ std::string paths::posix_path(const std::string &path) {
         ? path
         : path.substr(sep, path.length() - sep);
 
-    std::replace(
-        copy.begin(),
-        copy.end(),
-        paths::windows_sep,
-        paths::posix_sep
-    );
-
+    std::replace(copy.begin(), copy.end(), windows_sep, posix_sep);
     return copy;
 }
 
 std::string paths::windows_path(const std::string &path) {
     std::string copy(path);
-
-    std::replace(
-        copy.begin(),
-        copy.end(),
-        paths::posix_sep,
-        paths::windows_sep
-    );
-
+    std::replace(copy.begin(), copy.end(), posix_sep, windows_sep);
     return copy;
 }
 
