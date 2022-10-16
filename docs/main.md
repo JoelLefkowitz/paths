@@ -4,7 +4,7 @@ Cross platform OS path operations and executable path retrieval.
 
 This package is inspired by [whereami][whereami] and [std::filesystem][std_filesystem] but with:
 
-- Simple functions
+- Simple to use functions
 - Readable sources
 - C++11 compatability
 - Sensible exception handling

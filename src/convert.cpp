@@ -7,27 +7,38 @@
 #include "convert.hpp"
 #include "detect.hpp"
 #include <algorithm>
+#include <iostream>
 #include <string>
 
 std::string paths::posix_path(const std::string &path) {
-    std::string copy(path);
+    auto sep   = path.find(windows_sep, 0);
+    auto colon = path.find(":", 0);
+
+    std::string copy = (sep == std::string::npos ||
+                        colon == std::string::npos || sep != colon + 1)
+        ? path
+        : path.substr(sep, path.length() - sep);
+
     std::replace(
         copy.begin(),
         copy.end(),
         paths::windows_sep,
         paths::posix_sep
     );
+
     return copy;
 }
 
 std::string paths::windows_path(const std::string &path) {
     std::string copy(path);
+
     std::replace(
         copy.begin(),
         copy.end(),
         paths::posix_sep,
         paths::windows_sep
     );
+
     return copy;
 }
 
