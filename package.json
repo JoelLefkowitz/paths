@@ -13,6 +13,7 @@
   },
   "metadata": {
     "documentation": "https://paths.readthedocs.io/en/latest",
+    "packages": null,
     "languages": [
       "C++"
     ],
