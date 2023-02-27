@@ -2,39 +2,42 @@
 
 Cross platform OS path operations and executable path retrieval.
 
-This package is inspired by [whereami][whereami] and [std::filesystem][std_filesystem] but with:
+This package is inspired by [whereami](https://github.com/gpakosz/whereami) and [std::filesystem](https://en.cppreference.com/w/cpp/filesystem) but with:
 
 - Simple functions
 - Readable sources
-- C++11 compatability
+- C++11 compatibility
 - Sensible exception handling
 
-To separate the need to detect the operating system at runtime [detect][detect] is dropped in.
+To separate the need to detect the operating system at runtime [detect](https://github.com/JoelLefkowitz/detect) is dropped in.
 
 Since path manipulation is full of edge cases it is paramount to have an extensive set of unit tests. The function implementations and test fixtures are verified to be consistent with python's standard library. To provide support to multiple platforms all test suites are verified against each multiple target environments.
 
 Test environments:
 
-| Platform | Test environment | Status                                                |
-| -------- | ---------------- | ----------------------------------------------------- |
-| Linux    | Ubuntu 20.04     | ![test_ubuntu_20.04_shield][test_ubuntu_20.04_shield] |
-| Darwin   | MacOS 12         | ![test_macos_12_shield][test_macos_12_shield]         |
-| Windows  | Windows 2022     | ![test_windows_2022_shield][test_windows_2022_shield] |
+| Platform | Test environment | Status               |
+| -------- | ---------------- | -------------------- |
+| Linux    | Ubuntu 20.04     | ![test_ubuntu_20.04] |
+| Darwin   | MacOS 12         | ![test_macos_12]     |
+| Windows  | Windows 2022     | ![test_windows_2022] |
 
 ## Status
 
-| Source     | Shields                                                                                                                           |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| Project    | ![release][release_shield] ![license][license_shield]                                                                             |
-| Health     | ![publish_docs][publish_docs_shield] ![review][review_shield] ![codacy][codacy_shield] ![codacy_coverage][codacy_coverage_shield] |
-| Repository | ![issues][issues_shield] ![issues_closed][issues_closed_shield] ![pulls][pulls_shield] ![pulls_closed][pulls_closed_shield]       |
-| Activity   | ![contributors][contributors_shield] ![monthly_commits][monthly_commits_shield] ![last_commit][last_commit_shield]                |
+| Source     | Shields                                                                |
+| ---------- | ---------------------------------------------------------------------- |
+| Project    | ![latest_release] ![license] ![line_count] ![language_count]           |
+| Health     | ![documentation] ![review_action] ![codacy_quality] ![codacy_coverage] |
+| Publishers | ![conan_version]                                                       |
+| Repository | ![open_issues] ![closed_issues] ![open_pulls] ![closed_pulls]          |
+| Activity   | ![contributors] ![monthly_commits] ![last_commit]                      |
 
 ## Installation
 
-### Sources
+```bash
+conan install paths
+```
 
-Download the [sources][sources].
+You can also download the [sources](https://download-directory.github.io?url=https://github.com/joellefkowitz/paths/tree/master/src).
 
 ## Usage
 
@@ -393,7 +396,7 @@ However its python equivalent actually produces a different and unexpected resul
 os.path.split(os.path.normpath("//a/b/c"))[0] -> "//a/b/"
 ```
 
-For more details read the [documentation][pages].
+For more details read the [documentation](https://JoelLefkowitz.github.io/paths).
 
 ## Tests
 
@@ -425,35 +428,41 @@ export DIRNAME=dist
 export ABSPATH=$PWD/dist/a/b/c
 ```
 
-## Docs
+## Documentation
 
-Documentation is hosted on [GitHub Pages][pages].
+This repository's documentation is hosted on [Github Pages](https://JoelLefkowitz.github.io/paths).
 
-## Tooling
-
-### Lint
+To generate the documentation locally:
 
 ```bash
-grunt lint
+doxygen
 ```
 
-### Format
+## Linters
+
+To run linters:
 
 ```bash
-grunt format
+nps lint
+```
+
+## Formatters
+
+To run formatters:
+
+```bash
+nps format
 ```
 
 ## Continuous integration
 
-This repository uses github actions to lint and test each commit. Formatting tasks and writing/generating documentation must be done before committing new code.
+This repository uses GitHub Actions to lint and test each commit. Each commit should be formatted and its corresponding documentation should be updated.
 
 ## Versioning
 
-This repository adheres to semantic versioning standards.
-For more information on semantic versioning visit [SemVer][semver].
+This repository adheres to semantic versioning standards. For more information on semantic versioning visit [semver](https://semver.org).
 
-Bump2version is used to version and tag changes.
-For example:
+Bump2version is used to version and tag changes. For example:
 
 ```bash
 bump2version patch
@@ -469,62 +478,34 @@ Please read this repository's guidelines on [contributing](CONTRIBUTING.md) for 
 
 ## Contributors
 
-- **Joel Lefkowitz** - _Initial work_ - [Joel Lefkowitz][author]
-
-[![Buy Me A Coffee][coffee_button]][author_coffee]
+- [Joel Lefkowitz](https://github.com/joellefkowitz) - Initial work
 
 ## Remarks
 
 Lots of love to the open source community!
 
-![Be kind][be_kind]
+<p align='center'>
+    <img width=200 height=200 src='https://media.giphy.com/media/osAcIGTSyeovPq6Xph/giphy.gif' alt='Be kind to your mind' />
+    <img width=200 height=200 src='https://media.giphy.com/media/KEAAbQ5clGWJwuJuZB/giphy.gif' alt='Love each other' />
+    <img width=200 height=200 src='https://media.giphy.com/media/WRWykrFkxJA6JJuTvc/giphy.gif' alt="It's ok to have a bad day" />
+</p>
 
-<!-- Project links -->
-
-[pages]: https://JoelLefkowitz.github.io/paths
-[sources]: https://download-directory.github.io?url=https://github.com/joellefkowitz/paths/tree/master/src
-
-<!-- External links -->
-
-[be_kind]: https://media.giphy.com/media/osAcIGTSyeovPq6Xph/giphy.gif
-[detect]: https://github.com/JoelLefkowitz/detect
-[semver]: http://semver.org/
-[std_filesystem]: https://en.cppreference.com/w/cpp/filesystem
-[whereami]: https://github.com/gpakosz/whereami
-
-<!-- Contributor links -->
-
-[author]: https://github.com/JoelLefkowitz
-[author_coffee]: https://www.buymeacoffee.com/JoelLefkowitz
-[coffee_button]: https://cdn.buymeacoffee.com/buttons/default-blue.png
-
-<!-- Test environment shields -->
-
-[test_ubuntu_20.04_shield]: https://img.shields.io/github/workflow/status/JoelLefkowitz/paths/Test%20on%20Ubuntu%2020.04?label=tests
-[test_macos_12_shield]: https://img.shields.io/github/workflow/status/JoelLefkowitz/paths/Test%20on%20MacOS%2012?label=tests
-[test_windows_2022_shield]: https://img.shields.io/github/workflow/status/JoelLefkowitz/paths/Test%20on%20Windows%202022?label=tests
-
-<!-- Project shields -->
-
-[release_shield]: https://img.shields.io/github/v/tag/JoelLefkowitz/paths
-[license_shield]: https://img.shields.io/github/license/JoelLefkowitz/paths
-
-<!-- Health shields -->
-
-[publish_docs_shield]: https://img.shields.io/github/workflow/status/JoelLefkowitz/paths/Publish%20documentation?label=docs
-[review_shield]: https://img.shields.io/github/workflow/status/JoelLefkowitz/paths/Review?label=review
-[codacy_shield]: https://img.shields.io/codacy/grade/61e4785a984c42bbbdf1554f025d0f7a
-[codacy_coverage_shield]: https://img.shields.io/codacy/coverage/61e4785a984c42bbbdf1554f025d0f7a
-
-<!-- Repository shields -->
-
-[issues_shield]: https://img.shields.io/github/issues/JoelLefkowitz/paths
-[issues_closed_shield]: https://img.shields.io/github/issues-closed/JoelLefkowitz/paths
-[pulls_shield]: https://img.shields.io/github/issues-pr/JoelLefkowitz/paths
-[pulls_closed_shield]: https://img.shields.io/github/issues-pr-closed/JoelLefkowitz/paths
-
-<!-- Activity shields -->
-
-[contributors_shield]: https://img.shields.io/github/contributors/JoelLefkowitz/paths
-[monthly_commits_shield]: https://img.shields.io/github/commit-activity/m/JoelLefkowitz/paths
-[last_commit_shield]: https://img.shields.io/github/last-commit/JoelLefkowitz/paths
+[test_ubuntu_20.04]: https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/paths/test_ubuntu_20.04.yml "Review action"
+[test_macos_12 ]: https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/paths/test_macos_12.yml "Review action"
+[test_windows_2022]: https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/paths/test_windows_2022.yml "Review action"
+[latest_release]: https://img.shields.io/github/v/tag/joellefkowitz/paths "Latest release"
+[license]: https://img.shields.io/github/license/joellefkowitz/paths "License"
+[line_count]: https://img.shields.io/tokei/lines/github/joellefkowitz/paths "Line count"
+[language_count]: https://img.shields.io/github/languages/count/joellefkowitz/paths "Language count"
+[documentation]: https://img.shields.io/readthedocs/paths "Documentation"
+[review_action]: https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/paths/review.yml "Review action"
+[codacy_quality]: https://img.shields.io/codacy/grade/61e4785a984c42bbbdf1554f025d0f7a "Codacy quality"
+[codacy_coverage]: https://img.shields.io/codacy/coverage/61e4785a984c42bbbdf1554f025d0f7a "Codacy coverage"
+[conan_version]: https://img.shields.io/conan/v/paths "Conan Version"
+[open_issues]: https://img.shields.io/github/issues/joellefkowitz/paths "Open issues"
+[closed_issues]: https://img.shields.io/github/issues-closed/joellefkowitz/paths "Closed issues"
+[open_pulls]: https://img.shields.io/github/issues-pr/joellefkowitz/paths "Open pull requests"
+[closed_pulls]: https://img.shields.io/github/issues-pr-closed/joellefkowitz/paths "Closed pull requests"
+[contributors]: https://img.shields.io/github/contributors/joellefkowitz/paths "Contributors"
+[monthly_commits]: https://img.shields.io/github/commit-activity/m/joellefkowitz/paths "Monthly commits"
+[last_commit]: https://img.shields.io/github/last-commit/joellefkowitz/paths "Last commit"

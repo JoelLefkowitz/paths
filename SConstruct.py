@@ -26,10 +26,7 @@ flags = [
     "-std=c++11",
 ]
 
-libs = [
-    "gtest",
-    "pthread",
-]
+libs = []
 
 warnings = [
     "all",
@@ -61,7 +58,7 @@ env.SetOption("num_jobs", psutil.cpu_count())
 
 test = env.Program(
     target="dist/test",
-    source=find(["src/**/*.cpp", "test/**/*.cpp"], []),
+    source=find(["src/**/*.cpp", "tests/**/*.cpp"], []),
 )
 
 env.Alias("test", "dist/test")

@@ -1,0 +1,12 @@
+{
+  "[cpp]": {
+    "editor.defaultFormatter": "ms-vscode.cpptools"
+  },
+  "explorer.sortOrder": "default",
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/package-lock.json": true,
+    "**/venv": true,
+    "**/yarn.lock": true
+  }
+}

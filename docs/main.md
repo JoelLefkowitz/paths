@@ -2,17 +2,6 @@
 
 Cross platform OS path operations and executable path retrieval.
 
-This package is inspired by [whereami][whereami] and [std::filesystem][std_filesystem] but with:
-
-- Simple functions
-- Readable sources
-- C++11 compatability
-- Sensible exception handling
-
-To separate the need to detect the operating system at runtime [detect][detect] is dropped in.
-
-Since path manipulation is full of edge cases it is paramount to have an extensive set of unit tests. The function implementations and test fixtures are verified to be consistent with python's standard library. To provide support to multiple platforms all test suites are verified against each multiple target environments.
-
 ```cpp
 namespace paths {
     // Gets the path of the current executable file
@@ -367,7 +356,3 @@ However its python equivalent actually produces a different and unexpected resul
 ```py
 os.path.split(os.path.normpath("//a/b/c"))[0] -> "//a/b/"
 ```
-
-[detect]: https://github.com/JoelLefkowitz/detect
-[std_filesystem]: https://en.cppreference.com/w/cpp/filesystem
-[whereami]: https://github.com/gpakosz/whereami

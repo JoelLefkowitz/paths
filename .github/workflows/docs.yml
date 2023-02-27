@@ -14,14 +14,11 @@ jobs:
       - name: Checkout the source code
         uses: actions/checkout@v2
 
-      - name: Install node and yarn dependencies
-        uses: ./.github/actions/node
-
-      - name: Install apt dependencies
-        run: sudo apt install -y doxygen=1.9.1-2ubuntu2
+      - name: Install dependencies
+        uses: ./.github/actions/install
 
       - name: Build docs
-        run: grunt docs
+        run: doxygen
 
       - name: Publish docs
         uses: JamesIves/github-pages-deploy-action@v4
