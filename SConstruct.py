@@ -26,7 +26,9 @@ flags = [
     "-std=c++11",
 ]
 
-libs = []
+libs = [
+    "gtest"
+]
 
 warnings = [
     "all",
