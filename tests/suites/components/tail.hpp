@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include "../../../src/detect.hpp"
 
 struct TailTestCase {
     std::string path;
@@ -361,7 +362,10 @@ const std::vector<TailTestCase> windows_cases = {
 const std::vector<TailTestCase> posix_cases = {
     {"C:",    ""     },
     {"//a/b", "//a"  },
-    {"//a/b", "//a/b"},
 };
+
+
+const std::vector<TailTestCase> platform_cases =
+    platform::os == platform::Windows ? windows_cases : posix_cases;
 
 #endif

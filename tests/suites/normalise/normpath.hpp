@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include "../../../src/detect.hpp"
 
 struct NormpathTestCase {
     std::string path;
@@ -1392,7 +1393,7 @@ const std::vector<NormpathTestCase> posix_cases = {
     {"C:/a/b",              "C:/a/b" },
     {"C:/a/b/..",           "C:/a"   },
     {"C:/a/b/../..",        "C:"     },
-    {"C:/a/b/../../..",     ""       },
+    {"C:/a/b/../../..",     "."      },
     {"//a/b/c",             "//a/b/c"},
     {"//a/b/c/..",          "//a/b"  },
     {"//a/b/c/../..",       "//a"    },
@@ -1403,5 +1404,8 @@ const std::vector<NormpathTestCase> posix_cases = {
     {"///a/b/c/../..",      "/a"     },
     {"///a/b/c/../../..",   "/"      },
 };
+
+const std::vector<NormpathTestCase> platform_cases =
+    platform::os == platform::Windows ? windows_cases : posix_cases;
 
 #endif

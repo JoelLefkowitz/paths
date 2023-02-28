@@ -4,7 +4,7 @@
 #include <string>
 
 TEST(chunks, split) {
-    for (const auto &test : cases) {
+for (const auto &test : cases) {
         EXPECT_EQ(paths::split(test.str, test.delimiter), test.expected);
     }
 }

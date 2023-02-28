@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include "../../../src/detect.hpp"
 
 struct AbsoluteTestCase {
     std::string path;
@@ -1385,5 +1386,8 @@ const std::vector<AbsoluteTestCase> posix_cases = {
     {"//a/b/c", true },
     {"C:/a/b",  false},
 };
+
+const std::vector<AbsoluteTestCase> platform_cases =
+    platform::os == platform::Windows ? windows_cases : posix_cases;
 
 #endif

@@ -15,5 +15,18 @@ std::string paths::resolve(const std::vector<std::string> &paths) {
 }
 
 std::vector<std::string> paths::segments(const std::string &path) {
-    return split(normpath(path), platform::sep);
+    auto chunks = split(normpath(path), platform::sep);
+
+    std::vector<std::string> filtered;
+
+    auto size = chunks.size();
+
+    for (std::size_t i = 0; i != size; ++i) {
+        if (chunks[i] != "" ||
+            (0 < i && i < size && chunks[i - 1] != "" && chunks[i + 1] != "")) {
+            filtered.push_back(chunks[i]);
+        }
+    }
+
+    return filtered;
 }

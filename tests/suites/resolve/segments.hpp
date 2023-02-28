@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include "../../../src/detect.hpp"
 
 struct SegmentsTestCase {
     std::string              path;
@@ -363,5 +364,8 @@ const std::vector<SegmentsTestCase> posix_cases = {
     {"//a/b/c",  {"a", "b", "c"} },
     {"///a/b/c", {"a", "b", "c"} },
 };
+
+const std::vector<SegmentsTestCase> platform_cases =
+    platform::os == platform::Windows ? windows_cases : posix_cases;
 
 #endif

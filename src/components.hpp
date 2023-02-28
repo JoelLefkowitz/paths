@@ -25,6 +25,26 @@ namespace paths {
     //   drive("//a/b/c") -> ""
     std::string drive(const std::string &path);
 
+    // Gets a path's "domain style" drive
+    //
+    // Usage:
+    // [Windows]
+    //   domain_drive("//a/b/c") -> "//a/b"
+    //
+    // [Otherwise]
+    //   domain_drive("//a/b/c") -> ""
+    std::string domain_drive(const std::string &path);
+
+    // Gets a path's "letter style" drive
+    //
+    // Usage:
+    // [Windows]
+    //   drive("C:/a/b") -> "C:"
+    //
+    // [Otherwise]
+    //   drive("C:/a/b") -> ""
+    std::string letter_drive(const std::string &path);
+
     // Gets a path's head
     //
     // Complies with its python equivalent:

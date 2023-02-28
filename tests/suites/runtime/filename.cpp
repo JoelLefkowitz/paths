@@ -4,5 +4,5 @@
 #include <string>
 
 TEST(runtime, filename) {
-    EXPECT_EQ(paths::filename(), test::environment("FILENAME"));
+EXPECT_EQ(paths::filename(), test::environment("FILENAME"));
 }

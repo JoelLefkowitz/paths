@@ -390,7 +390,7 @@ The docstring for `tail` says:
 //   tail("//a/b/c") -> "//a/b"
 ```
 
-However its python equivalent actually produces a different and unexpected result:
+However its python equivalent produces a different and unexpected result which this library deviates from in the interest of consistency:
 
 ```py
 os.path.split(os.path.normpath("//a/b/c"))[0] -> "//a/b/"

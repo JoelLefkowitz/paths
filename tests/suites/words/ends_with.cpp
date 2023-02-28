@@ -4,7 +4,7 @@
 #include <string>
 
 TEST(words, ends_with) {
-    for (const auto &test : cases) {
+for (const auto &test : cases) {
         EXPECT_EQ(paths::ends_with(test.str, test.prefix), test.expected);
     }
 }

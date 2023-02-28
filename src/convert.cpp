@@ -5,29 +5,30 @@
 // License: MIT
 
 #include "convert.hpp"
+#include "components.hpp"
 #include "detect.hpp"
 #include <string>
 
-std::string paths::posix_path(const std::string &path) {
-    std::string copy(path);
+std::string paths::posix_path(std::string path) {
     std::replace(
-        copy.begin(),
-        copy.end(),
+        path.begin(),
+        path.end(),
         paths::windows_sep,
         paths::posix_sep
     );
-    return copy;
+
+    return letter_drive(path).empty() ? path : path.substr(2, path.length());
 }
 
-std::string paths::windows_path(const std::string &path) {
-    std::string copy(path);
+std::string paths::windows_path(std::string path) {
     std::replace(
-        copy.begin(),
-        copy.end(),
+        path.begin(),
+        path.end(),
         paths::posix_sep,
         paths::windows_sep
     );
-    return copy;
+
+    return path;
 }
 
 std::string paths::platform_path(const std::string &path) {

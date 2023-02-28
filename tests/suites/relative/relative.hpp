@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include "../../../src/detect.hpp"
 
 struct RelativeTestCase {
     std::string path;
@@ -1385,5 +1386,8 @@ const std::vector<RelativeTestCase> posix_cases = {
     {"C:/a/b",  true },
     {"//a/b/c", false},
 };
+
+const std::vector<RelativeTestCase> platform_cases =
+    platform::os == platform::Windows ? windows_cases : posix_cases;
 
 #endif

@@ -1,18 +1,18 @@
 #include "segments.hpp"
 #include "../../../src/convert.hpp"
-#include "../../../src/detect.hpp"
 #include "../../../src/resolve.hpp"
-#include "../../support/vectors.hpp"
+#include "../../../src/vectors.hpp"
 #include <gtest/gtest.h>
 
 TEST(resolve, segments) {
-    const auto cases = test::concat(
-        common_cases,
-        platform::os == platform::Windows ? windows_cases : posix_cases
-    );
+    for (const auto &test : common_cases) {
+        EXPECT_EQ(
+            paths::segments(paths::platform_path(test.path)),
+            test.expected
+        );
+    }
 
-    for (const auto &test : cases) {
-        auto path = paths::platform_path(test.path);
-        EXPECT_EQ(paths::segments(path), test.expected);
+    for (const auto &test : platform_cases) {
+        EXPECT_EQ(paths::segments(test.path), test.expected);
     }
 }

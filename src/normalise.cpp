@@ -7,26 +7,20 @@
 #include "normalise.hpp"
 #include "absolute.hpp"
 #include "chunks.hpp"
+#include "components.hpp"
 #include "detect.hpp"
 #include "relative.hpp"
+#include "vectors.hpp"
 #include "words.hpp"
 #include <algorithm>
-#include <iostream>
 #include <string>
 #include <vector>
 
 std::vector<std::string> paths::normalise(const std::vector<std::string> &paths
 ) {
-    std::vector<std::string> contentful;
-
-    std::copy_if(
-        paths.begin(),
-        paths.end(),
-        std::back_inserter(contentful),
-        [](const std::string &x) { return x != "" && x != "."; }
-    );
-
     std::vector<std::string> filtered;
+
+    auto contentful = filter(paths, {"", "."});
 
     for (auto i = contentful.begin(); i != contentful.end(); ++i) {
         if (*i == ".." && !filtered.empty() && filtered.back() != "..") {
@@ -43,15 +37,15 @@ std::string paths::normpath(const std::string &path) {
     auto normalised = normalise(split(path, platform::sep));
 
     if (absolute(path)) {
-        std::vector<std::string> _normalised = {};
+        std::vector<std::string> equivalent = {};
 
         for (auto i = normalised.begin(); i != normalised.end(); ++i) {
-            if (*i != ".." || !_normalised.empty()) {
-                _normalised.push_back(*i);
+            if (*i != ".." || !equivalent.empty()) {
+                equivalent.push_back(*i);
             }
         }
 
-        normalised = _normalised;
+        normalised = equivalent;
 
         if (normalised == std::vector<std::string>({"."})) {
             normalised = {};
@@ -60,16 +54,16 @@ std::string paths::normpath(const std::string &path) {
 
     auto joined = join(normalised, platform::sep);
 
-    // TODO: Move to drive
+    std::vector<char> chars(path.begin(), path.end());
 
-    if (starts_with(path, std::string(2, platform::sep)) &&
-        !starts_with(path, std::string(3, platform::sep))) {
-        return std::string(2, platform::sep) + joined;
+    if (count_leading(chars, platform::sep) == 2) {
+        joined = std::string(2, platform::sep) + joined;
     }
 
-    if (absolute(path)) {
-        return platform::sep + joined;
+    else if (absolute(path)) {
+        joined = platform::sep + joined;
     }
 
-    return joined;
+    auto prefix = drive(path);
+    return starts_with(prefix, "//") ? joined : prefix + joined;
 }
