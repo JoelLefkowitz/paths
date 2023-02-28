@@ -1,5 +1,6 @@
 #include "environment.hpp"
 #include <cstdlib>
+#include <stdexcept>
 #include <string>
 
 std::string test::environment(const std::string &name) {
