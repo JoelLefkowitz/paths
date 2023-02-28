@@ -55,8 +55,8 @@ runs:
 
     - name: Install python dependencies
       shell: bash
-      run: pip install cppclean emoji graphviz psutil scons trufflehog3
+      run: pip install cppclean emoji psutil scons trufflehog3
 
     - name: Install apt dependencies
       shell: bash
-      run: sudo apt install -y cppcheck doxygen=1.9.1-2ubuntu2
+      run: sudo apt install -y cppcheck graphviz doxygen=1.9.1-2ubuntu2
