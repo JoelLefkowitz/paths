@@ -8,6 +8,7 @@
 #include "chunks.hpp"
 #include "detect.hpp"
 #include "normalise.hpp"
+#include <cstddef>
 #include <string>
 
 std::string paths::resolve(const std::vector<std::string> &paths) {

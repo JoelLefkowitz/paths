@@ -7,6 +7,7 @@
 #ifndef LIB_PATHS_VECTORS_H
 #define LIB_PATHS_VECTORS_H
 
+#include <cstddef>
 #include <vector>
 
 namespace paths {

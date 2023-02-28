@@ -1,6 +1,7 @@
 #ifndef TEST_PATHS_COUNT_TRAILING_H
 #define TEST_PATHS_COUNT_TRAILING_H
 
+#include <cstddef>
 #include <vector>
 
 struct CountTrailingTestCase {

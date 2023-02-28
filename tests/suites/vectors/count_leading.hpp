@@ -1,6 +1,7 @@
 #ifndef TEST_PATHS_COUNT_LEADING_H
 #define TEST_PATHS_COUNT_LEADING_H
 
+#include <cstddef>
 #include <vector>
 
 struct CountLeadingTestCase {
