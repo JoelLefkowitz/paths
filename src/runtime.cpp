@@ -33,7 +33,7 @@ std::string paths::filepath() {
 
 std::string paths::filepath() {
     wchar_t buffer[MAX_PATH];
-    auto    size = GetModuleFilepathW(NULL, buffer, MAX_PATH);
+    auto    size = GetModuleFileNameW(NULL, buffer, MAX_PATH);
 
     if (size > MAX_PATH + 1) {
         throw std::length_error(
