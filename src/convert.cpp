@@ -8,6 +8,7 @@
 #include "components.hpp"
 #include "detect.hpp"
 #include <string>
+#include <algorithm>
 
 std::string paths::posix_path(std::string path) {
     std::replace(
