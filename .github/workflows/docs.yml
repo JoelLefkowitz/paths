@@ -18,7 +18,9 @@ jobs:
         uses: ./.github/actions/install
 
       - name: Build docs
-        run: doxygen
+        run: | 
+          doxygen
+          ls docs/build
 
       - name: Publish docs
         uses: JamesIves/github-pages-deploy-action@v4
