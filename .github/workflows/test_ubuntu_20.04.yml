@@ -32,7 +32,7 @@ jobs:
       - name: Build tests
         run: |
           mkdir dist
-          clang++ -std=c++11 -g $(find src test -name "*.cpp") -lpthread -lgtest -o dist/test
+          clang++ -std=c++11 -g $(find src tests -name "*.cpp") -lpthread -lgtest -o dist/test
 
       - name: Run tests and generate coverage
         id: coverage

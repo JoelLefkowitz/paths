@@ -8,6 +8,7 @@ exclude:
 
   - message: Docs output
     paths:
+      - "*.dot"
       - "*8cpp*"
       - "*8hpp*"
       - docs

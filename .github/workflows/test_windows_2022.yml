@@ -30,7 +30,7 @@ jobs:
       - name: Build tests
         run: |
           mkdir dist
-          g++ -std=c++11 $(find src test -name "*.cpp") -Igoogletest/googletest/include -Lgoogletest/build/lib -lgtest -o dist/test
+          g++ -std=c++11 $(find src tests -name "*.cpp") -Igoogletest/googletest/include -Lgoogletest/build/lib -lgtest -o dist/test
 
       - name: Run tests
         run: |

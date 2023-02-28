@@ -403,7 +403,7 @@ For more details read the [documentation](https://JoelLefkowitz.github.io/paths)
 To compile the test suites:
 
 ```bash
-clang++ -std=c++11 $(find src test -name "*.cpp") -lpthread -lgtest
+clang++ -std=c++11 $(find src tests -name "*.cpp") -lpthread -lgtest
 ```
 
 For more flexible local development and to compile the test suites in parallel install `scons` and the `SConstruct.py` script's dependencies:
