@@ -55,7 +55,7 @@ runs:
 
     - name: Install python dependencies
       shell: bash
-      run: pip install cppclean emoji scons psutil trufflehog3
+      run: pip install cppclean emoji graphviz psutil scons trufflehog3
 
     - name: Install apt dependencies
       shell: bash
