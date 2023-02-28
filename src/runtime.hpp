@@ -9,8 +9,6 @@
 
 #include <string>
 
-const size_t PATH_MAX = 1024;
-
 namespace paths {
     // Gets the path of the current executable file
     std::string filepath();

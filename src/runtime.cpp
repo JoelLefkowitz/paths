@@ -59,6 +59,8 @@ std::string paths::filepath() {
 #include <mach-o/dyld.h>
 #include <stdexcept>
 
+const size_t PATH_MAX = 1024;
+
 std::string paths::filepath() {
     auto bufsize = static_cast<uint32_t>(PATH_MAX);
 
