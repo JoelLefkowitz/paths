@@ -36,8 +36,8 @@ std::string paths::domain_drive(const std::string &path) {
 
 std::string paths::drive(const std::string &path) {
     if (platform::os == platform::Windows) {
-        auto drive = letter_drive(path);
-        return drive.empty() ? domain_drive(path) : drive;
+        auto letter = letter_drive(path);
+        return letter.empty() ? domain_drive(path) : letter;
     }
 
     return "";

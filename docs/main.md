@@ -293,6 +293,7 @@ namespace paths {
 
 ## Commentary
 
+
 ### Terminology
 
 Effort has been made to use consistent terminology in this library's source. These terms appear frequently as variable names and in docstrings:
@@ -303,7 +304,7 @@ Effort has been made to use consistent terminology in this library's source. The
 
 ### Notes
 
-Cross platform support for file discovery and iteration will be added in a future release:
+Cross platform support for file discovery and iteration can be added in a future release:
 
 - `exists`
 - `lexists`
@@ -351,7 +352,7 @@ The docstring for `tail` says:
 //   tail("//a/b/c") -> "//a/b"
 ```
 
-However its python equivalent actually produces a different and unexpected result:
+However its python equivalent produces a different and unexpected result which this library deviates from in the interest of consistency:
 
 ```py
 os.path.split(os.path.normpath("//a/b/c"))[0] -> "//a/b/"

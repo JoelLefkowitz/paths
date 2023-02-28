@@ -342,7 +342,7 @@ Effort has been made to use consistent terminology in this library's source. The
 
 ### Notes
 
-Cross platform support for file discovery and iteration will be added in a future release:
+Cross platform support for file discovery and iteration can be added in a future release:
 
 - `exists`
 - `lexists`

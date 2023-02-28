@@ -6,21 +6,21 @@
   /* Content */
   --bgcolor: #ffffff;
   --bgfont: #303030;
-  --bgfont2: #0d97f3;
-  --bgfont-hover: #0d97f3;
+  --bgfont2: #0d57c3;
+  --bgfont-hover: #0d57c3;
   --bgfont-hover-text-decoration: none;
   --bgborder: #7d7d7d;
   --bgborder2: #f6f6f6;
   /* Main Header */
   --bg1color: #303030;
   --bg1font: #ffffff;
-  --bg1font2: #0d97f3;
+  --bg1font2: #0d57c3;
   /* Second header */
   --bg2color: #e2e2e2;
   --bg2font: #7d7d7d;
   --bg2-hover-bg: #ffffff;
   --bg2-hover-font: #303030;
-  --bg2-hover-topborder: #0d97f3;
+  --bg2-hover-topborder: #0d57c3;
   /* Third header */
   --bg3color: #f6f6f6;
   --bg3font: #303030;
@@ -37,19 +37,19 @@
   --code-line-bg: #d8d8d8;
   /* Namespace List, Class List icon */
   --icon-bg: #303030;
-  --icon-font: #0d97f3;
+  --icon-font: #0d57c3;
   /* Class Index */
   --qindex-menu-bg: #303030;
   --qindex-menu-font: #ffffff;
-  --qindex-menu-font-hover: #0d97f3;
-  --qindex-icon-bg: #0d97f3;
+  --qindex-menu-font-hover: #0d57c3;
+  --qindex-icon-bg: #0d57c3;
   --qindex-icon-font: #303030;
   /* Member table */
   --mem-title-bg: #303030;
   --mem-title-font: #ffffff;
-  --mem-subtitle-bg: #0d97f3;
-  --mem-subtitle-font: #303030;
-  --mem-subtitle-font-hover: #303030;
+  --mem-subtitle-bg: #0d57c3;
+  --mem-subtitle-font: #eeeeee;
+  --mem-subtitle-font-hover: #eeeeee;
   --mem-content-bg: #ffffff;
   --mem-content-font: #303030;
   --mem-content-border: #f6f6f6;
@@ -58,7 +58,7 @@
   --nav-tree-bg-hover: #ffffff;
   --nav-tree-font: #7d7d7d;
   --nav-tree-font-hover: #303030;
-  --nav-tree-bg-selected: #0d97f3;
+  --nav-tree-bg-selected: #0d57c3;
   --nav-tree-font-selected: #303030;
 }
 
