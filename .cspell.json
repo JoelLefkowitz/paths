@@ -22,6 +22,7 @@
   "words": [
     "abspath",
     "bumpversion",
+    "choco",
     "cobertura",
     "codacy",
     "constexpr",

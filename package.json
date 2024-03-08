@@ -7,6 +7,13 @@
   "author": "Joel Lefkowitz",
   "repository": "https://github.com/joellefkowitz/paths",
   "homepage": "https://joellefkowitz.github.io/paths",
+  "keywords": [
+    "path",
+    "runtime",
+    "relative",
+    "absolute",
+    "source"
+  ],
   "metadata": {
     "publisher": null,
     "languages": [
