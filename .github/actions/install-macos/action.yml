@@ -1,0 +1,56 @@
+name: Install
+description: Install dependencies
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout the source code
+      uses: actions/checkout@v3
+
+    - name: Fetch yarn's cache directory path
+      id: yarn-cache-dir-path
+      shell: bash
+      run: echo "YARN_CACHE_DIR=$(yarn cache dir)" >> $GITHUB_ENV
+
+    - name: Set up yarn package caching
+      uses: actions/cache@v3
+      id: yarn-cache
+      with:
+        path: ${{ env.YARN_CACHE_DIR }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+
+    - name: Set the node version
+      uses: actions/setup-node@v3
+      with:
+        node-version: "18"
+
+    - name: Set the python version
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+
+    - name: Install apt dependencies
+      shell: bash
+      run: brew install cppcheck clang-format doxygen kcov
+
+    - name: Install gtest
+      shell: bash
+      run: |
+        git clone https://github.com/google/googletest.git -b release-1.12.0
+        mkdir googletest/build
+        cd googletest/build
+        cmake ..
+        make
+        sudo make install
+        cd ../..
+        rm -rf googletest
+
+    - name: Install node dependencies
+      shell: bash
+      run: yarn install --frozen-lockfile
+
+    - name: Install python dependencies
+      shell: bash
+      run: pip install -r requirements.txt
