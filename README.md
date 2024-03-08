@@ -408,11 +408,11 @@ scons tests
 The runtime tests use environment variables to confirm they retrieve the executable path of the tests binary. For example, if the tests binary is at `dist/test`:
 
 ```bash
-export FILEPATH $PWD/dist/tests
-export FILENAME tests
-export DIRPATH $PWD/dist
-export DIRNAME dist
-export ABSPATH $PWD/dist/a/b/c
+export FILEPATH=$PWD/dist/tests
+export FILENAME=tests
+export DIRPATH=$PWD/dist
+export DIRNAME=dist
+export ABSPATH=$PWD/dist/a/b/c
 ```
 
 ```bash

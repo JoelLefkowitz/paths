@@ -22,6 +22,8 @@
   "words": [
     "abspath",
     "bumpversion",
+    "cobertura",
+    "codacy",
     "constexpr",
     "cppcheck",
     "cppclean",
@@ -44,6 +46,7 @@
     "islink",
     "iterdir",
     "iwyu",
+    "kcov",
     "lefkowitz",
     "lexists",
     "libpath",

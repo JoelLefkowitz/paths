@@ -1,4 +1,5 @@
 ConfigurationNotChecked
 missingInclude
 toomanyconfigs
-unusedStructMember
+unusedFunction
+
