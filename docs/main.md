@@ -293,7 +293,6 @@ namespace paths {
 
 ## Commentary
 
-
 ### Terminology
 
 Effort has been made to use consistent terminology in this library's source. These terms appear frequently as variable names and in docstrings:
@@ -339,7 +338,7 @@ The docstring for `normalise` says:
 //   os.path.normpath(os.path.join(*paths)).split(os.sep)
 ```
 
-In this library the implementation of `normpath` instead calls `normalise` to do most of the heavy lifting. This design allows other functions that act on path chunks such as `resolve` and `segments` to use `normalise` where calling `normpath` would require joining the chunks beforehand and then spliting the normalised result.
+In this library the implementation of `normpath` instead calls `normalise` to do most of the heavy lifting. This design allows other functions that act on path chunks such as `resolve` and `segments` to use `normalise` where calling `normpath` would require joining the chunks beforehand and then splitting the normalised result.
 
 The docstring for `tail` says:
 

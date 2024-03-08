@@ -26,8 +26,7 @@ std::string paths::letter_drive(const std::string &path) {
 std::string paths::domain_drive(const std::string &path) {
     auto chunks = split(path, "/");
 
-    if (starts_with(path, "//") && !starts_with(path, "///") &&
-        chunks.size() > 2) {
+    if (starts_with(path, "//") && !starts_with(path, "///") && chunks.size() > 2) {
         return "//" + chunks.front() + "/" + chunks[1];
     }
 

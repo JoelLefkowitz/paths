@@ -21,10 +21,7 @@ namespace paths {
     //
     // Usage:
     //   join({"a", "b", "c"}, ",") -> "a,b,c"
-    std::string join(
-        const std::vector<std::string> &strs,
-        const std::string              &delimiter
-    );
+    std::string join(const std::vector<std::string> &strs, const std::string &delimiter);
 
     // Splits a string at each occurrence of a delimeter
     //
@@ -38,10 +35,7 @@ namespace paths {
     // Usage:
     //   split("abc", "") -> {"a", "b", "c"}
     //   split("a,b,c", ",") -> {"a", "b", "c"}
-    std::vector<std::string> split(
-        const std::string &str,
-        const std::string &delimiter
-    );
+    std::vector<std::string> split(const std::string &str, const std::string &delimiter);
 } // namespace paths
 
 #endif

@@ -12,10 +12,7 @@ std::vector<T> paths::concat(const std::vector<T> &vec, const T &suffix) {
 }
 
 template <typename T>
-std::vector<T> paths::concat(
-    const std::vector<T> &vec,
-    const std::vector<T> &suffix
-) {
+std::vector<T> paths::concat(const std::vector<T> &vec, const std::vector<T> &suffix) {
     std::vector<T> copy(vec);
     copy.insert(copy.end(), suffix.begin(), suffix.end());
     return copy;
@@ -36,24 +33,16 @@ std::vector<T> paths::reverse(const std::vector<T> &vec) {
 
 template <typename T>
 bool paths::contains(const std::vector<T> &vec, const T &x) {
-    return std::any_of(vec.begin(), vec.end(), [&x](const T &y) {
-        return x == y;
-    });
+    return std::any_of(vec.begin(), vec.end(), [&x](const T &y) { return x == y; });
 }
 
 template <typename T>
-std::vector<T> paths::filter(
-    const std::vector<T> &vec,
-    const std::vector<T> &targets
-) {
+std::vector<T> paths::filter(const std::vector<T> &vec, const std::vector<T> &targets) {
     std::vector<T> copy;
 
-    std::copy_if(
-        vec.begin(),
-        vec.end(),
-        std::back_inserter(copy),
-        [&targets](const T &x) { return !contains(targets, x); }
-    );
+    std::copy_if(vec.begin(), vec.end(), std::back_inserter(copy), [&targets](const T &x) {
+        return !contains(targets, x);
+    });
 
     return copy;
 }
@@ -86,10 +75,7 @@ std::pair<std::vector<T>, std::vector<T>> paths::trim_leading_matches(
 }
 
 template <typename T>
-std::pair<std::vector<T>, std::vector<T>> paths::trim_trailing_matches(
-    std::vector<T> x,
-    std::vector<T> y
-) {
+std::pair<std::vector<T>, std::vector<T>> paths::trim_trailing_matches(std::vector<T> x, std::vector<T> y) {
     auto size = std::min(x.size(), y.size());
 
     for (size_t i = 0; i != size; ++i) {

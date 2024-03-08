@@ -1,41 +1,26 @@
 name: Test on MacOS 12
 
-on:
-  push:
-    branches:
-      - master
+on: [push, pull_request]
 
 jobs:
-  test:
-    name: Test on MacOS 12
+  review:
     runs-on: macos-12
-
     steps:
       - name: Checkout the source code
         uses: actions/checkout@v3
 
-      - name: Install test dependencies
-        run: brew install libpthread-stubs
-
-      - name: Install gtest from source
-        run: |
-          git clone https://github.com/google/googletest.git -b release-1.12.0
-          mkdir googletest/build
-          cd googletest/build
-          cmake ..
-          make
-          sudo make install
-
-      - name: Build tests
-        run: |
-          mkdir dist
-          clang++ -std=c++11 -g $(find src tests -name "*.cpp") -lpthread -lgtest -o dist/test
+      - name: Install dependencies
+        uses: ./.github/actions/install
 
       - name: Run tests
         run: |
-          export FILEPATH=$PWD/dist/test
-          export FILENAME=test
-          export DIRPATH=$PWD/dist
-          export DIRNAME=dist
-          export ABSPATH=$PWD/dist/a/b/c
-          dist/test
+          scons tests
+          ./dist/tests
+        env:
+          CPPPATH: /usr/include
+          LIBPATH: /usr/lib
+          FILEPATH: $PWD/dist/tests
+          FILENAME: tests
+          DIRPATH: $PWD/dist
+          DIRNAME: dist
+          ABSPATH: $PWD/dist/a/b/c

@@ -1,3 +1,16 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-nps lint -s
+export CPPPATH /opt/homebrew/include
+export LIBPATH /opt/homebrew/lib
+
+cspell . --dot
+cppclean . --include-path $CPPPATH
+cppcheck **/*.*pp -q --enable=all --suppressions-list=.cppcheck
+scons --typecheck
+
+export FILEPATH $PWD/dist/tests
+export FILENAME tests
+export DIRPATH $PWD/dist
+export DIRNAME dist
+export ABSPATH $PWD/dist/a/b/c
+
+scons tests
+./dist/tests

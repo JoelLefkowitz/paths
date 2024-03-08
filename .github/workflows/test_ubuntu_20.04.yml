@@ -3,50 +3,24 @@ name: Test on Ubuntu 20.04
 on: [push, pull_request]
 
 jobs:
-  test:
-    name: Test on Ubuntu 20.04
+  review:
     runs-on: ubuntu-20.04
-
     steps:
       - name: Checkout the source code
         uses: actions/checkout@v3
 
-      - name: Install Clang
-        uses: egor-tensin/setup-clang@v1
-        with:
-          version: 13
-          platform: x64
+      - name: Install dependencies
+        uses: ./.github/actions/install
 
-      - name: Install test dependencies
-        run: sudo apt-get install libpthread-stubs0-dev kcov
-
-      - name: Install gtest from source
+      - name: Run tests
         run: |
-          git clone https://github.com/google/googletest.git -b release-1.12.0
-          mkdir googletest/build
-          cd googletest/build
-          cmake ..
-          make
-          sudo make install
-
-      - name: Build tests
-        run: |
-          mkdir dist
-          clang++ -std=c++11 -g $(find src tests -name "*.cpp") -lpthread -lgtest -o dist/test
-
-      - name: Run tests and generate coverage
-        id: coverage
-        run: |
-          export FILEPATH=$PWD/dist/test
-          export FILENAME=test
-          export DIRPATH=$PWD/dist
-          export DIRNAME=dist
-          export ABSPATH=$PWD/dist/a/b/c
-          kcov --include-path=$(pwd)/src --clean coverage dist/test
-          echo "::set-output name=cobertura::$(find coverage -name cobertura.xml)"
-
-      - name: Report code coverage
-        uses: codacy/codacy-coverage-reporter-action@v1
-        with:
-          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-          coverage-reports: ${{ steps.coverage.outputs.cobertura }}
+          scons tests
+          ./dist/tests
+        env:
+          CPPPATH: /usr/include
+          LIBPATH: /usr/lib
+          FILEPATH: $PWD/dist/tests
+          FILENAME: tests
+          DIRPATH: $PWD/dist
+          DIRNAME: dist
+          ABSPATH: $PWD/dist/a/b/c

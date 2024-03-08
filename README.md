@@ -2,6 +2,11 @@
 
 Cross platform OS path operations and executable path retrieval.
 
+![Review](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/paths/review.yml)
+![Quality](https://img.shields.io/codacy/grade/61e4785a984c42bbbdf1554f025d0f7a)
+![Coverage](https://img.shields.io/codacy/coverage/61e4785a984c42bbbdf1554f025d0f7a)
+
+
 This package is inspired by [whereami](https://github.com/gpakosz/whereami) and [std::filesystem](https://en.cppreference.com/w/cpp/filesystem) but with:
 
 - Simple functions
@@ -15,21 +20,11 @@ Since path manipulation is full of edge cases it is paramount to have an extensi
 
 Test environments:
 
-| Platform | Test environment | Status               |
-| -------- | ---------------- | -------------------- |
-| Linux    | Ubuntu 20.04     | ![test_ubuntu_20.04] |
-| Darwin   | MacOS 12         | ![test_macos_12]     |
-| Windows  | Windows 2022     | ![test_windows_2022] |
-
-## Status
-
-| Source     | Shields                                                                |
-| ---------- | ---------------------------------------------------------------------- |
-| Project    | ![latest_release] ![license] ![line_count] ![language_count]           |
-| Health     | ![documentation] ![review_action] ![codacy_quality] ![codacy_coverage] |
-| Publishers | ![conan_version]                                                       |
-| Repository | ![open_issues] ![closed_issues] ![open_pulls] ![closed_pulls]          |
-| Activity   | ![contributors] ![monthly_commits] ![last_commit]                      |
+| Test environment | Status                                                                                                |
+| ---------------- | ----------------------------------------------------------------------------------------------------- |
+| Ubuntu 20.04     | ![Linux](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/test_ubuntu_20.04.yml)   |
+| MacOS 12         | ![Darwin](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/test_macos_12.yml)      |
+| Windows 2022     | ![Windows](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/test_windows_2022.yml) |
 
 ## Installation
 
@@ -38,6 +33,10 @@ conan install paths
 ```
 
 You can also download the [sources](https://download-directory.github.io?url=https://github.com/joellefkowitz/paths/tree/master/src).
+
+## Documentation
+
+Documentation and more detailed examples are hosted on [Github Pages](https://joellefkowitz.github.io/paths).
 
 ## Usage
 
@@ -377,7 +376,7 @@ The docstring for `normalise` says:
 //   os.path.normpath(os.path.join(*paths)).split(os.sep)
 ```
 
-In this library the implementation of `normpath` instead calls `normalise` to do most of the heavy lifting. This design allows other functions that act on path chunks such as `resolve` and `segments` to use `normalise` where calling `normpath` would require joining the chunks beforehand and then spliting the normalised result.
+In this library the implementation of `normpath` instead calls `normalise` to do most of the heavy lifting. This design allows other functions that act on path chunks such as `resolve` and `segments` to use `normalise` where calling `normpath` would require joining the chunks beforehand and then splitting the normalised result.
 
 The docstring for `tail` says:
 
@@ -396,71 +395,63 @@ However its python equivalent produces a different and unexpected result which t
 os.path.split(os.path.normpath("//a/b/c"))[0] -> "//a/b/"
 ```
 
-For more details read the [documentation](https://JoelLefkowitz.github.io/paths).
+## Tooling
 
-## Tests
+### Tests
 
-To compile the test suites:
-
-```bash
-clang++ -std=c++11 $(find src tests -name "*.cpp") -lpthread -lgtest
-```
-
-For more flexible local development and to compile the test suites in parallel install `scons` and the `SConstruct.py` script's dependencies:
+To run tests:
 
 ```bash
-pip install emoji psutil scons
-```
-
-To compile the test suites with `scons`:
-
-```bash
-scons
+scons tests
 ```
 
 The runtime tests use environment variables to confirm they retrieve the executable path of the tests binary. For example, if the tests binary is at `dist/test`:
 
 ```bash
-export FILEPATH=$PWD/dist/test
-export FILENAME=test
-export DIRPATH=$PWD/dist
-export DIRNAME=dist
-export ABSPATH=$PWD/dist/a/b/c
+export FILEPATH $PWD/dist/tests
+export FILENAME tests
+export DIRPATH $PWD/dist
+export DIRNAME dist
+export ABSPATH $PWD/dist/a/b/c
 ```
 
-## Documentation
+```bash
+./dist/tests
+```
 
-This repository's documentation is hosted on [Github Pages](https://JoelLefkowitz.github.io/paths).
+### Documentation
 
 To generate the documentation locally:
 
-```bash
+```sh
 doxygen
 ```
 
-## Linters
+### Linters
 
 To run linters:
 
-```bash
-nps lint
+```sh
+cspell . --dot
+cppclean . --include-path $CPPPATH
+cppcheck **/*.*pp -q --enable=all --suppressions-list=.cppcheck
+scons --typecheck
 ```
 
-## Formatters
+### Formatters
 
 To run formatters:
 
-```bash
-nps format
+```sh
+prettier . --write
+clang-format -i **/*.*pp
 ```
 
-## Continuous integration
+## Contributing
 
-This repository uses GitHub Actions to lint and test each commit. Each commit should be formatted and its corresponding documentation should be updated.
+Please read this repository's [Code of Conduct](CODE_OF_CONDUCT.md) which outlines our collaboration standards and the [Changelog](CHANGELOG.md) for details on breaking changes that have been made.
 
-## Versioning
-
-This repository adheres to semantic versioning standards. For more information on semantic versioning visit [semver](https://semver.org).
+This repository adheres to semantic versioning standards. For more information on semantic versioning visit [SemVer](https://semver.org).
 
 Bump2version is used to version and tag changes. For example:
 
@@ -468,15 +459,7 @@ Bump2version is used to version and tag changes. For example:
 bump2version patch
 ```
 
-## Changelog
-
-Please read this repository's [changelog](CHANGELOG.md) for details on changes that have been made.
-
-## Contributing
-
-Please read this repository's guidelines on [contributing](CONTRIBUTING.md) for details on the process for submitting pull requests. Moreover, our [code of conduct](CODE_OF_CONDUCT.md) declares our collaboration standards.
-
-## Contributors
+### Contributors
 
 - [Joel Lefkowitz](https://github.com/joellefkowitz) - Initial work
 
@@ -489,23 +472,3 @@ Lots of love to the open source community!
     <img width=200 height=200 src='https://media.giphy.com/media/KEAAbQ5clGWJwuJuZB/giphy.gif' alt='Love each other' />
     <img width=200 height=200 src='https://media.giphy.com/media/WRWykrFkxJA6JJuTvc/giphy.gif' alt="It's ok to have a bad day" />
 </p>
-
-[test_ubuntu_20.04]: https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/paths/test_ubuntu_20.04.yml "Review action"
-[test_macos_12 ]: https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/paths/test_macos_12.yml "Review action"
-[test_windows_2022]: https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/paths/test_windows_2022.yml "Review action"
-[latest_release]: https://img.shields.io/github/v/tag/joellefkowitz/paths "Latest release"
-[license]: https://img.shields.io/github/license/joellefkowitz/paths "License"
-[line_count]: https://img.shields.io/tokei/lines/github/joellefkowitz/paths "Line count"
-[language_count]: https://img.shields.io/github/languages/count/joellefkowitz/paths "Language count"
-[documentation]: https://img.shields.io/readthedocs/paths "Documentation"
-[review_action]: https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/paths/review.yml "Review action"
-[codacy_quality]: https://img.shields.io/codacy/grade/61e4785a984c42bbbdf1554f025d0f7a "Codacy quality"
-[codacy_coverage]: https://img.shields.io/codacy/coverage/61e4785a984c42bbbdf1554f025d0f7a "Codacy coverage"
-[conan_version]: https://img.shields.io/conan/v/paths "Conan Version"
-[open_issues]: https://img.shields.io/github/issues/joellefkowitz/paths "Open issues"
-[closed_issues]: https://img.shields.io/github/issues-closed/joellefkowitz/paths "Closed issues"
-[open_pulls]: https://img.shields.io/github/issues-pr/joellefkowitz/paths "Open pull requests"
-[closed_pulls]: https://img.shields.io/github/issues-pr-closed/joellefkowitz/paths "Closed pull requests"
-[contributors]: https://img.shields.io/github/contributors/joellefkowitz/paths "Contributors"
-[monthly_commits]: https://img.shields.io/github/commit-activity/m/joellefkowitz/paths "Monthly commits"
-[last_commit]: https://img.shields.io/github/last-commit/joellefkowitz/paths "Last commit"

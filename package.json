@@ -1,20 +1,14 @@
 {
-  "scripts": {
-    "prepare": "husky install"
-  },
-  "devDependencies": {
-    "cspell": "^6.26.3",
-    "husky": "^8.0.3",
-    "nps": "^5.10.0",
-    "nps-utils": "^1.7.0",
-    "prettier": "^2.6.2",
-    "ts-node": "10.9.1",
-    "tslib": "^2.3.0",
-    "typescript": "^4.8.4"
-  },
+  "name": "paths",
+  "description": "Cross platform OS path operations and executable path retrieval.",
+  "version": "0.1.0",
+  "private": false,
+  "license": "MIT",
+  "author": "Joel Lefkowitz",
+  "repository": "https://github.com/joellefkowitz/paths",
+  "homepage": "https://joellefkowitz.github.io/paths",
   "metadata": {
-    "documentation": "https://JoelLefkowitz.github.io/paths",
-    "packages": "https://conan.io/center/paths",
+    "publisher": null,
     "languages": [
       "C++"
     ],
@@ -22,7 +16,14 @@
     "paradigms": [
       "Functional"
     ],
-    "lifecycle": "Beta",
-    "publisher": "Conan"
+    "lifecycle": "Alpha"
+  },
+  "scripts": {
+    "postinstall": "husky install"
+  },
+  "devDependencies": {
+    "cspell": "^8.0.0",
+    "husky": "^9.0.0",
+    "prettier": "^3.0.0"
   }
 }

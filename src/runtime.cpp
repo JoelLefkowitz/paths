@@ -36,9 +36,7 @@ std::string paths::filepath() {
     auto    size = GetModuleFileNameW(NULL, buffer, MAX_PATH);
 
     if (size > MAX_PATH + 1) {
-        throw std::length_error(
-            "Filepath exceeds maximum path length: " + std::to_string(MAX_PATH)
-        );
+        throw std::length_error("Filepath exceeds maximum path length: " + std::to_string(MAX_PATH));
     }
 
     std::wstring ws(buffer);
@@ -52,11 +50,12 @@ std::string paths::filepath() {
     return "";
 }
 
-#elif (PLATFORM_OS == PLATFORM_OS_MACOS) ||                                    \
-    (PLATFORM_OS == PLATFORM_OS_IOS) ||                                        \
+#elif (PLATFORM_OS == PLATFORM_OS_MACOS) || (PLATFORM_OS == PLATFORM_OS_IOS) ||                                        \
     (PLATFORM_OS == PLATFORM_OS_WATCHOS) || (PLATFORM_OS == PLATFORM_OS_TVOS)
 
 #include <mach-o/dyld.h>
+
+// cppclean-disable-next-line
 #include <stdexcept>
 
 #ifndef PATH_MAX
@@ -70,9 +69,7 @@ std::string paths::filepath() {
     char buffer[bufsize];
 
     if (_NSGetExecutablePath(buffer, &bufsize) == -1) {
-        throw std::length_error(
-            "Filepath exceeds maximum path length: " + std::to_string(PATH_MAX)
-        );
+        throw std::length_error("Filepath exceeds maximum path length: " + std::to_string(PATH_MAX));
     }
 
     return realpath(buffer, NULL);

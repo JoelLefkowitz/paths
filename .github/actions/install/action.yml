@@ -8,7 +8,7 @@ inputs:
 
   python-version:
     description: Python version
-    default: "3.8"
+    default: "3.10"
 
 runs:
   using: composite
@@ -30,13 +30,6 @@ runs:
         restore-keys: |
           ${{ runner.os }}-yarn-
 
-    - name: Set up pip package caching
-      uses: actions/cache@v3
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-        restore-keys: ${{ runner.os }}-pip-
-
     - name: Set the node version
       uses: actions/setup-node@v3
       with:
@@ -47,16 +40,26 @@ runs:
       with:
         python-version: ${{ inputs.python-version }}
 
-    - name: Install node dependencies
+    - name: Install apt dependencies
+      shell: bash
+      run: sudo apt install -y cppcheck clang-format doxygen
+
+    - name: Install gtest
       shell: bash
       run: |
-        yarn install --frozen-lockfile
-        yarn global add nps ts-node
+        git clone https://github.com/google/googletest.git -b release-1.12.0
+        mkdir googletest/build
+        cd googletest/build
+        cmake ..
+        make
+        sudo make install
+        cd ../..
+        rm -rf googletest
+
+    - name: Install node dependencies
+      shell: bash
+      run: yarn install --frozen-lockfile
 
     - name: Install python dependencies
       shell: bash
-      run: pip install cppclean emoji psutil scons trufflehog3
-
-    - name: Install apt dependencies
-      shell: bash
-      run: sudo apt install -y cppcheck graphviz doxygen=1.9.1-2ubuntu2
+      run: pip install -r requirements.txt

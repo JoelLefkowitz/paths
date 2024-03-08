@@ -15,16 +15,10 @@ std::string paths::join(const std::vector<std::string> &strs, char delimiter) {
     return join(strs, std::string(1, delimiter));
 }
 
-std::string paths::join(
-    const std::vector<std::string> &strs,
-    const std::string              &delimiter
-) {
-    auto concat = [&delimiter](const std::string &acc, const std::string &x) {
-        return acc + x + delimiter;
-    };
+std::string paths::join(const std::vector<std::string> &strs, const std::string &delimiter) {
+    auto concat = [&delimiter](const std::string &acc, const std::string &x) { return acc + x + delimiter; };
 
-    auto joined =
-        std::accumulate(strs.begin(), strs.end(), std::string(), concat);
+    auto joined = std::accumulate(strs.begin(), strs.end(), std::string(), concat);
 
     return joined.substr(0, joined.length() - delimiter.length());
 }
@@ -33,10 +27,7 @@ std::vector<std::string> paths::split(const std::string &str, char delimiter) {
     return split(str, std::string(1, delimiter));
 }
 
-std::vector<std::string> paths::split(
-    const std::string &str,
-    const std::string &delimiter
-) {
+std::vector<std::string> paths::split(const std::string &str, const std::string &delimiter) {
     if (str.empty()) {
         return {str};
     }

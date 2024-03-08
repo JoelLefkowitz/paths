@@ -16,8 +16,7 @@
 #include <string>
 #include <vector>
 
-std::vector<std::string> paths::normalise(const std::vector<std::string> &paths
-) {
+std::vector<std::string> paths::normalise(const std::vector<std::string> &paths) {
     std::vector<std::string> filtered;
 
     auto contentful = filter(paths, {"", "."});
