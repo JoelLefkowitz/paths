@@ -16,14 +16,10 @@
 
 std::string paths::filepath() {
     char buffer[PATH_MAX];
-    readlink("/proc/self/exe", buffer, PATH_MAX);
-    return buffer;
-}
 
-#elif PLATFORM_OS == PLATFORM_OS_SOLARIS
+    ssize_t size = readlink("/proc/self/exe", buffer, PATH_MAX);
 
-std::string paths::filepath() {
-    return "";
+    return std::string(buffer).substr(0, size);
 }
 
 #elif PLATFORM_OS == PLATFORM_OS_WINDOWS
@@ -33,21 +29,15 @@ std::string paths::filepath() {
 
 std::string paths::filepath() {
     wchar_t buffer[MAX_PATH];
-    auto    size = GetModuleFileNameW(NULL, buffer, MAX_PATH);
+
+    auto size = GetModuleFileNameW(NULL, buffer, MAX_PATH);
 
     if (size > MAX_PATH + 1) {
         throw std::length_error("Filepath exceeds maximum path length: " + std::to_string(MAX_PATH));
     }
 
     std::wstring ws(buffer);
-
     return std::string(ws.begin(), ws.end());
-}
-
-#elif PLATFORM_OS == PLATFORM_OS_BSD
-
-std::string paths::filepath() {
-    return "";
 }
 
 #elif (PLATFORM_OS == PLATFORM_OS_MACOS) || (PLATFORM_OS == PLATFORM_OS_IOS) ||                                        \
@@ -58,37 +48,21 @@ std::string paths::filepath() {
 // cppclean-disable-next-line
 #include <stdexcept>
 
-#ifndef PATH_MAX
-#include <cstddef>
-const size_t PATH_MAX = 1024;
-#endif
-
 std::string paths::filepath() {
-    auto bufsize = static_cast<uint32_t>(PATH_MAX);
+    uint32_t size = PATH_MAX;
 
-    char buffer[bufsize];
+    char buffer[PATH_MAX];
 
-    if (_NSGetExecutablePath(buffer, &bufsize) == -1) {
+    if (_NSGetExecutablePath(buffer, &size) == -1) {
         throw std::length_error("Filepath exceeds maximum path length: " + std::to_string(PATH_MAX));
     }
 
     return realpath(buffer, NULL);
 }
 
-#elif PLATFORM_OS == PLATFORM_OS_ANDROID
-
-std::string paths::filepath() {
-    char buffer[PATH_MAX];
-    readlink("/proc/self/maps", buffer, PATH_MAX);
-    // realpath(path, buffer);
-    // munmap(begin, offset);
-    // fclose(maps);
-    return buffer;
-}
-
 #else
 
-#error "Unrecognised OS, could not define paths::filepath()"
+#error "Unsupported OS, could not define paths::filepath()"
 
 #endif
 

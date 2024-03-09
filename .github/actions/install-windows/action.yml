@@ -33,7 +33,7 @@ runs:
 
     - name: Install apt dependencies
       shell: bash
-      run: choco install cppcheck clang-format doxygen kcov
+      run: choco install cppcheck
 
     - name: Install gtest
       shell: bash

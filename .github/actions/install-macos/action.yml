@@ -33,7 +33,7 @@ runs:
 
     - name: Install apt dependencies
       shell: bash
-      run: brew install cppcheck clang-format doxygen kcov
+      run: brew install cppcheck
 
     - name: Install gtest
       shell: bash

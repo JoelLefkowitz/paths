@@ -26,10 +26,8 @@ jobs:
           export FILEPATH=$PWD/dist/tests
           export DIRPATH=$PWD/dist
           export ABSPATH=$PWD/dist/a/b/c
-          
           scons tests
           ./dist/tests
-          
           kcov --include-path=$(pwd)/src --clean coverage dist/tests
           echo "::set-output name=cobertura::$(find coverage -name cobertura.xml)"
         env:
