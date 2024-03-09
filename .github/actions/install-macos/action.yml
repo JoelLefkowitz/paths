@@ -35,10 +35,9 @@ runs:
       shell: bash
       run: |
         git clone https://github.com/google/googletest.git -b release-1.12.0
-        cd googletest
-        mkdir build
-        cmake
-        cd build
+        mkdir googletest/build
+        cd googletest/build
+        cmake ..
         make
         sudo make install
         cd ../..
