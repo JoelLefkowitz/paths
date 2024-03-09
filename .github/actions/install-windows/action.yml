@@ -39,7 +39,7 @@ runs:
         cd googletest/build
         cmake .. -G "MinGW Makefiles"
         make
-        sudo make install
+        make install
         cd ../..
         rm -rf googletest
 

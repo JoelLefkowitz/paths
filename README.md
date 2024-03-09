@@ -6,7 +6,6 @@ Cross platform OS path operations and executable path retrieval.
 ![Quality](https://img.shields.io/codacy/grade/61e4785a984c42bbbdf1554f025d0f7a)
 ![Coverage](https://img.shields.io/codacy/coverage/61e4785a984c42bbbdf1554f025d0f7a)
 
-
 This package is inspired by [whereami](https://github.com/gpakosz/whereami) and [std::filesystem](https://en.cppreference.com/w/cpp/filesystem) but with:
 
 - Simple functions
@@ -20,8 +19,8 @@ Since path manipulation is full of edge cases it is paramount to have an extensi
 
 Test environments:
 
-| Test environment | Status                                                                                                |
-| ---------------- | ----------------------------------------------------------------------------------------------------- |
+| Test environment | Status                                                                                                      |
+| ---------------- | ----------------------------------------------------------------------------------------------------------- |
 | Ubuntu 20.04     | ![Linux](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/paths/test_ubuntu_20.04.yml)   |
 | MacOS 12         | ![Darwin](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/paths/test_macos_12.yml)      |
 | Windows 2022     | ![Windows](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/paths/test_windows_2022.yml) |
