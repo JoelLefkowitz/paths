@@ -25,19 +25,11 @@ jobs:
         run: |
           export FILEPATH=$PWD/dist/tests
           export DIRPATH=$PWD/dist
-          export ABSPATH=$PWD/dist/a/b/c
+          export ABSPATH=$PWD/dist/a/b/c          
           scons tests
           ./dist/tests
-          kcov --include-path=$(pwd)/src --clean coverage dist/tests
-          echo "::set-output name=cobertura::$(find coverage -name cobertura.xml)"
         env:
           CPPPATH: /usr/include
           LIBPATH: /usr/lib
           FILENAME: tests
           DIRNAME: dist
-
-      - name: Report code coverage
-        uses: codacy/codacy-coverage-reporter-action@v1
-        with:
-          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-          coverage-reports: ${{ steps.coverage.outputs.cobertura }}

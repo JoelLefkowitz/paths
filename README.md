@@ -22,9 +22,9 @@ Test environments:
 
 | Test environment | Status                                                                                                |
 | ---------------- | ----------------------------------------------------------------------------------------------------- |
-| Ubuntu 20.04     | ![Linux](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/test_ubuntu_20.04.yml)   |
-| MacOS 12         | ![Darwin](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/test_macos_12.yml)      |
-| Windows 2022     | ![Windows](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/test_windows_2022.yml) |
+| Ubuntu 20.04     | ![Linux](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/paths/test_ubuntu_20.04.yml)   |
+| MacOS 12         | ![Darwin](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/paths/test_macos_12.yml)      |
+| Windows 2022     | ![Windows](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/paths/test_windows_2022.yml) |
 
 ## Installation
 
