@@ -81,8 +81,11 @@ if GetOption("typecheck"):
 
 env["num_jobs"] = psutil.cpu_count()
 
-env.Program(target="./dist/build", source=sources("(?<!test)(?<!\.spec)\.cpp$"))
-env.Program(target="./dist/tests", source=sources("(?<!main)\.cpp$"))
+build = os.path.join("dist", "build")
+tests = os.path.join("dist", "tests")
 
-env.Alias("build", "./dist/build")
-env.Alias("tests", "./dist/tests")
+env.Program(target=build, source=sources("(?<!test)(?<!\.spec)\.cpp$"))
+env.Program(target=tests, source=sources("(?<!main)\.cpp$"))
+
+env.Alias("build", build)
+env.Alias("tests", tests)
