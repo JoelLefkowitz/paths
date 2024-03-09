@@ -38,7 +38,7 @@ runs:
         mkdir googletest/build
         cd googletest/build
         cmake ..
-        ls ..
+        cd googletest
         ls .
         make
         sudo make install
