@@ -33,7 +33,7 @@ runs:
 
     - name: Install apt dependencies
       shell: bash
-      run: sudo apt-get install -y cppcheck doxygen kcov
+      run: sudo apt-get install -y cppcheck doxygen kcov libpthread-stubs0-dev
 
     - name: Install gtest
       shell: bash

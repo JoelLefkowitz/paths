@@ -26,6 +26,7 @@ flags = [
 
 libs = [
     "gtest",
+    "pthread",
 ]
 
 warnings = prefix(
