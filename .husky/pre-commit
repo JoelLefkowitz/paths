@@ -12,5 +12,5 @@ export DIRPATH=$PWD/dist
 export DIRNAME=dist
 export ABSPATH=$PWD/dist/a/b/c
 
-scons tests
+scons
 ./dist/tests

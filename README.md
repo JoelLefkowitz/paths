@@ -401,7 +401,7 @@ os.path.split(os.path.normpath("//a/b/c"))[0] -> "//a/b/"
 To run tests:
 
 ```bash
-scons tests
+scons
 ```
 
 The runtime tests use environment variables to confirm they retrieve the executable path of the tests binary. For example, if the tests binary is at `dist/test`:

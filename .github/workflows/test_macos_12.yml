@@ -17,7 +17,7 @@ jobs:
           export FILEPATH=$PWD/dist/tests
           export DIRPATH=$PWD/dist
           export ABSPATH=$PWD/dist/a/b/c
-          scons tests
+          scons
           ./dist/tests
         env:
           CPPPATH: /usr/include
