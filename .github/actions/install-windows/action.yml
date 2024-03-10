@@ -31,6 +31,12 @@ runs:
       with:
         python-version: "3.10"
 
+    - name: Add g++ to PATH
+      shell: bash
+      run: |
+        ls C:/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/bin
+        echo "C:/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/bin" >> $GITHUB_PATH
+
     - name: Install gtest
       shell: bash
       run: |
