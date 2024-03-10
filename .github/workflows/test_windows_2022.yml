@@ -18,12 +18,6 @@ jobs:
           set FILEPATH=%cd%/dist/tests
           set DIRPATH=%cd%/dist
           set ABSPATH=%cd%/dist/a/b/c
-          
-          C:\mingw64\bin\g++.exe -o test/suites/words/starts_with.o -c -std=c++17 -I/opt/homebrew/include test/suites/words/starts_with.cpp
-          
-          Set-Alias g++ C:\mingw64\bin\g++.exe
-          g++ -o test/suites/words/starts_with.o -c -std=c++17 -I/opt/homebrew/include test/suites/words/starts_with.cpp
-          
           scons
           ./dist/tests
         env:
