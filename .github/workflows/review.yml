@@ -18,6 +18,8 @@ jobs:
           cppclean . --include-path $CPPPATH
           cppcheck **/*.*pp -q --enable=all --suppressions-list=.cppcheck
           scons --typecheck
+        env:
+          CPPPATH: /usr/include
 
       - name: Run tests
         run: |

@@ -17,7 +17,7 @@ env = Environment(
 AddOption("--iwyu", action="store_true")
 AddOption("--typecheck", action="store_true")
 
-if env["PLATFORM"] == "windows":
+if env["PLATFORM"] == "win32":
     env["CXX"] = "g++"
     env["CXXFLAGS"] = ["/std=c++17"]
 
