@@ -13,7 +13,7 @@ jobs:
         uses: ./.github/actions/install-windows
 
       - name: Run tests
-        shell: bash
+        shell: pwsh
         run: |
           set FILEPATH=%cd%/dist/tests
           set DIRPATH=%cd%/dist
