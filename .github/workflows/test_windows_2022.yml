@@ -20,6 +20,5 @@ jobs:
           scons
           ./dist/tests
         env:
-          PYTHONUTF8: 1
           FILENAME: tests
           DIRNAME: dist
