@@ -9,6 +9,7 @@
     "dist",
     "docs/*.css",
     "Doxyfile",
+    "venv",
     "yarn-error.log"
   ],
   "dictionaries": [
@@ -59,6 +60,7 @@
     "pacman",
     "psutil",
     "pthread",
+    "pythonutf8",
     "relpath",
     "scons",
     "spdlog",
@@ -67,6 +69,7 @@
     "strs",
     "toomanyconfigs",
     "typecheck",
+    "venv",
     "walkmate",
     "whereami"
   ]
