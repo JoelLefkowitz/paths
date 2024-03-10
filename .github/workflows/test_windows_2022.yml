@@ -21,6 +21,7 @@ jobs:
           ./dist/tests
         shell: bash
         env:
+          PYTHONUTF8: 1
           CPPPATH: /usr/include
           LIBPATH: /usr/lib
           FILENAME: tests
