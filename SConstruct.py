@@ -56,11 +56,9 @@ ignore = prefix(
 )
 
 env = Environment(
-    platform="posix",
-    CXX="clang++",
     LIBS=libs,
-    CPPPATH=[os.getenv("CPPPATH")],
-    LIBPATH=[os.getenv("LIBPATH")],
+    CPPPATH=[os.getenv("CPPPATH", "/usr/include")],
+    LIBPATH=[os.getenv("LIBPATH", "/usr/lib")],
     CPPFLAGS=" ".join(warnings + ignore),
     CXXFLAGS=" ".join(flags),
     CXXCOMSTR=report("Compiling", "wrench"),

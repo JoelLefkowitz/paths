@@ -23,7 +23,5 @@ jobs:
           scons
           ./dist/tests
         env:
-          CPPPATH: /usr/include
-          LIBPATH: /usr/lib
           FILENAME: tests
           DIRNAME: dist

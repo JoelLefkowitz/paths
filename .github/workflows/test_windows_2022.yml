@@ -21,7 +21,5 @@ jobs:
           ./dist/tests
         env:
           PYTHONUTF8: 1
-          CPPPATH: /usr/include
-          LIBPATH: /usr/lib
           FILENAME: tests
           DIRNAME: dist
