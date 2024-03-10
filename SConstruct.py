@@ -6,8 +6,8 @@ from SCons.Environment import Environment
 from SCons.Script import AddOption
 
 env = Environment(
-    ENV={"PATH": os.environ["PATH"]},
     LIBS=["gtest", "pthread"],
+    ENV={"PATH": os.environ["PATH"]},
     CPPPATH=os.getenv("CPPPATH", "/usr/include"),
     LIBPATH=os.getenv("LIBPATH", "/usr/lib"),
     # CXXCOMSTR="Compiling $TARGET",
