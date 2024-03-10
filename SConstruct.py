@@ -56,7 +56,8 @@ ignore = prefix(
 )
 
 env = Environment(
-    CXX="g++",
+    platform="posix",
+    CXX="clang++",
     LIBS=libs,
     CPPPATH=[os.getenv("CPPPATH")],
     LIBPATH=[os.getenv("LIBPATH")],
