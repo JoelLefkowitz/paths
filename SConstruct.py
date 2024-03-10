@@ -9,8 +9,8 @@ env = Environment(
     LIBS=["gtest", "pthread"],
     CPPPATH=os.getenv("CPPPATH", "/usr/include"),
     LIBPATH=os.getenv("LIBPATH", "/usr/lib"),
-    CXXCOMSTR="Compiling $TARGET",
-    LINKCOMSTR="Linking $TARGET",
+    # CXXCOMSTR="Compiling $TARGET",
+    # LINKCOMSTR="Linking $TARGET",
     num_jobs=psutil.cpu_count(),
 )
 
