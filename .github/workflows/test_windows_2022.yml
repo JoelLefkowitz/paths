@@ -18,7 +18,7 @@ jobs:
           set FILEPATH=%cd%/dist/tests
           set DIRPATH=%cd%/dist
           set ABSPATH=%cd%/dist/a/b/c
-          Add-Content $env:GITHUB_PATH "C:\mingw64\bin"
+          Set-Alias g++ C:\mingw64\bin\g++.exe
           scons
           ./dist/tests
         env:
