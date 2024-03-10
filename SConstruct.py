@@ -56,7 +56,7 @@ ignore = prefix(
 )
 
 env = Environment(
-    CXX="clang++",
+    CXX="g++",
     LIBS=libs,
     CPPPATH=[os.getenv("CPPPATH")],
     LIBPATH=[os.getenv("LIBPATH")],
@@ -80,5 +80,4 @@ if GetOption("typecheck"):
     )
 
 env["num_jobs"] = psutil.cpu_count()
-print(sources("\.cpp$"))
 env.Program(target="dist/tests", source=sources("\.cpp$"))
