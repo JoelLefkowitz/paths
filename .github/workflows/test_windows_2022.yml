@@ -14,13 +14,13 @@ jobs:
 
       - name: Run tests
         run: |
-          set FILEPATH=%cd%/dist/tests
-          set DIRPATH=%cd%/dist
-          set ABSPATH=%cd%/dist/a/b/c
-          scons --debug=explain
+          export FILEPATH=$PWD/dist/tests
+          export DIRPATH=$PWD/dist
+          export ABSPATH=$PWD/dist/a/b/c          
+          scons
           ./dist/tests
+        shell: bash
         env:
-          PYTHONUTF8: 1
           CPPPATH: /usr/include
           LIBPATH: /usr/lib
           FILENAME: tests
