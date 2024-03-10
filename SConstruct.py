@@ -5,6 +5,8 @@ from walkmate import get_child_files
 from SCons.Environment import Environment
 from SCons.Script import AddOption
 
+print(os.environ["PATH"])
+
 env = Environment(
     LIBS=["gtest", "pthread"],
     ENV={"PATH": os.environ["PATH"]},
