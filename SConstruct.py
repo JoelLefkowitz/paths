@@ -80,5 +80,5 @@ if GetOption("typecheck"):
     )
 
 env["num_jobs"] = psutil.cpu_count()
-
+print(sources("\.cpp$"))
 env.Program(target="dist/tests", source=sources("\.cpp$"))

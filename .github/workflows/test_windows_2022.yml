@@ -13,13 +13,13 @@ jobs:
         uses: ./.github/actions/install-windows
 
       - name: Run tests
+        shell: pwsh
         run: |
-          export FILEPATH=$PWD/dist/tests
-          export DIRPATH=$PWD/dist
-          export ABSPATH=$PWD/dist/a/b/c          
+          set FILEPATH=%cd%/dist/tests
+          set DIRPATH=%cd%/dist
+          set ABSPATH=%cd%/dist/a/b/c
           scons
           ./dist/tests
-        shell: bash
         env:
           PYTHONUTF8: 1
           CPPPATH: /usr/include
