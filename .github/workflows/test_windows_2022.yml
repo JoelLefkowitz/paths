@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   review:
-    runs-on: windows-2022
+    runs-on: windows-2019
     steps:
       - name: Checkout the source code
         uses: actions/checkout@v3
