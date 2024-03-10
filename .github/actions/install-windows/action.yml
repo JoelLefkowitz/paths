@@ -34,8 +34,8 @@ runs:
     - name: Add g++ to PATH
       shell: bash
       run: |
-        ls C:/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/bin
-        echo "C:/ProgramData/chocolatey/lib/mingw/tools/install/mingw64/bin" >> $GITHUB_PATH
+        ls C:/mingw64/bin
+        echo "C:/mingw64/bin" >> $GITHUB_PATH
 
     - name: Install gtest
       shell: bash
