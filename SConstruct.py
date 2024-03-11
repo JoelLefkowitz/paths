@@ -10,8 +10,8 @@ env = Environment(
     ENV={"PATH": os.environ["PATH"]},
     CPPPATH=os.getenv("CPPPATH", "/usr/include"),
     LIBPATH=os.getenv("LIBPATH", "/usr/lib"),
-    CXXCOMSTR="Compiling $TARGET",
-    LINKCOMSTR="Linking $TARGET",
+    # CXXCOMSTR="Compiling $TARGET",
+    # LINKCOMSTR="Linking $TARGET",
     num_jobs=psutil.cpu_count(),
 )
 
@@ -20,7 +20,7 @@ AddOption("--typecheck", action="store_true")
 
 if env["PLATFORM"] == "win32":
     env["CXX"] = "g++"
-    env["CXXFLAGS"] = ["/std=c++17"]
+    env["CXXFLAGS"] = ["-std=c++17"]
 
 else:
     env["CXX"] = "clang++"
