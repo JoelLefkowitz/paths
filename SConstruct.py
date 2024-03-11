@@ -6,12 +6,13 @@ from SCons.Script import AddOption
 from walkmate import get_child_files as tree
 
 env = Environment(
-    LIBS=["gtest"],
+    LIBS=["gtest", "pthread"],
     ENV={"PATH": os.getenv("PATH", [])},
     CPPPATH=os.getenv("CPPPATH", "/usr/include").split(","),
     LIBPATH=os.getenv("LIBPATH", "/usr/lib").split(","),
     # CXXCOMSTR="Compiling $TARGET",
     # LINKCOMSTR="Linking $TARGET",
+    tools=["mingw"],
     num_jobs=psutil.cpu_count(),
 )
 
@@ -19,13 +20,13 @@ AddOption("--iwyu", action="store_true")
 AddOption("--typecheck", action="store_true")
 
 if env["PLATFORM"] == "win32":
-    env["CXXFLAGS"] = ["/std:c++17", "/Zc:wchar_t"]
-    env["LIBPREFIX"] = "lib"
-    env["LIBSUFFIX"] = ".a"
-    env["LIBLINKPREFIX"] = "$LIBPREFIX"
+    env["LIBS"].remove("pthread")
+    env["CXXFLAGS"] = ["-std=c++17"]
+    # env["LIBPREFIX"] = "lib"
+    # env["LIBSUFFIX"] = ".a"
+    # env["LIBLINKPREFIX"] = "$LIBPREFIX"
 
 else:
-    env["LIBS"].append("pthread")
     env["CXX"] = "clang++"
     env["CXXFLAGS"] = [
         "-std=c++17",
