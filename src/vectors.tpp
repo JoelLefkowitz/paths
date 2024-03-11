@@ -1,6 +1,7 @@
 #include "vectors.hpp"
 #include <algorithm>
 #include <cstddef>
+#include <iterator>
 #include <string>
 #include <vector>
 
