@@ -22,6 +22,7 @@ if env["PLATFORM"] == "win32":
     env["CXXFLAGS"] = ["/std:c++17"]
     env["LIBPREFIX"] = "lib"
     env["LIBSUFFIX"] = ".a"
+    env["SHLIBPREFIX"] = "$LIBPREFIX"
 
 else:
     env["CXX"] = "clang++"
