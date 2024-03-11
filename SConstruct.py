@@ -33,13 +33,23 @@ env = Environment(
     CXXFLAGS=["-std=c++17"],
     CPPPATH=os.getenv("CPPPATH"),
     LIBPATH=os.getenv("LIBPATH"),
-    # CXXCOMSTR="Compiling $TARGET",
-    # LINKCOMSTR="Linking $TARGET",
     num_jobs=psutil.cpu_count(),
 )
 
-AddOption("--iwyu", action="store_true")
-AddOption("--typecheck", action="store_true")
+env.Program(
+    target="dist/tests",
+    source=[i for i in tree(".") if re.search(r"\.cpp$", i)],
+)
+
+AddOption(
+    "--iwyu",
+    action="store_true",
+)
+
+AddOption(
+    "--typecheck",
+    action="store_true",
+)
 
 if env["PLATFORM"] == "win32":
     env.Tool("mingw")
@@ -55,8 +65,3 @@ elif GetOption("iwyu"):
 else:
     env["CXX"] = "clang++"
     env["CXXFLAGS"].extend(warnings)
-
-env.Program(
-    target="dist/tests",
-    source=[i for i in tree(".") if re.search(r"\.cpp$", i)],
-)
