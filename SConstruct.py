@@ -8,44 +8,40 @@ from walkmate import get_child_files as tree
 env = Environment(
     LIBS=["gtest", "pthread"],
     ENV={"PATH": os.getenv("PATH", [])},
+    CXXFLAGS=["-std=c++17"],
     CPPPATH=os.getenv("CPPPATH", "/usr/include").split(","),
     LIBPATH=os.getenv("LIBPATH", "/usr/lib").split(","),
     # CXXCOMSTR="Compiling $TARGET",
     # LINKCOMSTR="Linking $TARGET",
-    tools=["mingw"],
     num_jobs=psutil.cpu_count(),
 )
+
+warnings = [
+    "-Wall",
+    "-Wconversion",
+    "-Wextra",
+    "-Wmissing-declarations",
+    "-Wpedantic",
+    "-Wshadow-uncaptured-local",
+    "-Wshadow",
+    "-Wno-deprecated-declarations",
+    "-Wno-macro-redefined",
+    "-Wno-missing-braces",
+    "-Wno-unknown-warning-option",
+    "-Wno-unused-parameter",
+    "-Wno-vla-extension",
+    "-Wno-everything",
+]
 
 AddOption("--iwyu", action="store_true")
 AddOption("--typecheck", action="store_true")
 
 if env["PLATFORM"] == "win32":
+    env["CXX"] = "g++"
     env["LIBS"].remove("pthread")
-    env["CXXFLAGS"] = ["-std=c++17"]
-    
-    # env["LIBPREFIX"] = "lib"
-    # env["LIBSUFFIX"] = ".a"
-    # env["LIBLINKPREFIX"] = "$LIBPREFIX"
-
 else:
     env["CXX"] = "clang++"
-    env["CXXFLAGS"] = [
-        "-std=c++17",
-        "-Wall",
-        "-Wconversion",
-        "-Wextra",
-        "-Wmissing-declarations",
-        "-Wpedantic",
-        "-Wshadow-uncaptured-local",
-        "-Wshadow",
-        "-Wno-deprecated-declarations",
-        "-Wno-macro-redefined",
-        "-Wno-missing-braces",
-        "-Wno-unknown-warning-option",
-        "-Wno-unused-parameter",
-        "-Wno-vla-extension",
-        "-Wno-everything",
-    ]
+    env["CXXFLAGS"].extend(warnings)
 
 if GetOption("iwyu"):
     env["CXX"] = "include-what-you-use"
