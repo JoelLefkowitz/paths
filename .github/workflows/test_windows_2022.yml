@@ -14,13 +14,13 @@ jobs:
 
       - name: Run tests
         run: |
-          set FILEPATH=%cd%/dist/tests
-          set DIRPATH=%cd%/dist
-          set ABSPATH=%cd%/dist/a/b/c
+          set DIRNAME=dist
+          set FILENAME=tests
+          set DIRPATH=%cd%/%DIRNAME%
+          set ABSPATH=%cd%/%DIRNAME%/a/b/c
+          set FILEPATH=%cd%/%DIRNAME%/%FILENAME%
           scons
           ./dist/tests
         env:
-          FILENAME: tests
-          DIRNAME: dist
-          CPPPATH: C:/Program Files (x86)
-          LIBPATH: C:/Program Files (x86)
+          CPPPATH: C:/Program Files (x86)/googletest-distribution/include
+          LIBPATH: C:/Program Files (x86)/googletest-distribution/lib
