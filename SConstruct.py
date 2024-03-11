@@ -19,7 +19,7 @@ AddOption("--iwyu", action="store_true")
 AddOption("--typecheck", action="store_true")
 
 if env["PLATFORM"] == "win32":
-    env["CXXFLAGS"] = ["/std=c++17"]
+    env["CXXFLAGS"] = ["/std:c++17"]
 
 else:
     env["CXX"] = "clang++"
