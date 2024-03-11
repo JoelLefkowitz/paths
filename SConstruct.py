@@ -19,12 +19,13 @@ AddOption("--iwyu", action="store_true")
 AddOption("--typecheck", action="store_true")
 
 if env["PLATFORM"] == "win32":
-    env["CXXFLAGS"] = ["/std:c++17"]
+    env["CXXFLAGS"] = ["/std:c++17", "/Zc:wchar_t"]
     env["LIBPREFIX"] = "lib"
     env["LIBSUFFIX"] = ".a"
     env["LIBLINKPREFIX"] = "$LIBPREFIX"
 
 else:
+    env["LIBS"].append("pthread")
     env["CXX"] = "clang++"
     env["CXXFLAGS"] = [
         "-std=c++17",
