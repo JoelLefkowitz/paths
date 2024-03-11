@@ -22,3 +22,5 @@ jobs:
         env:
           FILENAME: tests
           DIRNAME: dist
+          CPPPATH: C:/Program Files (x86)
+          LIBPATH: C:/Program Files (x86)

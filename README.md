@@ -396,12 +396,21 @@ os.path.split(os.path.normpath("//a/b/c"))[0] -> "//a/b/"
 
 ## Tooling
 
+```bash
+export CPPPATH="/usr/include"
+export LIBPATH="/usr/lib"
+```
+
 ### Tests
 
 To run tests:
 
 ```bash
 scons
+```
+
+```bash
+./dist/tests
 ```
 
 The runtime tests use environment variables to confirm they retrieve the executable path of the tests binary. For example, if the tests binary is at `dist/test`:
@@ -412,10 +421,6 @@ export FILENAME=tests
 export DIRPATH=$PWD/dist
 export DIRNAME=dist
 export ABSPATH=$PWD/dist/a/b/c
-```
-
-```bash
-./dist/tests
 ```
 
 ### Documentation
