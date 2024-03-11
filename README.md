@@ -4,7 +4,6 @@ Cross platform OS path operations and executable path retrieval.
 
 ![Review](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/paths/review.yml)
 ![Quality](https://img.shields.io/codacy/grade/61e4785a984c42bbbdf1554f025d0f7a)
-![Coverage](https://img.shields.io/codacy/coverage/61e4785a984c42bbbdf1554f025d0f7a)
 
 This package is inspired by [whereami](https://github.com/gpakosz/whereami) and [std::filesystem](https://en.cppreference.com/w/cpp/filesystem) but with:
 
