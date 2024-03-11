@@ -17,7 +17,7 @@ jobs:
           set FILEPATH=%cd%/dist/tests
           set DIRPATH=%cd%/dist
           set ABSPATH=%cd%/dist/a/b/c
-          which g++
+          g++ /Fosrc\absolute.obj /c src\absolute.cpp /std=c++17 /nologo /ID:\usr\include
           scons
           ./dist/tests
         env:
