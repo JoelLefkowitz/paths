@@ -35,6 +35,7 @@ env = Environment(
     LIBPATH=os.getenv("LIBPATH", "/usr/lib").split(","),
     # CXXCOMSTR="Compiling $TARGET",
     # LINKCOMSTR="Linking $TARGET",
+    tools=["mingw"],
     num_jobs=psutil.cpu_count(),
 )
 
@@ -44,7 +45,6 @@ AddOption("--typecheck", action="store_true")
 if env["PLATFORM"] == "win32":
     env["CXX"] = "g++"
     env["LIBS"].remove("pthread")
-    env["tools"] = ["mingw"]
 
 elif GetOption("typecheck"):
     env["LINK"] = ":"
@@ -59,5 +59,5 @@ else:
 
 env.Program(
     target="dist/tests",
-    source=[i for i in tree(".") if re.search("\.cpp$", i)],
+    source=[i for i in tree(".") if re.search(r"\.cpp$", i)],
 )
