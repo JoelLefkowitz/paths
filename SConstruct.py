@@ -20,8 +20,8 @@ AddOption("--typecheck", action="store_true")
 
 if env["PLATFORM"] == "win32":
     env["CXXFLAGS"] = ["/std:c++17"]
+    env["LIBPREFIX"] = "lib"
     env["LIBSUFFIX"] = ".a"
-    env["SHLIBPREFIX"] = "lib"
 
 else:
     env["CXX"] = "clang++"
@@ -49,6 +49,8 @@ if GetOption("iwyu"):
 if GetOption("typecheck"):
     env["LINK"] = ":"
     env["CXXFLAGS"].extend(["-S", "-O0"])
+
+print(env.Dump())
 
 sources = lambda x: [i for i in get_child_files(".") if re.search(x, i)]
 
