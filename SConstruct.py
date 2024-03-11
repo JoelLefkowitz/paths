@@ -20,9 +20,8 @@ AddOption("--typecheck", action="store_true")
 
 if env["PLATFORM"] == "win32":
     env["CXXFLAGS"] = ["/std:c++17"]
-    env["LIBPREFIX"] = "lib"
     env["LIBSUFFIX"] = ".a"
-    env["SHLIBPREFIX"] = "$LIBPREFIX"
+    env["SHLIBPREFIX"] = "lib"
 
 else:
     env["CXX"] = "clang++"
