@@ -395,6 +395,8 @@ os.path.split(os.path.normpath("//a/b/c"))[0] -> "//a/b/"
 ```
 
 ## Tooling
+ 
+Set the `CPPPATH` and `LIBPATH` environment variables:
 
 ```bash
 export CPPPATH="/usr/include"
