@@ -29,13 +29,12 @@ warnings = [
 
 env = Environment(
     LIBS=libs,
-    ENV={"PATH": os.getenv("PATH", [])},
+    ENV={"PATH": os.getenv("PATH")},
     CXXFLAGS=["-std=c++17"],
-    CPPPATH=os.getenv("CPPPATH", "/usr/include").split(","),
-    LIBPATH=os.getenv("LIBPATH", "/usr/lib").split(","),
+    CPPPATH=os.getenv("CPPPATH"),
+    LIBPATH=os.getenv("LIBPATH"),
     # CXXCOMSTR="Compiling $TARGET",
     # LINKCOMSTR="Linking $TARGET",
-    tools=["mingw"],
     num_jobs=psutil.cpu_count(),
 )
 
@@ -43,7 +42,7 @@ AddOption("--iwyu", action="store_true")
 AddOption("--typecheck", action="store_true")
 
 if env["PLATFORM"] == "win32":
-    env["CXX"] = "g++"
+    env.Tool("mingw")
     env["LIBS"].remove("pthread")
 
 elif GetOption("typecheck"):
