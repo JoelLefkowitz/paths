@@ -1,17 +1,17 @@
-import re
 import os
+import re
 import psutil
-from walkmate import get_child_files
 from SCons.Environment import Environment
 from SCons.Script import AddOption
+from walkmate import get_child_files as tree
 
 env = Environment(
-    LIBS=["gtest", "pthread"],
-    ENV={"PATH": os.environ["PATH"]},
-    CPPPATH=os.getenv("CPPPATH", "/usr/include"),
-    LIBPATH=os.getenv("LIBPATH", "/usr/lib"),
-    # CXXCOMSTR="Compiling $TARGET",
-    # LINKCOMSTR="Linking $TARGET",
+    LIBS=["gtest"],
+    ENV={"PATH": os.getenv("PATH", [])},
+    CPPPATH=os.getenv("CPPPATH", "/usr/include").split(","),
+    LIBPATH=os.getenv("LIBPATH", "/usr/lib").split(","),
+    CXXCOMSTR="Compiling $TARGET",
+    LINKCOMSTR="Linking $TARGET",
     num_jobs=psutil.cpu_count(),
 )
 
@@ -51,8 +51,6 @@ if GetOption("typecheck"):
     env["LINK"] = ":"
     env["CXXFLAGS"].extend(["-S", "-O0"])
 
-print(env.Dump())
-
-sources = lambda x: [i for i in get_child_files(".") if re.search(x, i)]
+sources = lambda pattern: [i for i in tree(".") if re.search(pattern, i)]
 
 env.Program(target="dist/tests", source=sources("\.cpp$"))
