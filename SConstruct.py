@@ -22,6 +22,7 @@ AddOption("--typecheck", action="store_true")
 if env["PLATFORM"] == "win32":
     env["LIBS"].remove("pthread")
     env["CXXFLAGS"] = ["-std=c++17"]
+    
     # env["LIBPREFIX"] = "lib"
     # env["LIBSUFFIX"] = ".a"
     # env["LIBLINKPREFIX"] = "$LIBPREFIX"
