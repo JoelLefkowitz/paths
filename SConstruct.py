@@ -29,10 +29,10 @@ warnings = [
 
 env = Environment(
     LIBS=libs,
-    ENV={"PATH": os.getenv("PATH")},
     CXXFLAGS=["-std=c++17"],
     CPPPATH=os.getenv("CPPPATH"),
     LIBPATH=os.getenv("LIBPATH"),
+    ENV={"PATH": os.getenv("PATH")},
     num_jobs=psutil.cpu_count(),
 )
 

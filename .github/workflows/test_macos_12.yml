@@ -1,9 +1,6 @@
 name: Test on MacOS 12
 
-on: [
-    # push,
-    pull_request,
-  ]
+on: [push, pull_request]
 
 jobs:
   review:
