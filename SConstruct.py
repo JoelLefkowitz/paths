@@ -36,11 +36,6 @@ env = Environment(
     num_jobs=psutil.cpu_count(),
 )
 
-env.Program(
-    target="dist/tests",
-    source=[i for i in tree(".") if re.search(r"\.cpp$", i)],
-)
-
 AddOption(
     "--iwyu",
     action="store_true",
@@ -65,3 +60,17 @@ elif GetOption("iwyu"):
 else:
     env["CXX"] = "clang++"
     env["CXXFLAGS"].extend(warnings)
+
+env.Program(
+    target="dist/tests",
+    source=[
+        source
+        for source in tree(".")
+        if re.search(
+            "(?<!main)\.cpp$",
+            source,
+        )
+    ],
+)
+
+env.Alias("tests", "./dist/tests")
