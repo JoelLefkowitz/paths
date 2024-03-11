@@ -10,8 +10,8 @@ env = Environment(
     ENV={"PATH": os.environ["PATH"]},
     CPPPATH=os.getenv("CPPPATH", "/usr/include"),
     LIBPATH=os.getenv("LIBPATH", "/usr/lib"),
-    CXXCOMSTR="Compiling $TARGET",
-    LINKCOMSTR="Linking $TARGET",
+    # CXXCOMSTR="Compiling $TARGET",
+    # LINKCOMSTR="Linking $TARGET",
     num_jobs=psutil.cpu_count(),
 )
 
