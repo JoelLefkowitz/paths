@@ -17,10 +17,13 @@ jobs:
 
       - name: Run tests
         run: |
-          export DIRNAME=dist
-          export FILENAME=tests
           export DIRPATH=$PWD/$DIRNAME
           export ABSPATH=$PWD/$DIRNAME/a/b/c
           export FILEPATH=$PWD/$DIRNAME/$FILENAME
           scons
           ./dist/tests
+        env:
+          DIRNAME: dist
+          FILENAME: tests
+          CPPPATH: /opt/homebrew/include
+          LIBPATH: /opt/homebrew/lib
