@@ -4,7 +4,6 @@ Cross platform OS path operations and executable path retrieval.
 
 ![Review](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/paths/review.yml)
 ![Quality](https://img.shields.io/codacy/grade/61e4785a984c42bbbdf1554f025d0f7a)
-![Coverage](https://img.shields.io/codacy/coverage/61e4785a984c42bbbdf1554f025d0f7a)
 
 This package is inspired by [whereami](https://github.com/gpakosz/whereami) and [std::filesystem](https://en.cppreference.com/w/cpp/filesystem) but with:
 
@@ -395,6 +394,13 @@ os.path.split(os.path.normpath("//a/b/c"))[0] -> "//a/b/"
 ```
 
 ## Tooling
+ 
+Set the `CPPPATH` and `LIBPATH` environment variables:
+
+```bash
+export CPPPATH="/usr/include"
+export LIBPATH="/usr/lib"
+```
 
 ### Tests
 
@@ -404,18 +410,18 @@ To run tests:
 scons
 ```
 
+```bash
+./dist/tests
+```
+
 The runtime tests use environment variables to confirm they retrieve the executable path of the tests binary. For example, if the tests binary is at `dist/test`:
 
 ```bash
-export FILEPATH=$PWD/dist/tests
-export FILENAME=tests
-export DIRPATH=$PWD/dist
 export DIRNAME=dist
-export ABSPATH=$PWD/dist/a/b/c
-```
-
-```bash
-./dist/tests
+export FILENAME=tests
+export DIRPATH=$PWD/$DIRNAME
+export ABSPATH=$PWD/$DIRNAME/a/b/c
+export FILEPATH=$PWD/$DIRNAME/$FILENAME
 ```
 
 ### Documentation

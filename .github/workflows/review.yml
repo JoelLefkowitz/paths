@@ -23,13 +23,13 @@ jobs:
 
       - name: Run tests
         run: |
-          export FILEPATH=$PWD/dist/tests
-          export DIRPATH=$PWD/dist
-          export ABSPATH=$PWD/dist/a/b/c          
+          export DIRPATH=$PWD/$DIRNAME
+          export ABSPATH=$PWD/$DIRNAME/a/b/c
+          export FILEPATH=$PWD/$DIRNAME/$FILENAME
           scons
           ./dist/tests
         env:
+          DIRNAME: dist
+          FILENAME: tests
           CPPPATH: /usr/include
           LIBPATH: /usr/lib
-          FILENAME: tests
-          DIRNAME: dist
