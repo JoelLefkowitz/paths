@@ -67,7 +67,7 @@ env.Program(
         source
         for source in tree(".")
         if re.search(
-            "(?<!main)\.cpp$",
+            r"(?<!main)\.cpp$",
             source,
         )
     ],

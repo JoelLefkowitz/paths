@@ -13,6 +13,7 @@
 #include "vectors.hpp"
 #include "words.hpp"
 #include <algorithm>
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -53,16 +54,17 @@ std::string paths::normpath(const std::string &path) {
 
     auto joined = join(normalised, platform::sep);
 
-    std::vector<char> chars(path.begin(), path.end());
-
-    if (count_leading(chars, platform::sep) == 2) {
-        joined = std::string(2, platform::sep) + joined;
+    if (platform::os == platform::Windows && windows_letter_drive(path) != "") {
+        return windows_letter_drive(path) + "/" + joined;
     }
 
-    else if (absolute(path)) {
-        joined = platform::sep + joined;
+    if (starts_with(path, "//") && !starts_with(path, "///")) {
+        return "//" + joined;
     }
 
-    auto prefix = drive(path);
-    return starts_with(prefix, "//") ? joined : prefix + joined;
+    if (starts_with(path, "/")) {
+        return "/" + joined;
+    }
+
+    return joined;
 }

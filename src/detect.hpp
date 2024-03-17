@@ -1,7 +1,7 @@
 // ʕ •ᴥ•ʔ Detect - detect.hpp ʕ•ᴥ• ʔ
 // A single header library to detect the OS at compile time.
 // https://github.com/joellefkowitz/detect
-// Version: 2.0.1
+// Version: 2.0.2
 // License: MIT
 
 // Preprocessor macros:
@@ -151,13 +151,13 @@ namespace platform {
     constexpr OS os = Linux;
 
 #elif PLATFORM_OS == PLATFORM_OS_SOLARIS
-    constexpr OS   os        = Solaris;
+    constexpr OS os = Solaris;
 
 #elif PLATFORM_OS == PLATFORM_OS_WINDOWS
-    constexpr OS os = BSD;
+    constexpr OS os = Windows;
 
 #elif PLATFORM_OS == PLATFORM_OS_BSD
-    constexpr OS os = Windows;
+    constexpr OS os = BSD;
 
 #elif PLATFORM_OS == PLATFORM_OS_MACOS
     constexpr OS os = macOS;
@@ -190,7 +190,7 @@ namespace platform {
     constexpr bool unix = true;
 
 #else
-    constexpr bool unix      = false;
+    constexpr bool unix = false;
 
 #endif
 
@@ -198,7 +198,7 @@ namespace platform {
     constexpr bool posix = true;
 
 #else
-    constexpr bool posix     = false;
+    constexpr bool posix = false;
 
 #endif
 
@@ -206,7 +206,7 @@ namespace platform {
     constexpr bool mobile = true;
 
 #else
-    constexpr bool mobile    = false;
+    constexpr bool mobile = false;
 
 #endif
 

@@ -22,6 +22,7 @@
   ],
   "words": [
     "abspath",
+    "bindirs",
     "bumpversion",
     "constexpr",
     "cppcheck",
@@ -45,6 +46,7 @@
     "kcov",
     "lefkowitz",
     "lexists",
+    "libdirs",
     "liblinkprefix",
     "libpath",
     "libprefix",
