@@ -1,5 +1,5 @@
-#ifndef TEST_PATHS_RELATIVE_H
-#define TEST_PATHS_RELATIVE_H
+#ifndef PATHS_SUITES_RELATIVE_RELATIVE_HPP
+#define PATHS_SUITES_RELATIVE_RELATIVE_HPP
 
 #include <string>
 #include <vector>

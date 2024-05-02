@@ -1,5 +1,5 @@
-#ifndef TEST_PATHS_CONCAT_H
-#define TEST_PATHS_CONCAT_H
+#ifndef PATHS_SUITES_VECTORS_CONCAT_HPP
+#define PATHS_SUITES_VECTORS_CONCAT_HPP
 
 #include <string>
 #include <vector>

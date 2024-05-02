@@ -1,7 +1,9 @@
+#ifndef PATHS_VECTORS_TPP
+#define PATHS_VECTORS_TPP
+
 #include "vectors.hpp"
 #include <algorithm>
 #include <cstddef>
-#include <iterator>
 #include <string>
 #include <vector>
 
@@ -90,3 +92,5 @@ std::pair<std::vector<T>, std::vector<T>> paths::trim_trailing_matches(std::vect
 
     return {x, y};
 }
+
+#endif

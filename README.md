@@ -5,6 +5,8 @@ Cross platform OS path operations and executable path retrieval.
 ![Review](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/paths/review.yml)
 ![Quality](https://img.shields.io/codacy/grade/61e4785a984c42bbbdf1554f025d0f7a)
 
+## Motivation
+
 This package is inspired by [whereami](https://github.com/gpakosz/whereami) and [std::filesystem](https://en.cppreference.com/w/cpp/filesystem) but with:
 
 - Simple functions
@@ -24,13 +26,9 @@ Test environments:
 | MacOS 12         | ![Darwin](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/paths/test_macos_12.yml)      |
 | Windows 2022     | ![Windows](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/paths/test_windows_2022.yml) |
 
-## Installation
+## Installing
 
-```bash
-conan install paths
-```
-
-You can also download the [sources](https://download-directory.github.io?url=https://github.com/joellefkowitz/paths/tree/master/src).
+You can download the [sources](https://download-directory.github.io?url=https://github.com/joellefkowitz/paths/tree/master/src).
 
 ## Documentation
 
@@ -327,7 +325,7 @@ namespace paths {
 } // namespace paths
 ```
 
-## Commentary
+## Discussion
 
 ### Terminology
 
@@ -394,12 +392,15 @@ os.path.split(os.path.normpath("//a/b/c"))[0] -> "//a/b/"
 ```
 
 ## Tooling
- 
-Set the `CPPPATH` and `LIBPATH` environment variables:
+
+### Dependencies
+
+To install dependencies:
 
 ```bash
-export CPPPATH="/usr/include"
-export LIBPATH="/usr/lib"
+yarn install
+pip install .[all]
+conan install .
 ```
 
 ### Tests
@@ -407,49 +408,31 @@ export LIBPATH="/usr/lib"
 To run tests:
 
 ```bash
-scons
-```
-
-```bash
-./dist/tests
-```
-
-The runtime tests use environment variables to confirm they retrieve the executable path of the tests binary. For example, if the tests binary is at `dist/test`:
-
-```bash
-export DIRNAME=dist
-export FILENAME=tests
-export DIRPATH=$PWD/$DIRNAME
-export ABSPATH=$PWD/$DIRNAME/a/b/c
-export FILEPATH=$PWD/$DIRNAME/$FILENAME
+scons test
 ```
 
 ### Documentation
 
 To generate the documentation locally:
 
-```sh
-doxygen
+```bash
+scons docs
 ```
 
 ### Linters
 
 To run linters:
 
-```sh
-cspell . --dot
-cppclean . --include-path $CPPPATH
-cppcheck **/*.*pp -q --enable=all --suppressions-list=.cppcheck
-scons --typecheck
+```bash
+scons lint
 ```
 
 ### Formatters
 
 To run formatters:
 
-```sh
-prettier . --write
-clang-format -i **/*.*pp
+```bash
+scons format
 ```
 
 ## Contributing
@@ -472,8 +455,8 @@ bump2version patch
 
 Lots of love to the open source community!
 
-<p align='center'>
+<div align='center'>
     <img width=200 height=200 src='https://media.giphy.com/media/osAcIGTSyeovPq6Xph/giphy.gif' alt='Be kind to your mind' />
     <img width=200 height=200 src='https://media.giphy.com/media/KEAAbQ5clGWJwuJuZB/giphy.gif' alt='Love each other' />
     <img width=200 height=200 src='https://media.giphy.com/media/WRWykrFkxJA6JJuTvc/giphy.gif' alt="It's ok to have a bad day" />
-</p>
+</div>

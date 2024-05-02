@@ -1,8 +1,4 @@
-// ʕ •ᴥ•ʔ Paths - convert.cpp ʕ•ᴥ• ʔ
-// Cross platform OS path operations and executable path retrieval.
-// https://github.com/joellefkowitz/paths
-// Version: 0.1.0
-// License: MIT
+
 
 #include "convert.hpp"
 #include "components.hpp"
@@ -12,11 +8,13 @@
 
 std::string paths::posix_path(std::string path) {
     std::replace(path.begin(), path.end(), paths::windows_sep, paths::posix_sep);
-    return path.substr(windows_letter_drive(path).length(), path.length());
+
+    return letter_drive(path).empty() ? path : path.substr(2, path.length());
 }
 
 std::string paths::windows_path(std::string path) {
     std::replace(path.begin(), path.end(), paths::posix_sep, paths::windows_sep);
+
     return path;
 }
 

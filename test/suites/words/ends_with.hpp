@@ -1,5 +1,5 @@
-#ifndef TEST_PATHS_ENDS_WITH_H
-#define TEST_PATHS_ENDS_WITH_H
+#ifndef PATHS_SUITES_WORDS_ENDS_WITH_HPP
+#define PATHS_SUITES_WORDS_ENDS_WITH_HPP
 
 #include <string>
 #include <vector>

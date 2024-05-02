@@ -1,11 +1,5 @@
-// ʕ •ᴥ•ʔ Paths - runtime.hpp ʕ•ᴥ• ʔ
-// Cross platform OS path operations and executable path retrieval.
-// https://github.com/joellefkowitz/paths
-// Version: 0.1.0
-// License: MIT
-
-#ifndef LIB_PATHS_RUNTIME_H
-#define LIB_PATHS_RUNTIME_H
+#ifndef PATHS_REALTIME_HPP
+#define PATHS_REALTIME_HPP
 
 #include <string>
 
@@ -23,6 +17,6 @@ namespace paths {
     // Gets the name of the directory of the current
     // executable file
     std::string dirname();
-} // namespace paths
+}
 
 #endif

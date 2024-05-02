@@ -1,5 +1,5 @@
-#ifndef TEST_PATHS_SPLIT_H
-#define TEST_PATHS_SPLIT_H
+#ifndef PATHS_SUITES_CHUNKS_SPLIT_HPP
+#define PATHS_SUITES_CHUNKS_SPLIT_HPP
 
 #include <string>
 #include <vector>

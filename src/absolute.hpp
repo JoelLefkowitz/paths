@@ -1,11 +1,5 @@
-// ʕ •ᴥ•ʔ Paths - absolute.hpp ʕ•ᴥ• ʔ
-// Cross platform OS path operations and executable path retrieval.
-// https://github.com/joellefkowitz/paths
-// Version: 0.1.0
-// License: MIT
-
-#ifndef LIB_PATHS_ABSOLUTE_H
-#define LIB_PATHS_ABSOLUTE_H
+#ifndef PATHS_ABSOLUTE_HPP
+#define PATHS_ABSOLUTE_HPP
 
 #include <string>
 
@@ -29,6 +23,6 @@ namespace paths {
     //   absolute("/a") -> true
     //   absolute("a") -> false
     bool absolute(const std::string &path);
-} // namespace paths
+}
 
 #endif

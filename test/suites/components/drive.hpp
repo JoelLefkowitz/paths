@@ -1,5 +1,5 @@
-#ifndef TEST_PATHS_DRIVE_H
-#define TEST_PATHS_DRIVE_H
+#ifndef PATHS_SUITES_COMPONENTS_DRIVE_HPP
+#define PATHS_SUITES_COMPONENTS_DRIVE_HPP
 
 #include <string>
 #include <vector>

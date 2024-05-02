@@ -1,11 +1,5 @@
-// ʕ •ᴥ•ʔ Paths - normalise.hpp ʕ•ᴥ• ʔ
-// Cross platform OS path operations and executable path retrieval.
-// https://github.com/joellefkowitz/paths
-// Version: 0.1.0
-// License: MIT
-
-#ifndef LIB_PATHS_NORMALISE_H
-#define LIB_PATHS_NORMALISE_H
+#ifndef PATHS_NORMALISE_HPP
+#define PATHS_NORMALISE_HPP
 
 #include <string>
 #include <vector>
@@ -44,6 +38,6 @@ namespace paths {
     //   normpath("//a/b/..") -> "//a"
     //   normpath("///a/b") -> "/a/b"
     std::string normpath(const std::string &path);
-} // namespace paths
+}
 
 #endif

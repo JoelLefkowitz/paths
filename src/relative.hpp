@@ -1,11 +1,5 @@
-// ʕ •ᴥ•ʔ Paths - relative.hpp ʕ•ᴥ• ʔ
-// Cross platform OS path operations and executable path retrieval.
-// https://github.com/joellefkowitz/paths
-// Version: 0.1.0
-// License: MIT
-
-#ifndef LIB_PATHS_RELATIVE_H
-#define LIB_PATHS_RELATIVE_H
+#ifndef PATHS_RELATIVE_HPP
+#define PATHS_RELATIVE_HPP
 
 #include <string>
 
@@ -28,6 +22,6 @@ namespace paths {
     //   relative("a") -> true
     //   relative("/a") -> false
     bool relative(const std::string &path);
-} // namespace paths
+}
 
 #endif

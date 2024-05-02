@@ -1,76 +1,129 @@
-import os
-import re
-import psutil
-from SCons.Environment import Environment
-from SCons.Script import AddOption
-from walkmate import get_child_files as tree
+from miniscons import (
+    Build,
+    Flag,
+    Routine,
+    Script,
+    Target,
+    Tasks,
+    conan,
+    packages,
+    flags,
+)
+from walkmate import tree
 
-libs = [
-    "gtest",
-    "pthread",
-]
+env = conan()
 
-warnings = [
-    "-Wall",
-    "-Wconversion",
-    "-Wextra",
-    "-Wmissing-declarations",
-    "-Wpedantic",
-    "-Wshadow-uncaptured-local",
-    "-Wshadow",
-    "-Wno-deprecated-declarations",
-    "-Wno-macro-redefined",
-    "-Wno-missing-braces",
-    "-Wno-unknown-warning-option",
-    "-Wno-unused-parameter",
-    "-Wno-vla-extension",
-    "-Wno-everything",
-]
-
-env = Environment(
-    LIBS=libs,
-    CXXFLAGS=["-std=c++17"],
-    CPPPATH=os.getenv("CPPPATH"),
-    LIBPATH=os.getenv("LIBPATH"),
-    ENV={"PATH": os.getenv("PATH")},
-    num_jobs=psutil.cpu_count(),
+shared = Build(
+    "shared",
+    tree("src", r"(?<!\.spec)\.cpp$", ["main.cpp", "test.cpp"]),
+    flags("c++17"),
+    shared=True,
+    rename="paths",
 )
 
-AddOption(
-    "--iwyu",
-    action="store_true",
+tests = Build(
+    "tests",
+    tree("src", r"\.cpp$", ["main.cpp"]),
+    flags("c++17"),
+    packages(["gtest"]),
 )
 
-AddOption(
-    "--typecheck",
-    action="store_true",
+includes = tests.packages["CPPPATH"]
+
+clang_format = Script(
+    "clang-format",
+    ["-i", tree(".", r"\.(cpp|hpp|tpp)$")],
 )
 
-if env["PLATFORM"] == "win32":
-    env.Tool("mingw")
-    env["LIBS"].remove("pthread")
-
-elif GetOption("typecheck"):
-    env["LINK"] = ":"
-    env["CXXFLAGS"].extend(["-S", "-O0"])
-
-elif GetOption("iwyu"):
-    env["CXX"] = "include-what-you-use"
-
-else:
-    env["CXX"] = "clang++"
-    env["CXXFLAGS"].extend(warnings)
-
-env.Program(
-    target="dist/tests",
-    source=[
-        source
-        for source in tree(".")
-        if re.search(
-            r"(?<!main)\.cpp$",
-            source,
-        )
+clang_tidy = Script(
+    "clang-tidy",
+    [
+        tree("src", r"\.(cpp)$"),
+        "--",
+        [f"-I{i}" for i in includes],
     ],
 )
 
-env.Alias("tests", "./dist/tests")
+cppclean = Script(
+    "cppclean",
+    ["."],
+)
+
+cppcheck = Script(
+    "cppcheck",
+    [
+        tree("src", r"\.(cpp)$"),
+        [f"-I{i}" for i in includes],
+        [f"--suppress=*:{i}/*" for i in includes],
+        "--quiet",
+        "--enable=all",
+        "--inline-suppr",
+        "--suppressions-list=.cppcheck",
+    ],
+)
+
+doxygen = Script(
+    "doxygen",
+    ["-q"],
+)
+
+trufflehog3 = Script("trufflehog3")
+
+cspell = Script(
+    "cspell",
+    [".", "--dot", "--gitignore"],
+    ["npx"],
+)
+
+prettier = Script(
+    "prettier",
+    [".", "--write"],
+    ["npx"],
+)
+
+doxygen = Script(
+    "doxygen",
+    ["docs/doxygen/Doxyfile"],
+)
+
+breathe = Script(
+    "breathe-apidoc",
+    [
+        "./docs/doxygen/dist",
+        "--output-dir",
+        "docs/sphinx/dist",
+        "--members",
+    ],
+)
+
+sphinx = Script(
+    "sphinx-build",
+    ["docs/sphinx", "docs/dist"],
+)
+
+cli = Tasks(
+    [shared, tests],
+    [
+        Target("test", tests, ["--gtest_brief"]),
+    ],
+    [
+        clang_format,
+        clang_tidy,
+        cppcheck,
+        cppclean,
+        cspell,
+        doxygen,
+        prettier,
+        trufflehog3,
+        doxygen,
+        breathe,
+        sphinx,
+    ],
+    [
+        Routine("lint", [cspell, cppclean, cppcheck, trufflehog3]),
+        Routine("format", [clang_format, prettier]),
+        Routine("docs", [doxygen, breathe, sphinx]),
+    ],
+)
+
+cli.register(env)

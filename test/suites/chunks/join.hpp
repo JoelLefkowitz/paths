@@ -1,5 +1,5 @@
-#ifndef TEST_PATHS_JOIN_H
-#define TEST_PATHS_JOIN_H
+#ifndef PATHS_SUITES_CHUNKS_JOIN_HPP
+#define PATHS_SUITES_CHUNKS_JOIN_HPP
 
 #include <string>
 #include <vector>

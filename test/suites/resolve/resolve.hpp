@@ -1,5 +1,5 @@
-#ifndef TEST_PATHS_RESOLVE_H
-#define TEST_PATHS_RESOLVE_H
+#ifndef PATHS_SUITES_RESOLVE_RESOLVE_HPP
+#define PATHS_SUITES_RESOLVE_RESOLVE_HPP
 
 #include <string>
 #include <vector>

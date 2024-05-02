@@ -1,5 +1,5 @@
-#ifndef TEST_PATHS_ABSOLUTE_H
-#define TEST_PATHS_ABSOLUTE_H
+#ifndef PATHS_SUITES_ABSOLUTE_ABSOLUTE_HPP
+#define PATHS_SUITES_ABSOLUTE_ABSOLUTE_HPP
 
 #include <string>
 #include <vector>

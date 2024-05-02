@@ -1,5 +1,5 @@
-#ifndef TEST_PATHS_TAIL_H
-#define TEST_PATHS_TAIL_H
+#ifndef PATHS_SUITES_COMPONENTS_TAIL_HPP
+#define PATHS_SUITES_COMPONENTS_TAIL_HPP
 
 #include <string>
 #include <vector>

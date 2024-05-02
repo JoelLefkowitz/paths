@@ -1,11 +1,5 @@
-// ʕ •ᴥ•ʔ Paths - resolve.hpp ʕ•ᴥ• ʔ
-// Cross platform OS path operations and executable path retrieval.
-// https://github.com/joellefkowitz/paths
-// Version: 0.1.0
-// License: MIT
-
-#ifndef LIB_PATHS_RESOLVE_H
-#define LIB_PATHS_RESOLVE_H
+#ifndef PATHS_RESOLVE_HPP
+#define PATHS_RESOLVE_HPP
 
 #include <string>
 #include <vector>
@@ -42,6 +36,6 @@ namespace paths {
     //   segments("C:/a/b") -> {"C:", "a", "b"}
     //   segments("//a/b/c") -> {"a", "b", "c"}
     std::vector<std::string> segments(const std::string &path);
-} // namespace paths
+}
 
 #endif

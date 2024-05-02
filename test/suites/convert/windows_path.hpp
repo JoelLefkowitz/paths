@@ -1,5 +1,5 @@
-#ifndef TEST_PATHS_WINDOWS_PATH_H
-#define TEST_PATHS_WINDOWS_PATH_H
+#ifndef PATHS_SUITES_CONVERT_WINDOWS_PATH_HPP
+#define PATHS_SUITES_CONVERT_WINDOWS_PATH_HPP
 
 #include <string>
 #include <vector>

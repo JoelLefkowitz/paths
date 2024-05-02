@@ -7,27 +7,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the source code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install dependencies
-        uses: ./.github/actions/install-ubuntu
+        uses: ./.github/actions/install
 
       - name: Run linters
-        run: |
-          npx cspell . --dot
-          cppclean . --include-path $CPPPATH
-          cppcheck **/*.*pp -q --enable=all --suppressions-list=.cppcheck
-          scons --typecheck
-        env:
-          CPPPATH: /usr/include
+        run: scons lint
 
       - name: Run tests
         run: |
           export DIRPATH=$PWD/$DIRNAME
           export ABSPATH=$PWD/$DIRNAME/a/b/c
           export FILEPATH=$PWD/$DIRNAME/$FILENAME
-          scons
-          ./dist/tests
+          scons test
         env:
           DIRNAME: dist
           FILENAME: tests

@@ -1,5 +1,5 @@
-#ifndef TEST_PATHS_SEGMENTS_H
-#define TEST_PATHS_SEGMENTS_H
+#ifndef PATHS_SUITES_RESOLVE_SEGMENTS_HPP
+#define PATHS_SUITES_RESOLVE_SEGMENTS_HPP
 
 #include <string>
 #include <vector>

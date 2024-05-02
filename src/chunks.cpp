@@ -1,8 +1,4 @@
-// ʕ •ᴥ•ʔ Paths - chunks.cpp ʕ•ᴥ• ʔ
-// Cross platform OS path operations and executable path retrieval.
-// https://github.com/joellefkowitz/paths
-// Version: 0.1.0
-// License: MIT
+
 
 #include "chunks.hpp"
 #include "words.hpp"

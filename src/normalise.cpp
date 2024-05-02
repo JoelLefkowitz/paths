@@ -1,19 +1,13 @@
-// ʕ •ᴥ•ʔ Paths - normalise.cpp ʕ•ᴥ• ʔ
-// Cross platform OS path operations and executable path retrieval.
-// https://github.com/joellefkowitz/paths
-// Version: 0.1.0
-// License: MIT
+
 
 #include "normalise.hpp"
 #include "absolute.hpp"
 #include "chunks.hpp"
 #include "components.hpp"
 #include "detect.hpp"
-#include "relative.hpp"
-#include "vectors.hpp"
+#include "vectors.tpp"
 #include "words.hpp"
-#include <algorithm>
-#include <iostream>
+#include <initializer_list>
 #include <string>
 #include <vector>
 
@@ -54,17 +48,16 @@ std::string paths::normpath(const std::string &path) {
 
     auto joined = join(normalised, platform::sep);
 
-    if (platform::os == platform::Windows && windows_letter_drive(path) != "") {
-        return windows_letter_drive(path) + "/" + joined;
+    std::vector<char> chars(path.begin(), path.end());
+
+    if (count_leading(chars, platform::sep) == 2) {
+        joined = std::string(2, platform::sep) + joined;
     }
 
-    if (starts_with(path, "//") && !starts_with(path, "///")) {
-        return "//" + joined;
+    else if (absolute(path)) {
+        joined = platform::sep + joined;
     }
 
-    if (starts_with(path, "/")) {
-        return "/" + joined;
-    }
-
-    return joined;
+    auto prefix = drive(path);
+    return starts_with(prefix, "//") ? joined : prefix + joined;
 }

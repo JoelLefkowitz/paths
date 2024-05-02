@@ -3,6 +3,4 @@
 #include <gtest/gtest.h>
 #include <string>
 
-TEST(absolute, abspath) {
-    EXPECT_EQ(paths::abspath("a/b/c"), test::environment("ABSPATH"));
-}
+TEST(absolute, abspath) { EXPECT_EQ(paths::abspath("a/b/c"), test::environment("ABSPATH")); }

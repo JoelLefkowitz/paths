@@ -1,11 +1,5 @@
-// ʕ •ᴥ•ʔ Paths - chunks.hpp ʕ•ᴥ• ʔ
-// Cross platform OS path operations and executable path retrieval.
-// https://github.com/joellefkowitz/paths
-// Version: 0.1.0
-// License: MIT
-
-#ifndef LIB_PATHS_CHUNKS_H
-#define LIB_PATHS_CHUNKS_H
+#ifndef PATHS_CHUNKS_HPP
+#define PATHS_CHUNKS_HPP
 
 #include <string>
 #include <vector>
@@ -36,6 +30,6 @@ namespace paths {
     //   split("abc", "") -> {"a", "b", "c"}
     //   split("a,b,c", ",") -> {"a", "b", "c"}
     std::vector<std::string> split(const std::string &str, const std::string &delimiter);
-} // namespace paths
+}
 
 #endif

@@ -1,11 +1,5 @@
-// ʕ •ᴥ•ʔ Paths - words.hpp ʕ•ᴥ• ʔ
-// Cross platform OS path operations and executable path retrieval.
-// https://github.com/joellefkowitz/paths
-// Version: 0.1.0
-// License: MIT
-
-#ifndef LIB_PATHS_WORDS_H
-#define LIB_PATHS_WORDS_H
+#ifndef PATHS_WORDS_HPP
+#define PATHS_WORDS_HPP
 
 #include <string>
 
@@ -33,6 +27,6 @@ namespace paths {
     // Usage:
     //   ends_with("abc", "c") -> true
     bool ends_with(const std::string &str, const std::string &suffix);
-} // namespace paths
+}
 
 #endif

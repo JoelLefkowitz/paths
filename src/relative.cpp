@@ -1,18 +1,12 @@
-// ʕ •ᴥ•ʔ Paths - relative.cpp ʕ•ᴥ• ʔ
-// Cross platform OS path operations and executable path retrieval.
-// https://github.com/joellefkowitz/paths
-// Version: 0.1.0
-// License: MIT
-
 #include "relative.hpp"
 #include "absolute.hpp"
 #include "chunks.hpp"
 #include "detect.hpp"
 #include "normalise.hpp"
 #include "resolve.hpp"
-#include "vectors.hpp"
-#include <deque>
+#include "vectors.tpp"
 #include <string>
+#include <utility>
 #include <vector>
 
 std::string paths::relpath(const std::string &source, const std::string &target) {
@@ -24,6 +18,4 @@ std::string paths::relpath(const std::string &source, const std::string &target)
     return normpath(join(merged, platform::sep));
 }
 
-bool paths::relative(const std::string &path) {
-    return !absolute(path);
-}
+bool paths::relative(const std::string &path) { return !absolute(path); }

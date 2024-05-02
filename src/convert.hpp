@@ -1,11 +1,5 @@
-// ʕ •ᴥ•ʔ Paths - convert.hpp ʕ•ᴥ• ʔ
-// Cross platform OS path operations and executable path retrieval.
-// https://github.com/joellefkowitz/paths
-// Version: 0.1.0
-// License: MIT
-
-#ifndef LIB_PATHS_CONVERT_H
-#define LIB_PATHS_CONVERT_H
+#ifndef PATHS_CONVERT_HPP
+#define PATHS_CONVERT_HPP
 
 #include <string>
 
@@ -48,6 +42,6 @@ namespace paths {
     //   platform_path("a/b") -> "a/b"
     //   platform_path("a\b") -> "a/b"
     std::string platform_path(const std::string &path);
-} // namespace paths
+}
 
 #endif
