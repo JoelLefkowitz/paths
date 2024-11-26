@@ -28,7 +28,11 @@ Test environments:
 
 ## Installing
 
-You can download the [sources](https://download-directory.github.io?url=https://github.com/joellefkowitz/paths/tree/master/src).
+```bash
+conan search paths
+```
+
+You can also download the [sources](https://download-directory.github.io?url=https://github.com/joellefkowitz/paths/tree/master/src).
 
 ## Documentation
 

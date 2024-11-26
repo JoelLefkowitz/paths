@@ -16,13 +16,4 @@ jobs:
         run: scons lint
 
       - name: Run tests
-        run: |
-          export DIRPATH=$PWD/$DIRNAME
-          export ABSPATH=$PWD/$DIRNAME/a/b/c
-          export FILEPATH=$PWD/$DIRNAME/$FILENAME
-          scons test
-        env:
-          DIRNAME: dist
-          FILENAME: tests
-          CPPPATH: /usr/include
-          LIBPATH: /usr/lib
+        run: scons test

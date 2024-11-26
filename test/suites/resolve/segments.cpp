@@ -1,7 +1,7 @@
 #include "segments.hpp"
 #include "../../../src/convert.hpp"
 #include "../../../src/resolve.hpp"
-#include "../../../src/vectors.hpp"
+#include "../../../src/vectors.tpp"
 #include <gtest/gtest.h>
 
 TEST(resolve, segments) {

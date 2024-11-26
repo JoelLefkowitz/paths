@@ -1,11 +1,9 @@
 #ifndef PATHS_SUITES_NORMALISE_NORMPATH_HPP
 #define PATHS_SUITES_NORMALISE_NORMPATH_HPP
 
+#include <detect/constants.hpp>
 #include <string>
 #include <vector>
-
-// cppclean-disable-next-line
-#include "../../../src/detect.hpp"
 
 struct NormpathTestCase {
     std::string path;

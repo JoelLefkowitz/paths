@@ -1,11 +1,9 @@
 #ifndef PATHS_SUITES_RELATIVE_RELATIVE_HPP
 #define PATHS_SUITES_RELATIVE_RELATIVE_HPP
 
+#include <detect/constants.hpp>
 #include <string>
 #include <vector>
-
-// cppclean-disable-next-line
-#include "../../../src/detect.hpp"
 
 struct RelativeTestCase {
     std::string path;

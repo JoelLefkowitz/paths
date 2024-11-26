@@ -1,8 +1,8 @@
 #include "absolute.hpp"
-#include "detect.hpp"
 #include "realtime.hpp"
 #include "resolve.hpp"
 #include "words.hpp"
+#include <detect/constants.hpp>
 #include <string>
 #include <vector>
 

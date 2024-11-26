@@ -1,5 +1,5 @@
 #include "count_leading.hpp"
-#include "../../../src/vectors.hpp"
+#include "../../../src/vectors.tpp"
 #include <gtest/gtest.h>
 #include <string>
 

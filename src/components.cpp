@@ -3,10 +3,10 @@
 #include "components.hpp"
 #include "absolute.hpp"
 #include "chunks.hpp"
-#include "detect.hpp"
 #include "resolve.hpp"
 #include "vectors.hpp"
 #include "words.hpp"
+#include <detect/constants.hpp>
 #include <string>
 #include <vector>
 

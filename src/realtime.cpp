@@ -1,16 +1,12 @@
-
-
 #include "realtime.hpp"
 #include "components.hpp"
-#include "detect.hpp"
-#include <mach-o/dyld.h>
-#include <stdexcept>
+#include <detect/macros.hpp>
 #include <stdint.h>
 #include <stdlib.h>
 #include <string>
 #include <sys/syslimits.h>
 
-#if PLATFORM_OS == PLATFORM_OS_LINUX
+#if PLATFORM_LINUX
 
 #include <linux/limits.h>
 #include <unistd.h>
@@ -21,11 +17,11 @@ std::string paths::filepath() {
     return buffer;
 }
 
-#elif PLATFORM_OS == PLATFORM_OS_SOLARIS
+#elif PLATFORM_SOLARIS
 
 std::string paths::filepath() { return ""; }
 
-#elif PLATFORM_OS == PLATFORM_OS_WINDOWS
+#elif PLATFORM_WINDOWS
 
 #include <stdexcept>
 #include <windows.h>
@@ -43,14 +39,15 @@ std::string paths::filepath() {
     return std::string(ws.begin(), ws.end());
 }
 
-#elif PLATFORM_OS == PLATFORM_OS_BSD
+#elif PLATFORM_BSD
 
 std::string paths::filepath() { return ""; }
 
-#elif (PLATFORM_OS == PLATFORM_OS_MACOS) || (PLATFORM_OS == PLATFORM_OS_IOS) ||                                        \
-    (PLATFORM_OS == PLATFORM_OS_WATCHOS) || (PLATFORM_OS == PLATFORM_OS_TVOS)
+#elif PLATFORM_MACOS || PLATFORM_IOS || PLATFORM_WATCHOS || PLATFORM_TVOS
 
 #include <mach-o/dyld.h>
+
+// cppclean-disable-next-line
 #include <stdexcept>
 
 #ifndef PATH_MAX
@@ -70,7 +67,7 @@ std::string paths::filepath() {
     return realpath(buffer, NULL);
 }
 
-#elif PLATFORM_OS == PLATFORM_OS_ANDROID
+#elif PLATFORM_ANDROID
 
 std::string paths::filepath() {
     char buffer[PATH_MAX];

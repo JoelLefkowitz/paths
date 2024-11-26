@@ -1,10 +1,10 @@
 #include "relative.hpp"
 #include "absolute.hpp"
 #include "chunks.hpp"
-#include "detect.hpp"
 #include "normalise.hpp"
 #include "resolve.hpp"
 #include "vectors.tpp"
+#include <detect/constants.hpp>
 #include <string>
 #include <utility>
 #include <vector>

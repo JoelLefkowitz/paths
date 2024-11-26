@@ -1,11 +1,9 @@
 #ifndef PATHS_SUITES_COMPONENTS_TAIL_HPP
 #define PATHS_SUITES_COMPONENTS_TAIL_HPP
 
+#include <detect/constants.hpp>
 #include <string>
 #include <vector>
-
-// cppclean-disable-next-line
-#include "../../../src/detect.hpp"
 
 struct TailTestCase {
     std::string path;

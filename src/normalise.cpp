@@ -4,9 +4,9 @@
 #include "absolute.hpp"
 #include "chunks.hpp"
 #include "components.hpp"
-#include "detect.hpp"
 #include "vectors.tpp"
 #include "words.hpp"
+#include <detect/constants.hpp>
 #include <initializer_list>
 #include <string>
 #include <vector>

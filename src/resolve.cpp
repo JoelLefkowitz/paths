@@ -2,9 +2,9 @@
 
 #include "resolve.hpp"
 #include "chunks.hpp"
-#include "detect.hpp"
 #include "normalise.hpp"
 #include <cstddef>
+#include <detect/constants.hpp>
 #include <string>
 
 std::string paths::resolve(const std::vector<std::string> &paths) { return join(normalise(paths), platform::sep); }

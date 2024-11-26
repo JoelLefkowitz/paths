@@ -2,8 +2,8 @@
 
 #include "convert.hpp"
 #include "components.hpp"
-#include "detect.hpp"
 #include <algorithm>
+#include <detect/constants.hpp>
 #include <string>
 
 std::string paths::posix_path(std::string path) {
