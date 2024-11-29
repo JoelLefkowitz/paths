@@ -3,7 +3,7 @@
 #include <gtest/gtest.h>
 #include <string>
 
-TEST(convert, windows_path) {
+TEST(Convert, WindowsPath) {
     for (const auto &test : cases) {
         EXPECT_EQ(paths::windows_path(test.path), test.expected);
     }

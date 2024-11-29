@@ -32,7 +32,7 @@ std::vector<std::string> paths::split(const std::string &str, const std::string 
         std::vector<std::string> strs;
 
         for (auto i = str.begin(); i != str.end(); ++i) {
-            strs.push_back(std::string(1, *i));
+            strs.emplace_back(1, *i);
         }
 
         return strs;

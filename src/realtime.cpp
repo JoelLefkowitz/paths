@@ -1,8 +1,8 @@
 #include "realtime.hpp"
 #include "components.hpp"
+#include <cstdint>
+#include <cstdlib>
 #include <detect/macros.hpp>
-#include <stdint.h>
-#include <stdlib.h>
 #include <string>
 #include <sys/syslimits.h>
 
@@ -56,15 +56,18 @@ const size_t PATH_MAX = 1024;
 #endif
 
 std::string paths::filepath() {
-    auto bufsize = static_cast<uint32_t>(PATH_MAX);
+    auto bufsize = static_cast<unsigned int>(PATH_MAX);
 
+    // NOLINTNEXTLINE(cppcoreguidelines-avoid-c-arrays,hicpp-avoid-c-arrays,modernize-avoid-c-arrays)
     char buffer[bufsize];
 
+    // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-array-to-pointer-decay,hicpp-no-array-decay)
     if (_NSGetExecutablePath(buffer, &bufsize) == -1) {
         throw std::length_error("Filepath exceeds maximum path length: " + std::to_string(PATH_MAX));
     }
 
-    return realpath(buffer, NULL);
+    // NOLINTNEXTLINE(cppcoreguidelines-pro-bounds-array-to-pointer-decay,hicpp-no-array-decay)
+    return realpath(buffer, nullptr);
 }
 
 #elif PLATFORM_ANDROID
@@ -72,9 +75,6 @@ std::string paths::filepath() {
 std::string paths::filepath() {
     char buffer[PATH_MAX];
     readlink("/proc/self/maps", buffer, PATH_MAX);
-    // realpath(path, buffer);
-    // munmap(begin, offset);
-    // fclose(maps);
     return buffer;
 }
 

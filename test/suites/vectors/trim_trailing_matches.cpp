@@ -3,7 +3,7 @@
 #include <gtest/gtest.h>
 #include <string>
 
-TEST(vectors, trim_trailing_matches) {
+TEST(Vectors, TrimTrailingMatches) {
     for (const auto &test : cases) {
         EXPECT_EQ(paths::trim_trailing_matches(test.x, test.y), test.expected);
     }

@@ -47,6 +47,7 @@
     "miniscons",
     "namespacelist",
     "nodiscard",
+    "nolintnextline",
     "normpath",
     "opengraph",
     "pycache",

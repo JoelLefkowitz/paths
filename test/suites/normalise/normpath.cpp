@@ -5,7 +5,7 @@
 #include <gtest/gtest.h>
 #include <string>
 
-TEST(normalise, normpath) {
+TEST(Normalise, Normpath) {
     for (const auto &test : common_cases) {
         auto path     = paths::platform_path(test.path);
         auto expected = paths::platform_path(test.expected);

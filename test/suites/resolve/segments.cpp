@@ -4,7 +4,7 @@
 #include "../../../src/vectors.tpp"
 #include <gtest/gtest.h>
 
-TEST(resolve, segments) {
+TEST(Resolve, Segments) {
     for (const auto &test : common_cases) {
         EXPECT_EQ(paths::segments(paths::platform_path(test.path)), test.expected);
     }

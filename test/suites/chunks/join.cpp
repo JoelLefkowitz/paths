@@ -3,7 +3,7 @@
 #include <gtest/gtest.h>
 #include <string>
 
-TEST(chunks, join) {
+TEST(Chunks, Join) {
     for (const auto &test : cases) {
         EXPECT_EQ(paths::join(test.strs, test.delimiter), test.expected);
     }

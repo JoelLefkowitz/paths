@@ -3,7 +3,7 @@
 #include <gtest/gtest.h>
 #include <string>
 
-TEST(vectors, concat) {
+TEST(Vectors, Concat) {
     for (const auto &test : cases) {
         EXPECT_EQ(paths::concat(test.vector, test.suffix), test.expected);
     }

@@ -3,4 +3,4 @@
 #include <gtest/gtest.h>
 #include <string>
 
-TEST(runtime, dirpath) { EXPECT_EQ(paths::dirpath(), test::environment("DIRPATH")); }
+TEST(Runtime, Dirpath) { EXPECT_EQ(paths::dirpath(), test::environment("DIRPATH")); }

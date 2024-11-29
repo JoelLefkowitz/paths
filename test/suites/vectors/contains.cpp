@@ -3,7 +3,7 @@
 #include <gtest/gtest.h>
 #include <string>
 
-TEST(vectors, contains) {
+TEST(Vectors, Contains) {
     for (const auto &test : cases) {
         EXPECT_EQ(paths::contains(test.vector, test.element), test.expected);
     }

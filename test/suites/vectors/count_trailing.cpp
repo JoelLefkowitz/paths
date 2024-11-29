@@ -3,7 +3,7 @@
 #include <gtest/gtest.h>
 #include <string>
 
-TEST(vectors, count_trailing) {
+TEST(Vectors, CountTrailing) {
     for (const auto &test : cases) {
         EXPECT_EQ(paths::count_trailing(test.vector, test.suffix), test.expected);
     }

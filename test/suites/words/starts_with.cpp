@@ -3,7 +3,7 @@
 #include <gtest/gtest.h>
 #include <string>
 
-TEST(words, starts_with) {
+TEST(Words, StartsWith) {
     for (const auto &test : cases) {
         EXPECT_EQ(paths::starts_with(test.str, test.prefix), test.expected);
     }

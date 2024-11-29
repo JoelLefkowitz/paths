@@ -5,7 +5,7 @@
 #include <gtest/gtest.h>
 #include <string>
 
-TEST(absolute, absolute) {
+TEST(Absolute, Absolute) {
     for (const auto &test : common_cases) {
         EXPECT_EQ(paths::absolute(paths::platform_path(test.path)), test.expected);
     }

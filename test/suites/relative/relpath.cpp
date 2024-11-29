@@ -4,7 +4,7 @@
 #include <gtest/gtest.h>
 #include <string>
 
-TEST(relative, relpath) {
+TEST(Relative, Relpath) {
     for (const auto &test : cases) {
         auto source   = paths::platform_path(test.source);
         auto target   = paths::platform_path(test.target);
