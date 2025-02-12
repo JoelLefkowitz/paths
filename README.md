@@ -2,7 +2,7 @@
 
 Cross platform OS path operations and executable path retrieval.
 
-![Review](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/paths/review.yml)
+![Review](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/paths/review.yaml)
 ![Quality](https://img.shields.io/codacy/grade/61e4785a984c42bbbdf1554f025d0f7a)
 
 ## Motivation
@@ -22,9 +22,9 @@ Test environments:
 
 | Test environment | Status                                                                                                      |
 | ---------------- | ----------------------------------------------------------------------------------------------------------- |
-| Ubuntu 20.04     | ![Linux](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/paths/test_ubuntu_20.04.yml)   |
-| MacOS 12         | ![Darwin](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/paths/test_macos_12.yml)      |
-| Windows 2022     | ![Windows](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/paths/test_windows_2022.yml) |
+| Ubuntu 20.04     | ![Linux](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/paths/test_ubuntu_20.04.yaml)   |
+| MacOS 12         | ![Darwin](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/paths/test_macos_12.yaml)      |
+| Windows 2022     | ![Windows](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/paths/test_windows_2022.yaml) |
 
 ## Installing
 
@@ -32,7 +32,7 @@ Test environments:
 conan search paths
 ```
 
-You can also download the [sources](https://download-directory.github.io?url=https://github.com/joellefkowitz/paths/tree/master/src).
+You can also download the [sources](https://download-directory.github.io?url=https://github.com/JoelLefkowitz/paths/tree/master/src).
 
 ## Documentation
 

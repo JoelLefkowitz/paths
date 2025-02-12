@@ -18,6 +18,7 @@
     "conandeps",
     "conanfile",
     "constexpr",
+    "corepack",
     "cppcheck",
     "cppclean",
     "cppcoreguidelines",

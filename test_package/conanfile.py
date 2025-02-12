@@ -1,16 +1,33 @@
+import os
 from conan import ConanFile
-from conan.tools.scons import SConsDeps
+from conan.tools.build import can_run
+from conan.tools.cmake import cmake_layout, CMake
 
 
-class Recipe(ConanFile):
-    def requirements(self):
-        self.requires(self.tested_reference_str)
+class TestPackageConan(ConanFile):
+    settings = (
+        "os",
+        "arch",
+        "compiler",
+        "build_type",
+    )
+
+    generators = (
+        "CMakeDeps",
+        "CMakeToolchain",
+    )
+
+    def layout(self):
+        cmake_layout(self)
 
     def build_requirements(self):
-        self.test_requires("gtest/1.12.1")
+        self.requires(self.tested_reference_str)
 
-    def generate(self):
-        SConsDeps(self).generate()
+    def build(self):
+        cmake = CMake(self)
+        cmake.configure()
+        cmake.build()
 
     def test(self):
-        self.run("scons test")
+        if can_run(self):
+            self.run(os.path.join(self.cpp.build.bindir, "test_package"))
