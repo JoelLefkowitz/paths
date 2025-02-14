@@ -6,8 +6,8 @@
 
 struct CountTrailingTestCase {
     std::vector<int> vector;
-    int              suffix;
-    size_t           expected;
+    int suffix;
+    size_t expected;
 };
 
 const std::vector<CountTrailingTestCase> cases = {

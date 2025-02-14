@@ -19,7 +19,9 @@ std::string paths::filepath() {
 
 #elif PLATFORM_SOLARIS
 
-std::string paths::filepath() { return ""; }
+std::string paths::filepath() {
+    return "";
+}
 
 #elif PLATFORM_WINDOWS
 
@@ -28,7 +30,7 @@ std::string paths::filepath() { return ""; }
 
 std::string paths::filepath() {
     wchar_t buffer[MAX_PATH];
-    auto    size = GetModuleFileNameW(NULL, buffer, MAX_PATH);
+    auto size = GetModuleFileNameW(NULL, buffer, MAX_PATH);
 
     if (size > MAX_PATH + 1) {
         throw std::length_error("Filepath exceeds maximum path length: " + std::to_string(MAX_PATH));
@@ -41,7 +43,9 @@ std::string paths::filepath() {
 
 #elif PLATFORM_BSD
 
-std::string paths::filepath() { return ""; }
+std::string paths::filepath() {
+    return "";
+}
 
 #elif PLATFORM_MACOS || PLATFORM_IOS || PLATFORM_WATCHOS || PLATFORM_TVOS
 
@@ -84,8 +88,14 @@ std::string paths::filepath() {
 
 #endif
 
-std::string paths::filename() { return head(filepath()); }
+std::string paths::filename() {
+    return head(filepath());
+}
 
-std::string paths::dirpath() { return tail(filepath()); }
+std::string paths::dirpath() {
+    return tail(filepath());
+}
 
-std::string paths::dirname() { return head(tail(filepath())); }
+std::string paths::dirname() {
+    return head(tail(filepath()));
+}

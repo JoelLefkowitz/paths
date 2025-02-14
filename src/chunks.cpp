@@ -12,7 +12,9 @@ std::string paths::join(const std::vector<std::string> &strs, char delimiter) {
 }
 
 std::string paths::join(const std::vector<std::string> &strs, const std::string &delimiter) {
-    auto concat = [&delimiter](const std::string &acc, const std::string &x) { return acc + x + delimiter; };
+    auto concat = [&delimiter](const std::string &acc, const std::string &x) {
+        return acc + x + delimiter;
+    };
 
     auto joined = std::accumulate(strs.begin(), strs.end(), std::string(), concat);
 

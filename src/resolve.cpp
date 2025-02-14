@@ -7,7 +7,9 @@
 #include <detect/constants.hpp>
 #include <string>
 
-std::string paths::resolve(const std::vector<std::string> &paths) { return join(normalise(paths), platform::sep); }
+std::string paths::resolve(const std::vector<std::string> &paths) {
+    return join(normalise(paths), platform::sep);
+}
 
 std::vector<std::string> paths::segments(const std::string &path) {
     auto chunks = split(normpath(path), platform::sep);

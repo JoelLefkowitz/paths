@@ -4,8 +4,8 @@
 #include <vector>
 
 struct TrimTrailingMatchesTestCase {
-    std::vector<int>                              x;
-    std::vector<int>                              y;
+    std::vector<int> x;
+    std::vector<int> y;
     std::pair<std::vector<int>, std::vector<int>> expected;
 };
 

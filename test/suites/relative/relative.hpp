@@ -7,7 +7,7 @@
 
 struct RelativeTestCase {
     std::string path;
-    bool        expected;
+    bool expected;
 };
 
 const std::vector<RelativeTestCase> common_cases = {

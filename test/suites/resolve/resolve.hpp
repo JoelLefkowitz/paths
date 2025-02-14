@@ -6,7 +6,7 @@
 
 struct ResolveTestCase {
     std::vector<std::string> paths;
-    std::string              expected;
+    std::string expected;
 };
 
 const std::vector<ResolveTestCase> cases = {

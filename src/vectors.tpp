@@ -36,7 +36,9 @@ std::vector<T> paths::reverse(const std::vector<T> &vec) {
 
 template <typename T>
 bool paths::contains(const std::vector<T> &vec, const T &x) {
-    return std::any_of(vec.begin(), vec.end(), [&x](const T &y) { return x == y; });
+    return std::any_of(vec.begin(), vec.end(), [&x](const T &y) {
+        return x == y;
+    });
 }
 
 template <typename T>

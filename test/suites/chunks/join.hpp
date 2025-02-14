@@ -6,8 +6,8 @@
 
 struct JoinTestCase {
     std::vector<std::string> strs;
-    std::string              delimiter;
-    std::string              expected;
+    std::string delimiter;
+    std::string expected;
 };
 
 const std::vector<JoinTestCase> cases = {

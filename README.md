@@ -20,8 +20,8 @@ Since path manipulation is full of edge cases it is paramount to have an extensi
 
 Test environments:
 
-| Test environment | Status                                                                                                      |
-| ---------------- | ----------------------------------------------------------------------------------------------------------- |
+| Test environment | Status                                                                                                       |
+| ---------------- | ------------------------------------------------------------------------------------------------------------ |
 | Ubuntu 20.04     | ![Linux](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/paths/test_ubuntu_20.04.yaml)   |
 | MacOS 12         | ![Darwin](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/paths/test_macos_12.yaml)      |
 | Windows 2022     | ![Windows](https://img.shields.io/github/actions/workflow/status/JoelLefkowitz/paths/test_windows_2022.yaml) |
@@ -437,6 +437,16 @@ To run formatters:
 
 ```bash
 scons format
+```
+
+### Toolchains
+
+Scripts are defined in the `scripts` folder and can be invoked with `toolchains`:
+
+To generate header guards:
+
+```bash
+npx toolchains guards
 ```
 
 ## Contributing

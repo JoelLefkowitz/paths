@@ -6,6 +6,11 @@ from conan.tools.layout import basic_layout
 
 
 class PathsConan(ConanFile):
+    requires = (
+        "detect/3.0.0",
+        "funky/0.1.0",
+    )
+
     def layout(self):
         basic_layout(self, src_folder="src")
 

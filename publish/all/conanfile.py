@@ -36,6 +36,11 @@ class PathsConan(ConanFile):
         "LICENSE.md",
     )
 
+    requires = (
+        "detect/3.0.0",
+        "funky/0.1.0",
+    )
+
     def layout(self):
         basic_layout(self, src_folder="src")
 

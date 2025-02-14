@@ -6,8 +6,8 @@
 
 struct CountLeadingTestCase {
     std::vector<int> vector;
-    int              prefix;
-    size_t           expected;
+    int prefix;
+    size_t expected;
 };
 
 const std::vector<CountLeadingTestCase> cases = {

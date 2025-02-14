@@ -5,8 +5,8 @@
 #include <vector>
 
 struct SplitTestCase {
-    std::string              str;
-    std::string              delimiter;
+    std::string str;
+    std::string delimiter;
     std::vector<std::string> expected;
 };
 

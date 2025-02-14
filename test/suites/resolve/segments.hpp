@@ -6,7 +6,7 @@
 #include <vector>
 
 struct SegmentsTestCase {
-    std::string              path;
+    std::string path;
     std::vector<std::string> expected;
 };
 

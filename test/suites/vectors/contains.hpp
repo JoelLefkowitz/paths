@@ -5,8 +5,8 @@
 
 struct ContainsTestCase {
     std::vector<int> vector;
-    int              element;
-    bool             expected;
+    int element;
+    bool expected;
 };
 
 const std::vector<ContainsTestCase> cases = {

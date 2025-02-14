@@ -18,4 +18,6 @@ std::string paths::relpath(const std::string &source, const std::string &target)
     return normpath(join(merged, platform::sep));
 }
 
-bool paths::relative(const std::string &path) { return !absolute(path); }
+bool paths::relative(const std::string &path) {
+    return !absolute(path);
+}

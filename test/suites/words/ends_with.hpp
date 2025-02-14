@@ -7,7 +7,7 @@
 struct EndsWithTestCase {
     std::string str;
     std::string prefix;
-    bool        expected;
+    bool expected;
 };
 
 const std::vector<EndsWithTestCase> cases = {
