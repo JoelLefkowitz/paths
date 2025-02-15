@@ -5,7 +5,7 @@ from glob import glob
 
 project = "Paths"
 package = "paths"
-version = "0.0.0"
+version = "0.1.0"
 
 project_copyright = f"{date.today().year} Joel Lefkowitz"
 

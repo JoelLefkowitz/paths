@@ -1,7 +1,7 @@
 [project]
 name = "paths"
 description = "Cross platform OS path operations and executable path retrieval."
-version = "0.0.0"
+version = "0.1.0"
 
 keywords = ["path", "runtime", "relative", "absolute", "source"]
 
