@@ -1,4 +1,4 @@
 sources:
-  "0.0.0":
-    url: "https://github.com/JoelLefkowitz/paths/archive/refs/tags/v0.0.0.tar.gz"
-    sha256: ""
+  "0.1.0":
+    url: "https://github.com/JoelLefkowitz/paths/archive/refs/tags/v0.1.0.tar.gz"
+    sha256: "8b035427e8009ffcdeaad21148bc77d4f9828ccd124ef00fbbc848e1977b6eaf"
