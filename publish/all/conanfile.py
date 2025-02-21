@@ -1,6 +1,7 @@
 import os
+
 from conan import ConanFile
-from conan.tools.files import copy, get, move_folder_contents, rmdir
+from conan.tools.files import copy, get
 from conan.tools.scons import SConsDeps
 from conan.tools.layout import basic_layout
 
