@@ -13,17 +13,16 @@ from miniscons import (
     flags,
 )
 from walkmate import tree
+from glob import glob
 
-conandeps = "build/conan/SConscript_conandeps"
-
-env = conan(source=conandeps)
+env = conan()
 
 runtime = Build(
     "build",
     tree("src", r"(?<!\.spec)\.cpp$", ["test.cpp"]),
     flags("c++17"),
     shared=True,
-    rename=PathsConan.name,
+    rename="paths",
 )
 
 tests = Build(
@@ -33,7 +32,7 @@ tests = Build(
         *tree("test", r"\.cpp$"),
     ],
     flags("c++17"),
-    packages(["gtest"], source=conandeps),
+    packages(["gtest"]),
 )
 
 test = Target(
